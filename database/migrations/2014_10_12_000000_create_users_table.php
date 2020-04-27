@@ -17,13 +17,15 @@ class CreateUsersTable extends Migration
             $table->increments("id");
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->boolean('email_verified')->nullable();
+            $table->boolean('email_verified')->nullable()->default(0);
             $table->string('phone_number')->unique();
-            $table->boolean('phone_verified')->nullable();
+            $table->boolean('phone_verified')->nullable()->default(0);
             $table->string('password');
-            $table->boolean("status");
+            $table->boolean("status")->default(true);
             $table->rememberToken();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
