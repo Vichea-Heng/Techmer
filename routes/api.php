@@ -50,6 +50,11 @@ Route::group(["prefix" => "/v1"], function () {
             Route::get('/product_brand/index/only_trashed', 'ProductBrandController@indexOnlyTrashed');
             Route::post('/product_brand/restore/{product_brand}', 'ProductBrandController@restore');
             Route::delete('/product_brand/forceDelete/{product_brand}', 'ProductBrandController@forceDestroy');
+
+            Route::apiResource('/product_category', 'ProductCategoryController');
+            Route::get('/product_category/index/only_trashed', 'ProductCategoryController@indexOnlyTrashed');
+            Route::post('/product_category/restore/{product_category}', 'ProductCategoryController@restore');
+            Route::delete('/product_category/forceDelete/{product_category}', 'ProductCategoryController@forceDestroy');
         });
     });
     // });
