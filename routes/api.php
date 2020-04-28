@@ -27,6 +27,8 @@ Route::group(["prefix" => "/v1"], function () {
     // Route::group(["middleware" => "auth:api"], function () {
     Route::group(["namespace" => "Api\\v1\\"], function () {
         Route::group(["namespace" => "Users\\"], function () {
+            Route::post("/addIdentity", "UserController@addIdentity");
+
             Route::apiResource('/role', 'RoleController');
             Route::get('/role/index/only_trashed', 'RoleController@indexOnlyTrashed');
             Route::post('/role/restore/{role}', 'RoleController@restore');

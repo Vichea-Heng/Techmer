@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\v1\Users;
 
 use App\Exceptions\MessageException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Users\AddressRequest;
+use App\Models\Addresses\Address;
 use App\Models\Users\Identity;
 use App\Models\Users\User;
 use Carbon\Carbon;
@@ -77,6 +79,28 @@ class UserController extends Controller
             $token->delete();
         });
         return response()->json(["success" => "SUCCESSFULLY"], Response::HTTP_OK);
+    }
+
+    public function addIdentity(Request $request1, AddressRequest $request)
+    {
+        $data = $request->validated();
+        $data = array_merge($data, $request1->validate([
+            "nationality_id" => "required|numeric|exists:nationalities,id"
+        ]));
+
+        DB::beginTransaction();
+
+        $address = Address::create($data);
+        $data["address_id"] = $address->id;
+        $update = array_intersect_key($data, ["address_id" => "", "nationality_id" => ""]);
+        // dd($update, ["address_id" => $data["address_id"], "nationality_id" => $data["nationality_id"]]);
+        $identity = Identity::where("user_id", $data["user_id"])->first()->update($update);
+        if (!$identity) {
+            throw new MessageException("Cannot Update Address");
+        }
+        DB::commit();
+
+        return response()->json(["success" => $data], Response::HTTP_OK);
     }
 
     // public function generate_username($data)
