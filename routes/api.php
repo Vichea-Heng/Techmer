@@ -19,21 +19,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(["prefix" => "/v1"], function () {
+    Route::group(["namespace" => "Api\\v1\\Users\\"], function () {
+        Route::post("/login", "UserController@login");
+        Route::post("/register", "UserController@register");
+        Route::post("/logout/{user}", "UserController@logout");
+    });
+    // Route::group(["middleware" => "auth:api"], function () {
     Route::group(["namespace" => "Api\\v1\\"], function () {
         Route::group(["namespace" => "Users\\"], function () {
-            Route::post("/login", "UserController@login");
-            Route::post("/register", "UserController@register");
-            Route::post("/logout/{user}", "UserController@logout");
-
             Route::apiResource('/role', 'RoleController');
             Route::get('/role/index/only_trashed', 'RoleController@indexOnlyTrashed');
             Route::post('/role/restore/{role}', 'RoleController@restore');
             Route::delete('/role/forceDelete/{role}', 'RoleController@forceDestroy');
+
+            Route::apiResource('/permission', 'PermissionController');
+            Route::get('/permission/index/only_trashed', 'PermissionController@indexOnlyTrashed');
+            Route::post('/permission/restore/{permission}', 'PermissionController@restore');
+            Route::delete('/permission/forceDelete/{permission}', 'PermissionController@forceDestroy');
         });
     });
+    // });
 });
-
-Route::apiResource('/permission', 'Users\\PermissionController');
-                Route::get('/permission/index/only_trashed' , 'Users\\PermissionController@indexOnlyTrashed'); 
-                Route::post('/permission/restore/{permission}' , 'Users\\PermissionController@restore');
-                Route::delete('/permission/forceDelete/{permission}' , 'Users\\PermissionController@forceDestroy'); 

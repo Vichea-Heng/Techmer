@@ -24,7 +24,7 @@ class PermissionPolicy
     {
         return $user->can("ViewOwn Permission");
     }
-    
+
     public function viewWithTrashed(User $user, Permission $permission)
     {
         return $user->can("ViewWithTrashed Permission");

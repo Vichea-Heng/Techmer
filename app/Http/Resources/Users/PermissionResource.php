@@ -13,6 +13,7 @@ class PermissionResource extends JsonResource
                 "id" => $this->id,
                 "name" => $this->name,
                 "guard_name" => $this->guard_name,
+                "group_id" => $this->group_id,
                 'deleted_at' => $this->deleted_at,
             ];
         }
@@ -21,6 +22,7 @@ class PermissionResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "guard_name" => $this->guard_name,
+            "group_id" => $this->group_id,
         ];
     }
 }
