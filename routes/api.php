@@ -36,6 +36,11 @@ Route::group(["prefix" => "/v1"], function () {
             Route::get('/permission/index/only_trashed', 'PermissionController@indexOnlyTrashed');
             Route::post('/permission/restore/{permission}', 'PermissionController@restore');
             Route::delete('/permission/forceDelete/{permission}', 'PermissionController@forceDestroy');
+
+            Route::apiResource('/permission_group', 'PermissionGroupController');
+            Route::get('/permission_group/index/only_trashed', 'PermissionGroupController@indexOnlyTrashed');
+            Route::post('/permission_group/restore/{permission_group}', 'PermissionGroupController@restore');
+            Route::delete('/permission_group/forceDelete/{permission_group}', 'PermissionGroupController@forceDestroy');
         });
     });
     // });

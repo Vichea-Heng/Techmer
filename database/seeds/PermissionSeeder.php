@@ -8,11 +8,6 @@ class PermissionSeeder extends Seeder
 {
     public function run()
     {
-        DB::table("permission_groups")->insert([
-            ["name" => "Role"],
-            ["name" => "Permission"],
-        ]);
-
         DB::table("permissions")->insert([
             ["name" => "Create Role", "guard_name" => "api", "group_id" => "1"],
             ["name" => "ViewAny Role", "guard_name" => "api", "group_id" => "1"],
