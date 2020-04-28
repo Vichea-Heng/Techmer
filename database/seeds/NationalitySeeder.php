@@ -1,19 +1,23 @@
 <?php
 
+use App\Models\Addresses\Nationality;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Nationality;
 
 class NationalitySeeder extends Seeder
 {
     public function run()
     {
-        DB::table("nationalities")->insert([
+        $datas = [
             ["nationality" => "Cambodian"],
             ["nationality" => "Thailand"],
             ["nationality" => "Vietnamese"],
             ["nationality" => "Singaporean"],
-        ]);
+        ];
+
+        foreach ($datas as $data) {
+            Nationality::create($data);
+        }
 
         // factory(Nationality::class, 10)->create());
     }

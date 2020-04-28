@@ -8,9 +8,13 @@ class {{modelName}}Seeder extends Seeder
 {
     public function run()
     {
-        DB::table("{{modelSnakeCaseName}}")->insert([
-          
-        ]);
+        $datas = [
+
+        ];
+
+        foreach($datas as $data){
+            {{modelName}}::create($data);
+        }
 
         // factory({{modelName}}::class, 10)->create());
     }

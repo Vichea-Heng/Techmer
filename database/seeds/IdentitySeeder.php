@@ -8,9 +8,13 @@ class IdentitySeeder extends Seeder
 {
     public function run()
     {
-        DB::table("identities")->insert([
+        $datas = [
             ["user_id" => 1, "first_name" => "Vichea", "last_name" => "Heng", "date_of_birth" => "2000-10-10"],
-        ]);
+        ];
+
+        foreach ($datas as $data) {
+            Identity::create($data);
+        }
 
         // factory(Country::class, 10)->create());
     }

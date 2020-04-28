@@ -21,8 +21,8 @@ class PermissionRequest extends FormRequest
             $name_rule = [Rule::requiredIf(check_empty_array($request, "name")), new LetterSpaceRule, Rule::unique("permissions")->where(function ($query) use ($request) {
                 return $query->where(["name" => $request["name"], "guard_name" => $request["guard_name"]]);
             })->ignore($this->route("permission")->id)];
-            $guard_name_rule = [Rule::requiredIf(check_empty_array($request, "date")), "in:api,web"];
-            $group_id_rule = [Rule::requiredIf(check_empty_array($request, "date")), "exists:permission_groups,id"];
+            $guard_name_rule = [Rule::requiredIf(check_empty_array($request, "guard_name")), "in:api,web"];
+            $group_id_rule = [Rule::requiredIf(check_empty_array($request, "group_id")), "exists:permission_groups,id"];
         } else {
             $name_rule = ["required", new LetterSpaceRule, Rule::unique("permissions")->where(function ($query) {
                 return $query->where(["name" => $this->get("name"), "guard_name" => $this->get("guard_name")]);

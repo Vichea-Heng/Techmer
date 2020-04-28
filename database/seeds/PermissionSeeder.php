@@ -2,13 +2,13 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Users\Permission;
+use Spatie\Permission\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
     public function run()
     {
-        DB::table("permissions")->insert([
+        $datas = [
             ["name" => "Create Role", "guard_name" => "api", "group_id" => "1"],
             ["name" => "ViewAny Role", "guard_name" => "api", "group_id" => "1"],
             ["name" => "ViewOwn Role", "guard_name" => "api", "group_id" => "1"],
@@ -20,8 +20,11 @@ class PermissionSeeder extends Seeder
             ["name" => "ViewOwn Permission", "guard_name" => "api", "group_id" => "2"],
             ["name" => "Update Permission", "guard_name" => "api", "group_id" => "2"],
             ["name" => "Delete Permission", "guard_name" => "api", "group_id" => "2"],
+        ];
 
-        ]);
+        foreach ($datas as $data) {
+            Permission::create($data);
+        }
 
         // factory(Permission::class, 10)->create());
     }

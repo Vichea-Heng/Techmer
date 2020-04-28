@@ -44,6 +44,13 @@ Route::group(["prefix" => "/v1"], function () {
             Route::post('/permission_group/restore/{permission_group}', 'PermissionGroupController@restore');
             Route::delete('/permission_group/forceDelete/{permission_group}', 'PermissionGroupController@forceDestroy');
         });
+
+        Route::group(["namespace" => "Products\\"], function () {
+            Route::apiResource('/product_brand', 'ProductBrandController');
+            Route::get('/product_brand/index/only_trashed', 'ProductBrandController@indexOnlyTrashed');
+            Route::post('/product_brand/restore/{product_brand}', 'ProductBrandController@restore');
+            Route::delete('/product_brand/forceDelete/{product_brand}', 'ProductBrandController@forceDestroy');
+        });
     });
     // });
 });

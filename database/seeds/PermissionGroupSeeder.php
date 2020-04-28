@@ -8,10 +8,14 @@ class PermissionGroupSeeder extends Seeder
 {
     public function run()
     {
-        DB::table("permission_groups")->insert([
+        $datas = [
             ["name" => "Role"],
             ["name" => "Permission"],
-        ]);
+        ];
+
+        foreach ($datas as $data) {
+            PermissionGroup::create($data);
+        }
 
         // factory(PermissionGroup::class, 10)->create());
     }
