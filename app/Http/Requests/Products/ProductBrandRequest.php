@@ -17,7 +17,7 @@ class ProductBrandRequest extends FormRequest
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
-            $brand_rule = [Rule::requiredIf(check_empty_array($request, "brand")), new LetterSpaceRule, "unique:product_brands"];
+            $brand_rule = [Rule::requiredIf(check_empty_array($request, "brand")), new LetterSpaceRule, "unique:product_brands,brand," . $this->route("product_brand")->id];
             $from_country_rule = [Rule::requiredIf(check_empty_array($request, "from_country")), "numeric", "exists:countries,id"];
             $posted_by_rule = [Rule::requiredIf(check_empty_array($request, "posted_by")), "numeric", "exists:users,id"];
         } else {
