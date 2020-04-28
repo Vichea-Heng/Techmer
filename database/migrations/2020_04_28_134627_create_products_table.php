@@ -29,12 +29,6 @@ class CreateProductsTable extends Migration
 
             $table->timestamps();
             $table->softDeletes();
-
-            // $table->json("option");
-            // $table->string("warrenty");
-            // $table->double("price");
-            // // $table->double("qty");
-            // $table->double("discount");
         });
     }
 
