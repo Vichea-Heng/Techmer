@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Products\ProductFeedback;
-use App\Models\Products\ProductRated;
+use App\Models\Products\UserExperience\ProductFeedback;
+use App\Models\Products\UserExperience\ProductRated;
 
 class ProductFeedbackSeeder extends Seeder
 {

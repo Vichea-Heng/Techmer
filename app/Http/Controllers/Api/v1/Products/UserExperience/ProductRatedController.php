@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Products;
+namespace App\Http\Controllers\Api\v1\Products\UserExperience;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Products\ProductRated;
-use App\Http\Requests\Products\ProductRatedRequest;
-use App\Http\Resources\Products\ProductRatedResource;
+use App\Models\Products\UserExperience\ProductRated;
+use App\Http\Requests\Products\UserExperience\ProductRatedRequest;
+use App\Http\Resources\Products\UserExperience\ProductRatedResource;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

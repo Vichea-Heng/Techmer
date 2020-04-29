@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Products;
+namespace App\Http\Controllers\Api\v1\Products\UserExperience;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Products\ProductFeedback;
-use App\Http\Requests\Products\ProductFeedbackRequest;
-use App\Http\Resources\Products\ProductFeedbackResource;
-use App\Models\Products\ProductRated;
+use App\Models\Products\UserExperience\ProductFeedback;
+use App\Http\Requests\Products\UserExperience\ProductFeedbackRequest;
+use App\Http\Resources\Products\UserExperience\ProductFeedbackResource;
+use App\Models\Products\UserExperience\ProductRated;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
