@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Products\UserExperience;
+namespace App\Http\Requests\Products\Payment;
 
 use App\Models\Products\ProductOption;
 use Illuminate\Foundation\Http\FormRequest;

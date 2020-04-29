@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Products\UserExperience;
+namespace App\Http\Controllers\Api\v1\Products\Payment;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Products\UserExperience\ProductRated;
-use App\Http\Requests\Products\UserExperience\ProductRatedRequest;
-use App\Http\Resources\Products\UserExperience\ProductRatedResource;
+use App\Models\Products\Payment\UserCart;
+use App\Http\Requests\Products\Payment\UserCartRequest;
+use App\Http\Resources\Products\Payment\UserCartResource;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class ProductRatedController extends Controller
+class UserCartController extends Controller
 {
 
     public function __construct()
@@ -24,11 +24,11 @@ class ProductRatedController extends Controller
     public function index()
     {
 
-        // $this->authorize("viewAny", ProductRated::class);
+        // $this->authorize("viewAny", UserCart::class);
 
-        $datas = ProductRated::get();
+        $datas = UserCart::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductRatedResource::collection($datas));
+        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : UserCartResource::collection($datas));
 
         return response()->json($datas, Response::HTTP_OK);
     }
@@ -38,57 +38,57 @@ class ProductRatedController extends Controller
 
         // only super admin can access, and check with middleware at the __construct function
 
-        $datas = ProductRated::onlyTrashed()->get();
+        $datas = UserCart::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductRatedResource::collection($datas));
+        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : UserCartResource::collection($datas));
 
         return response()->json($datas, Response::HTTP_OK);
     }
 
-    public function store(ProductRatedRequest $request)
+    public function store(UserCartRequest $request)
     {
 
-        // $this->authorize("create", ProductRated::class);
+        // $this->authorize("create", UserCart::class);
 
         $data = $request->validated();
 
-        $data = ProductRated::create($data);
+        $data = UserCart::create($data);
 
-        $data = new ProductRatedResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
-    }
-
-    public function show(ProductRated $product_rated)
-    {
-
-        // $this->authorize("view", ProductRated::class);
-
-        $data = new ProductRatedResource($product_rated);
+        $data = new UserCartResource($data);
 
         return response()->json($data, Response::HTTP_OK);
     }
 
-    public function update(ProductRatedRequest $request, ProductRated $product_rated)
+    public function show(UserCart $user_cart)
     {
 
-        // $this->authorize("update", ProductRated::class);
+        // $this->authorize("view", UserCart::class);
+
+        $data = new UserCartResource($user_cart);
+
+        return response()->json($data, Response::HTTP_OK);
+    }
+
+    public function update(UserCartRequest $request, UserCart $user_cart)
+    {
+
+        // $this->authorize("update", UserCart::class);
 
         $data = $request->validated();
 
-        $product_rated->update($data);
+        $user_cart->update($data);
 
-        $data = new ProductRatedResource($product_rated);
+        $data = new UserCartResource($user_cart);
 
         return response()->json($data, Response::HTTP_OK);
     }
 
-    public function destroy(ProductRated $product_rated)
+    public function destroy(UserCart $user_cart)
     {
 
-        // $this->authorize("delete", ProductRated::class);
+        // $this->authorize("delete", UserCart::class);
 
-        $product_rated->delete();
+        $user_cart->delete();
 
         $data = ["message" => "Data Delete successfully !!!"];
 
@@ -100,7 +100,7 @@ class ProductRatedController extends Controller
 
         // only super admin can access, and check with middleware at the __construct function
 
-        $data = ProductRated::onlyTrashed()->findOrFail($id);
+        $data = UserCart::onlyTrashed()->findOrFail($id);
 
         $data->restore();
 
@@ -114,7 +114,7 @@ class ProductRatedController extends Controller
 
         // only super admin can access, and check with middleware at the __construct function
 
-        $data = ProductRated::withTrashed()->findOrFail($id);
+        $data = UserCart::withTrashed()->findOrFail($id);
 
         $data->forceDelete();
 

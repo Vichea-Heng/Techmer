@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Products\UserExperience\ProductRated;
+use App\Models\Products\ProductRated;
 
 class ProductRatedSeeder extends Seeder
 {
