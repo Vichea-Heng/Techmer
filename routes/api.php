@@ -66,15 +66,22 @@ Route::group(["prefix" => "/v1"], function () {
             Route::post('/product_option/restore/{product_option}', 'ProductOptionController@restore');
             Route::delete('/product_option/forceDelete/{product_option}', 'ProductOptionController@forceDestroy');
 
-            Route::apiResource('/product_rated', 'ProductRatedController');
-            Route::get('/product_rated/index/only_trashed', 'ProductRatedController@indexOnlyTrashed');
-            Route::post('/product_rated/restore/{product_rated}', 'ProductRatedController@restore');
-            Route::delete('/product_rated/forceDelete/{product_rated}', 'ProductRatedController@forceDestroy');
+            Route::group(["namespace" => "UserExperience\\"], function () {
+                Route::apiResource('/product_rated', 'ProductRatedController');
+                Route::get('/product_rated/index/only_trashed', 'ProductRatedController@indexOnlyTrashed');
+                Route::post('/product_rated/restore/{product_rated}', 'ProductRatedController@restore');
+                Route::delete('/product_rated/forceDelete/{product_rated}', 'ProductRatedController@forceDestroy');
 
-            Route::apiResource('/product_feedback', 'ProductFeedbackController', ["except" => ["update"]]);
-            Route::get('/product_feedback/index/only_trashed', 'ProductFeedbackController@indexOnlyTrashed');
-            Route::post('/product_feedback/restore/{product_feedback}', 'ProductFeedbackController@restore');
-            Route::delete('/product_feedback/forceDelete/{product_feedback}', 'ProductFeedbackController@forceDestroy');
+                Route::apiResource('/product_feedback', 'ProductFeedbackController', ["except" => ["update"]]);
+                Route::get('/product_feedback/index/only_trashed', 'ProductFeedbackController@indexOnlyTrashed');
+                Route::post('/product_feedback/restore/{product_feedback}', 'ProductFeedbackController@restore');
+                Route::delete('/product_feedback/forceDelete/{product_feedback}', 'ProductFeedbackController@forceDestroy');
+
+                Route::apiResource('/user_cart', 'UserCartController');
+                Route::get('/user_cart/index/only_trashed', 'UserCartController@indexOnlyTrashed');
+                Route::post('/user_cart/restore/{user_cart}', 'UserCartController@restore');
+                Route::delete('/user_cart/forceDelete/{user_cart}', 'UserCartController@forceDestroy');
+            });
         });
     });
     // });
