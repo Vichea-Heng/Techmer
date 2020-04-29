@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Products\Payment;
+namespace App\Http\Controllers\Api\v1\Payments;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Products\Payment\UserCart;
-use App\Http\Requests\Products\Payment\UserCartRequest;
-use App\Http\Resources\Products\Payment\UserCartResource;
+use App\Models\Payments\UserCart;
+use App\Http\Requests\Payments\UserCartRequest;
+use App\Http\Resources\Payments\UserCartResource;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

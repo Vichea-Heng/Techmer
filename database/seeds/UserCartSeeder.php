@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Products\Payment\UserCart;
+use App\Models\Payments\UserCart;
 
 class UserCartSeeder extends Seeder
 {

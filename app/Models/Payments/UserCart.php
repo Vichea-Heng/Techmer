@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Products\Payment;
+namespace App\Models\Payments;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
