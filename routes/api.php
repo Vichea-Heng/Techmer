@@ -87,6 +87,11 @@ Route::group(["prefix" => "/v1"], function () {
             Route::get('/coupon/index/only_trashed', 'CouponController@indexOnlyTrashed');
             Route::post('/coupon/restore/{coupon}', 'CouponController@restore');
             Route::delete('/coupon/forceDelete/{coupon}', 'CouponController@forceDestroy');
+
+            Route::apiResource('/transaction', 'TransactionController', ["except" => ["update"]]);
+            Route::get('/transaction/index/only_trashed', 'TransactionController@indexOnlyTrashed');
+            Route::post('/transaction/restore/{transaction}', 'TransactionController@restore');
+            Route::delete('/transaction/forceDelete/{transaction}', 'TransactionController@forceDestroy');
         });
     });
     // });

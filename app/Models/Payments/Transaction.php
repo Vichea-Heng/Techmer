@@ -4,7 +4,7 @@ namespace App\Models\Payments;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserCart extends Model
+class Transaction extends Model
 {
     protected $fillable = [
         "user_id",

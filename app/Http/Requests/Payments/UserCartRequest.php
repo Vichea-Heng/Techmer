@@ -18,17 +18,9 @@ class UserCartRequest extends FormRequest
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
 
-            $product = ProductOption::where("id", $request["product_option_id"] ?? $this->route("user_cart")->product_option_id)->first();
-            $product_option_id_rule = [Rule::requiredIf(check_empty_array($request, "group_id")), "numeric", "exists:product_options,id", function ($attribute, $value, $fail) {
-                $product = ProductOption::findOrFail($value)->first();
-                if ($product->qty == 0) {
-                    $fail($attribute . ' is not available.');
-                }
-            }];
             $qty_rule = [Rule::requiredIf(check_empty_array($request, "group_id")), "numeric", "gt:0", "" . ((isset($product->qty)) ? "lte:$product->qty" : "")];
 
             return [
-                "product_option_id" => $product_option_id_rule,
                 "qty" => $qty_rule,
             ];
         } else {
