@@ -75,6 +75,11 @@ Route::group(["prefix" => "/v1"], function () {
             Route::get('/product_feedback/index/only_trashed', 'ProductFeedbackController@indexOnlyTrashed');
             Route::post('/product_feedback/restore/{product_feedback}', 'ProductFeedbackController@restore');
             Route::delete('/product_feedback/forceDelete/{product_feedback}', 'ProductFeedbackController@forceDestroy');
+
+            Route::apiResource('/favorite_product', 'FavoriteProductController', ["except" => ["update"]]);
+            Route::get('/favorite_product/index/only_trashed', 'FavoriteProductController@indexOnlyTrashed');
+            Route::post('/favorite_product/restore/{favorite_product}', 'FavoriteProductController@restore');
+            Route::delete('/favorite_product/forceDelete/{favorite_product}', 'FavoriteProductController@forceDestroy');
         });
 
         Route::group(["namespace" => "Payments\\"], function () {
