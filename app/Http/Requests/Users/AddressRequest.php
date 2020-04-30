@@ -17,10 +17,15 @@ class AddressRequest extends FormRequest
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
 
-            $user_id_rule = [Rule::requiredIf(check_empty_array($request, "user_id")), "numeric", "exists:users,id"];
             $address_line1_rule = [Rule::requiredIf(check_empty_array($request, "address_line1"))];
             $address_line2_rule = [Rule::requiredIf(check_empty_array($request, "address_line2"))];
             $country_id_rule = [Rule::requiredIf(check_empty_array($request, "country_id")), "numeric','exists:countries,id"];
+
+            return [
+                "address_line1" => $address_line1_rule,
+                "address_line2" => $address_line2_rule,
+                "country_id" => $country_id_rule,
+            ];
         } else {
             $user_id_rule = "required|numeric|exists:users,id";
             $address_line1_rule = "required";

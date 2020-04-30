@@ -92,6 +92,11 @@ Route::group(["prefix" => "/v1"], function () {
             Route::get('/transaction/index/only_trashed', 'TransactionController@indexOnlyTrashed');
             Route::post('/transaction/restore/{transaction}', 'TransactionController@restore');
             Route::delete('/transaction/forceDelete/{transaction}', 'TransactionController@forceDestroy');
+
+            Route::apiResource('/shipping_address', 'ShippingAddressController');
+            Route::get('/shipping_address/index/only_trashed', 'ShippingAddressController@indexOnlyTrashed');
+            Route::post('/shipping_address/restore/{shipping_address}', 'ShippingAddressController@restore');
+            Route::delete('/shipping_address/forceDelete/{shipping_address}', 'ShippingAddressController@forceDestroy');
         });
     });
     // });
