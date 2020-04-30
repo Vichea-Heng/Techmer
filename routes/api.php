@@ -75,13 +75,18 @@ Route::group(["prefix" => "/v1"], function () {
             Route::get('/product_feedback/index/only_trashed', 'ProductFeedbackController@indexOnlyTrashed');
             Route::post('/product_feedback/restore/{product_feedback}', 'ProductFeedbackController@restore');
             Route::delete('/product_feedback/forceDelete/{product_feedback}', 'ProductFeedbackController@forceDestroy');
+        });
 
-            Route::group(["namespace" => "Payment\\"], function () {
-                Route::apiResource('/user_cart', 'UserCartController');
-                Route::get('/user_cart/index/only_trashed', 'UserCartController@indexOnlyTrashed');
-                Route::post('/user_cart/restore/{user_cart}', 'UserCartController@restore');
-                Route::delete('/user_cart/forceDelete/{user_cart}', 'UserCartController@forceDestroy');
-            });
+        Route::group(["namespace" => "Payments\\"], function () {
+            Route::apiResource('/user_cart', 'UserCartController');
+            Route::get('/user_cart/index/only_trashed', 'UserCartController@indexOnlyTrashed');
+            Route::post('/user_cart/restore/{user_cart}', 'UserCartController@restore');
+            Route::delete('/user_cart/forceDelete/{user_cart}', 'UserCartController@forceDestroy');
+
+            Route::apiResource('/coupon', 'CouponController');
+            Route::get('/coupon/index/only_trashed', 'CouponController@indexOnlyTrashed');
+            Route::post('/coupon/restore/{coupon}', 'CouponController@restore');
+            Route::delete('/coupon/forceDelete/{coupon}', 'CouponController@forceDestroy');
         });
     });
     // });
