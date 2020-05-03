@@ -62,7 +62,7 @@ class UserController extends Controller
         DB::beginTransaction();
 
         $user = User::create($data);
-        $user->user_id = $user->id;
+        $data["user_id"] = $user->id;
         Identity::create($data);
 
         $user->success = $user->createToken("blah");

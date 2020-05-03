@@ -9,10 +9,10 @@ class ProductOptionSeeder extends Seeder
     public function run()
     {
         $datas = [
-            ["product_id" => 1, "option" => "64Gb", "price" => "12", "qty" => 5, "discount" => 0, "warrenty" => "24 Months"],
-            ["product_id" => 1, "option" => "32Gb", "price" => "12", "qty" => 0, "discount" => 0, "warrenty" => "24 Months"],
-            ["product_id" => 1, "option" => "16Gb", "price" => "12", "qty" => 0, "discount" => 0, "warrenty" => "24 Months"],
-            ["product_id" => 1, "option" => "8Gb", "price" => "12", "qty" => 0, "discount" => 0, "warrenty" => "24 Months"],
+            ["id" => 1001, "product_id" => 1, "option" => "64Gb", "price" => "12", "qty" => 5, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["id" => 1002, "product_id" => 1, "option" => "32Gb", "price" => "12", "qty" => 0, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["id" => 1003, "product_id" => 1, "option" => "16Gb", "price" => "12", "qty" => 0, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["id" => 1004, "product_id" => 1, "option" => "8Gb", "price" => "12", "qty" => 0, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
         ];
 
         foreach ($datas as $data) {

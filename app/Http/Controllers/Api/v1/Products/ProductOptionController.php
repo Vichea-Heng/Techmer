@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Products\ProductOption;
 use App\Http\Requests\Products\ProductOptionRequest;
 use App\Http\Resources\Products\ProductOptionResource;
-
+use App\Models\Products\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -52,6 +52,10 @@ class ProductOptionController extends Controller
 
         $data = $request->validated();
 
+        $id = ProductOption::withTrashed()->select("id")->where("id", "like", $data["product_id"] . "%")->orderBy("id", "desc")->first();
+
+        $data["id"] = ($id ? $id->id + 1 : ($data["product_id"] * 1000 + 1));
+
         $data = ProductOption::create($data);
 
         $data = new ProductOptionResource($data);
@@ -87,6 +91,8 @@ class ProductOptionController extends Controller
     {
 
         // $this->authorize("delete", ProductOption::class);
+
+        $product_option->UserCart->each(fn ($item) => $item->delete());
 
         $product_option->delete();
 

@@ -19,6 +19,7 @@ class CreateProductOptionsTable extends Migration
             $table->foreign("product_id")->references("id")->on("products")->onDelete("cascade");
 
             $table->string("option");
+            $table->string("category");
             $table->double("price");
             $table->double("qty");
             $table->double("discount");

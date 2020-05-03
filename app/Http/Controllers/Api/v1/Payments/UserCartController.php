@@ -52,6 +52,10 @@ class UserCartController extends Controller
 
         $data = $request->validated();
 
+        $id = UserCart::select("id")->where("id", "like", $data["user_id"] . "%")->orderBy("id", "desc")->first();
+
+        $data["id"] = ($id ? $id->id + 1 : ($data["user_id"] * 100 + 1));
+
         $data = UserCart::create($data);
 
         $data = new UserCartResource($data);
