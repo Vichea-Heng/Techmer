@@ -17,9 +17,9 @@ class ProductCategoryRequest extends FormRequest
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
-            $category_rule = [Rule::requiredIf(check_empty_array($request, "category")), new LetterSpaceRule, "unique:product_categories,category," . $this->route("product_category")->id];
+            $category_rule = ["filled", new LetterSpaceRule, "unique:product_categories,category," . $this->route("product_category")->id];
             $description_rule = "nullable";
-            $posted_by_rule = [Rule::requiredIf(check_empty_array($request, "posted_by")), "numeric", "exists:users,id"];
+            $posted_by_rule = ["filled", "numeric", "exists:users,id"];
         } else {
             $category_rule = ["required", new LetterSpaceRule, "unique:product_categories"];
             $description_rule = "nullable";

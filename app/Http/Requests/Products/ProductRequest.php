@@ -18,11 +18,11 @@ class ProductRequest extends FormRequest
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
 
-            $title_rule = [Rule::requiredIf(check_empty_array($request, "title")), "unique:products,title," . $this->route("product")->id];
-            $brand_id_rule = [Rule::requiredIf(check_empty_array($request, "brand_id")), "numeric", "exists:product_brands,id"];
-            $content_rule = [Rule::requiredIf(check_empty_array($request, "content"))];
-            $category_id_rule = [Rule::requiredIf(check_empty_array($request, "category_id")), "numeric", "exists:product_categories,id"];
-            $posted_by_rule = [Rule::requiredIf(check_empty_array($request, "posted_by")), "numeric", "exists:users,id"];
+            $title_rule = ["filled", "unique:products,title," . $this->route("product")->id];
+            $brand_id_rule = ["filled", "numeric", "exists:product_brands,id"];
+            $content_rule = ["filled"];
+            $category_id_rule = ["filled", "numeric", "exists:product_categories,id"];
+            $posted_by_rule = ["filled", "numeric", "exists:users,id"];
         } else {
             $title_rule = ["required", "unique:products"];
             $brand_id_rule = "required|numeric|exists:product_brands,id";

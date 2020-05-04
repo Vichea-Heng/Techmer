@@ -20,15 +20,15 @@ class ProductOptionRequest extends FormRequest
             $request = $this->all();
             $data = $this->route("product_option");
             // $product_id_rule = [Rule::requiredIf(check_empty_array($request, "product_id")), "numeric", "exists:products,id"];
-            $option_rule = [Rule::requiredIf(check_empty_array($request, "option")), Rule::unique("product_options")->where(function ($query) use ($request) {
+            $option_rule = ["filled", Rule::unique("product_options")->where(function ($query) use ($request) {
                 return $query->where(["product_id" => $request["product_id"], "option" => $request["option"], "category" => $request["category"]]);
             })->ignore($data->id)];
-            $category_rule = [Rule::requiredIf(check_empty_array($request, "category"))];
-            $price_rule = [Rule::requiredIf(check_empty_array($request, "price")), "numeric", "gte:0"];
-            $qty_rule = [Rule::requiredIf(check_empty_array($request, "qty")), "numeric", "gte:0"];
-            $discount_rule = [Rule::requiredIf(check_empty_array($request, "discount")), "numeric", "gte:0"];
-            $warrenty_rule = [Rule::requiredIf(check_empty_array($request, "warrenty")), "alpha_num"];
-            $photo_rule = [Rule::requiredIf(check_empty_array($request, "photo")), "image", "max:15000"];
+            $category_rule = ["filled"];
+            $price_rule = ["filled", "numeric", "gte:0"];
+            $qty_rule = ["filled", "numeric", "gte:0"];
+            $discount_rule = ["filled", "numeric", "gte:0"];
+            $warrenty_rule = ["filled", "alpha_num"];
+            $photo_rule = ["filled", "image", "max:15000"];
 
             return [
                 // "product_id" => $product_id_rule,

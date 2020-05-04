@@ -15,7 +15,7 @@ class ProductRatedRequest extends FormRequest
     public function rules()
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
-            $rated_rule = [Rule::requiredIf(check_empty_array($this->all(), "rated")), "numeric", "gte:0", "lte:5"];
+            $rated_rule = ["filled", "numeric", "gte:0", "lte:5"];
             return [
                 "rated" => $rated_rule,
             ];

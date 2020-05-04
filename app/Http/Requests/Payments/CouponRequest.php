@@ -19,10 +19,10 @@ class CouponRequest extends FormRequest
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
 
-            $coupon_rule = [Rule::requiredIf(check_empty_array($request, "coupon")), "alpha", "unique:coupons,coupon," . $this->route("coupon")->id];
-            $discount_rule = [Rule::requiredIf(check_empty_array($request, "discount")), "numeric"];
-            $expired_date_rule = [Rule::requiredIf(check_empty_array($request, "expired_date")), "date"];
-            $posted_by_rule = [Rule::requiredIf(check_empty_array($request, "posted_by")), "numeric", "exists:users,id"];
+            $coupon_rule = ["filled", "alpha", "unique:coupons,coupon," . $this->route("coupon")->id];
+            $discount_rule = ["filled", "numeric"];
+            $expired_date_rule = ["filled", "date"];
+            $posted_by_rule = ["filled", "numeric", "exists:users,id"];
         } else {
             $coupon_rule = "required|alpha_num|unique:coupons";
             $discount_rule = "required|numeric";

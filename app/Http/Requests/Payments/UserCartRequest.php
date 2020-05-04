@@ -17,8 +17,8 @@ class UserCartRequest extends FormRequest
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
-
-            $qty_rule = [Rule::requiredIf(check_empty_array($request, "group_id")), "numeric", "gt:0", "" . ((isset($product->qty)) ? "lte:$product->qty" : "")];
+            $product = ProductOption::where("id", $this->get("product_option_id"))->first();
+            $qty_rule = ["filled", "numeric", "gt:0", "" . ((isset($product->qty)) ? "lte:$product->qty" : "")];
 
             return [
                 "qty" => $qty_rule,

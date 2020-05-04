@@ -15,7 +15,7 @@ class ShippingAddressRequest extends FormRequest
     public function rules()
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
-            $phone_number_rule = [Rule::requiredIf(check_empty_array($this->all(), "phone_number")), "numeric"];
+            $phone_number_rule = ["filled", "numeric"];
         } else {
             $phone_number_rule = "required|numeric";
         }
