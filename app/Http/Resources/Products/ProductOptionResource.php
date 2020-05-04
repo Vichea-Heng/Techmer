@@ -18,6 +18,7 @@ class ProductOptionResource extends JsonResource
                 "qty" => $this->qty,
                 "discount" => $this->discount,
                 "warrenty" => $this->warrenty,
+                "photo" => $this->photo,
                 'deleted_at' => $this->deleted_at,
             ];
         }
@@ -31,6 +32,7 @@ class ProductOptionResource extends JsonResource
             "qty" => $this->qty,
             "discount" => $this->discount,
             "warrenty" => $this->warrenty,
+            "photo" => $this->photo,
         ];
     }
 }

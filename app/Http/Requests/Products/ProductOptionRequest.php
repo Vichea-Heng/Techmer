@@ -28,6 +28,7 @@ class ProductOptionRequest extends FormRequest
             $qty_rule = [Rule::requiredIf(check_empty_array($request, "qty")), "numeric", "gte:0"];
             $discount_rule = [Rule::requiredIf(check_empty_array($request, "discount")), "numeric", "gte:0"];
             $warrenty_rule = [Rule::requiredIf(check_empty_array($request, "warrenty")), "alpha_num"];
+            $photo_rule = [Rule::requiredIf(check_empty_array($request, "photo")), "image", "max:15000"];
 
             return [
                 // "product_id" => $product_id_rule,
@@ -37,6 +38,7 @@ class ProductOptionRequest extends FormRequest
                 "qty" => $qty_rule,
                 "discount" => $discount_rule,
                 "warrenty" => $warrenty_rule,
+                "photo" => $photo_rule,
             ];
         } else {
             $request = $this->all();
@@ -49,6 +51,7 @@ class ProductOptionRequest extends FormRequest
             $qty_rule = "required|numeric|gte:0";
             $discount_rule = "required|numeric|gte:0";
             $warrenty_rule = "required|alpha_num";
+            $photo_rule = "required|image|max:15000";
         }
         return [
             "product_id" => $product_id_rule,
@@ -58,6 +61,7 @@ class ProductOptionRequest extends FormRequest
             "qty" => $qty_rule,
             "discount" => $discount_rule,
             "warrenty" => $warrenty_rule,
+            "photo" => $photo_rule,
         ];
     }
 }

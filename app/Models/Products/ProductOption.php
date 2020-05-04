@@ -18,10 +18,16 @@ class ProductOption extends Model
         "qty",
         "discount",
         "warrenty",
+        "photo",
     ];
 
     public function UserCart()
     {
         return $this->hasMany("App\Models\Payments\UserCart", "product_option_id");
+    }
+
+    public function uploadFile()
+    {
+        dd(1);
     }
 }

@@ -24,6 +24,7 @@ class CreateProductOptionsTable extends Migration
             $table->double("qty");
             $table->double("discount");
             $table->string("warrenty");
+            $table->string("photo");
 
             $table->timestamps();
             $table->softDeletes();

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductOptionController extends Controller
@@ -52,15 +53,32 @@ class ProductOptionController extends Controller
 
         $data = $request->validated();
 
+
         $id = ProductOption::withTrashed()->select("id")->where("id", "like", $data["product_id"] . "%")->orderBy("id", "desc")->first();
 
         $data["id"] = ($id ? $id->id + 1 : ($data["product_id"] * 1000 + 1));
 
+        DB::beginTransaction();
+
+        $path = "/Techmer/Products/" . $data["product_id"] . "/ProductOptions";
+
+        $data["photo"] = check_file_exist($path, $data["id"], $data["photo"]->getClientOriginalExtension());
+        Storage::putFileAs($path, $request->file("photo"), $data["photo"]);
+
         $data = ProductOption::create($data);
+
+        DB::commit();
 
         $data = new ProductOptionResource($data);
 
         return response()->json($data, Response::HTTP_OK);
+    }
+
+    public function getFile(ProductOption $product_option)
+    {
+        // dd(storage_path("/app/Techmer/Products/" . $product_option->product_id . "/ProductOptions/" . $product_option->photo));
+        // return Storage::download("/Techmer/Products/" . $product_option->product_id . "/ProductOptions/" . $product_option->photo);
+        return response()->file(storage_path("/app/Techmer/Products/" . $product_option->product_id . "/ProductOptions/" . $product_option->photo));
     }
 
     public function show(ProductOption $product_option)
@@ -79,6 +97,14 @@ class ProductOptionController extends Controller
         // $this->authorize("update", ProductOption::class);
 
         $data = $request->validated();
+
+        if (isset($data["photo"])) {
+
+            $path = "/Techmer/Products/" . $product_option->product_id . "/ProductOptions";
+            Storage::delete($path . "/" . $product_option->photo);
+            Storage::putFileAs($path, $request->file("photo"), $product_option->photo);
+            $data["photo"] = $product_option->photo;
+        }
 
         $product_option->update($data);
 
@@ -123,6 +149,8 @@ class ProductOptionController extends Controller
         $data = ProductOption::withTrashed()->findOrFail($id);
 
         $data->forceDelete();
+
+        Storage::delete("/Techmer/Products/" . $data->product_id . "/ProductOptions/" . $data->photo);
 
         $data = ['message' => "Data Force Delete Successfully !!!"];
 

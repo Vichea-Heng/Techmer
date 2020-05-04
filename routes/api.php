@@ -75,6 +75,7 @@ Route::group(["prefix" => "/v1"], function () {
             // });
 
             Route::apiResource('/product_option', 'ProductOptionController');
+            Route::get("/product_option/file/{product_option}", 'ProductOptionController@getFile');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
             Route::get('/product_option/index/only_trashed', 'ProductOptionController@indexOnlyTrashed');
             Route::post('/product_option/restore/{product_option}', 'ProductOptionController@restore');
