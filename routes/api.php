@@ -68,6 +68,7 @@ Route::group(["prefix" => "/v1"], function () {
             // });
 
             Route::apiResource('/product', 'ProductController');
+            Route::post('/product/publish/{product}', 'ProductController@publishProduct');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
             Route::get('/product/index/only_trashed', 'ProductController@indexOnlyTrashed');
             Route::post('/product/restore/{product}', 'ProductController@restore');

@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->text("content");
             $table->unsignedInteger("category_id");
             $table->foreign("category_id")->references("id")->on("product_categories")->onDelete("restrict");
+            $table->boolean("published")->default(0);
 
             $table->unsignedInteger("posted_by");
             $table->foreign("posted_by")->references("id")->on("users")->onDelete("restrict");

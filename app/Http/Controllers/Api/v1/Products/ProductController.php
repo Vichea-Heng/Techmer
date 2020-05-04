@@ -83,9 +83,17 @@ class ProductController extends Controller
         return response()->json($data, Response::HTTP_OK);
     }
 
+    public function publishProduct(Product $product)
+    {
+        $product->update(["published" => !$product->published]);
+
+        $data = new ProductResource($product);
+
+        return response()->json($data, Response::HTTP_OK);
+    }
+
     public function destroy(Product $product)
     {
-
         // $this->authorize("delete", Product::class);
 
         $product->delete();

@@ -16,6 +16,7 @@ class ProductResource extends JsonResource
                 "content" => $this->content,
                 "category_id" => $this->category_id,
                 "posted_by" => $this->posted_by,
+                "published" => $this->published,
                 'deleted_at' => $this->deleted_at,
             ];
         }
@@ -27,6 +28,7 @@ class ProductResource extends JsonResource
             "content" => $this->content,
             "category_id" => $this->category_id,
             "posted_by" => $this->posted_by,
+            "published" => $this->published,
         ];
     }
 }

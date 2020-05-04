@@ -15,5 +15,6 @@ class Product extends Model
         "content",
         "category_id",
         "posted_by",
+        "published",
     ];
 }
