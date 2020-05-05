@@ -22,6 +22,8 @@ class CreateTransactionsTable extends Migration
             $table->foreign("product_option_id")->references("id")->on("product_options")->onDelete("cascade");
 
             $table->unsignedInteger("qty");
+            $table->double("discount");
+            $table->double("purchase_price");
             $table->timestamps();
         });
     }

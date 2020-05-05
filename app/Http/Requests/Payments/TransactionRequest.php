@@ -16,12 +16,16 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
 
-        $user_id_rule = "bail|required|numeric|exists:users,id";
-        $card_id_rule = "bail|required|numeric|exists:user_carts,id";
+        $user_id_rule = "bail|required|integer|exists:users,id";
+        $cart_id_rule = "required|array";
+        $each_cart_id_rule = "bail|required|integer|distinct|exists:user_carts,id";
+        $discount_rule = "required|numeric|gte:0|lte:100";
 
         return [
             "user_id" => $user_id_rule,
-            "cart_id" => $card_id_rule,
+            "cart_id" => $cart_id_rule,
+            "cart_id.*" => $each_cart_id_rule,
+            "discount" => $discount_rule,
         ];
     }
 }

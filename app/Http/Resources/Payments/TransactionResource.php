@@ -14,6 +14,8 @@ class TransactionResource extends JsonResource
                 "user_id" => $this->user_id,
                 "product_option_id" => $this->product_option_id,
                 "qty" => $this->qty,
+                "purchase_price" => $this->purchase_price,
+                "discount" => $this->discount,
                 'deleted_at' => $this->deleted_at,
             ];
         }
@@ -23,6 +25,8 @@ class TransactionResource extends JsonResource
             "user_id" => $this->user_id,
             "product_option_id" => $this->product_option_id,
             "qty" => $this->qty,
+            "purchase_price" => $this->purchase_price,
+            "discount" => $this->discount,
         ];
     }
 }

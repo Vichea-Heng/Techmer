@@ -53,24 +53,29 @@ class TransactionController extends Controller
 
         $data = $request->validated();
 
-        $cart = UserCart::findOrFail($data["cart_id"])->first();
+        foreach ($data["cart_id"] as $cart) {
+            $cart = UserCart::findOrFail($cart);
+            $product = ProductOption::findOrFail($cart->product_option_id);
 
-        $data["product_option_id"] = $cart->product_option_id;
-        $data["qty"] = $cart->qty;
+            if ($product->qty < $cart->qty) {
+                throw new MessageException("The qty must be less than or equal " . $product->qty . ".");
+            }
 
-        $product = ProductOption::findOrFail($data["product_option_id"])->first();
-        if ($product->qty < $data["qty"]) {
-            $qty = $data["qty"];
-            throw new MessageException("The qty must be less than or equal $qty.");
+            DB::beginTransaction();
+            $data = Transaction::create([
+                "user_id" => $data["user_id"],
+                "product_option_id" => $cart->product_option_id,
+                "discount" => $data["discount"],
+                "purchase_price" => $product->price * $cart->qty * (100 - $data["discount"]) / 100,
+                "qty" => $cart->qty,
+            ]);
+            $cart->delete();
+            $product->update(["qty" => ($product->qty - $cart->qty)]);
+            DB::commit();
         }
 
-        DB::beginTransaction();
-        $data = Transaction::create($data);
-        $cart->delete();
-        $product->update(["qty" => ($product->qty - $data["qty"])]);
-        DB::commit();
-
-        $data = new TransactionResource($data);
+        // $data = new TransactionResource($data);
+        $data = ["message" => "SUCCESSFUL"];
 
         return response()->json($data, Response::HTTP_OK);
     }

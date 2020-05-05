@@ -10,5 +10,7 @@ class Transaction extends Model
         "user_id",
         "product_option_id",
         "qty",
+        "purchase_price",
+        "discount",
     ];
 }

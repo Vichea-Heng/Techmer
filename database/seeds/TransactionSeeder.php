@@ -9,7 +9,7 @@ class TransactionSeeder extends Seeder
     public function run()
     {
         $datas = [
-            ["user_id" => "1", "product_option_id" => "1001", "qty" => "2"],
+            ["user_id" => "1", "product_option_id" => "1001", "qty" => "2", "purchase_price" => "123", "discount" => 0],
         ];
 
         foreach ($datas as $data) {

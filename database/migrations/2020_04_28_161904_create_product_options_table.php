@@ -21,7 +21,7 @@ class CreateProductOptionsTable extends Migration
             $table->string("option");
             $table->string("category");
             $table->double("price");
-            $table->double("qty");
+            $table->unsignedInteger("qty");
             $table->double("discount");
             $table->string("warrenty");
             $table->string("photo");
