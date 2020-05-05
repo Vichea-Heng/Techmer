@@ -19,7 +19,7 @@ class AddressRequest extends FormRequest
 
             $address_line1_rule = ["filled"];
             $address_line2_rule = ["filled"];
-            $country_id_rule = ["filled", "numeric','exists:countries,id"];
+            $country_id_rule = ["filled", "integer','exists:countries,id"];
 
             return [
                 "address_line1" => $address_line1_rule,
@@ -27,10 +27,10 @@ class AddressRequest extends FormRequest
                 "country_id" => $country_id_rule,
             ];
         } else {
-            $user_id_rule = "required|numeric|exists:users,id";
+            $user_id_rule = "required|integer|exists:users,id";
             $address_line1_rule = "required";
             $address_line2_rule = "required";
-            $country_id_rule = "required|numeric|exists:countries,id";
+            $country_id_rule = "required|integer|exists:countries,id";
         }
         return [
             "user_id" => $user_id_rule,

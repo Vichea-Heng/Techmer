@@ -19,11 +19,11 @@ class ProductCategoryRequest extends FormRequest
             $request = $this->all();
             $category_rule = ["filled", new LetterSpaceRule, "unique:product_categories,category," . $this->route("product_category")->id];
             $description_rule = "nullable";
-            $posted_by_rule = ["filled", "numeric", "exists:users,id"];
+            $posted_by_rule = ["filled", "integer", "exists:users,id"];
         } else {
             $category_rule = ["required", new LetterSpaceRule, "unique:product_categories"];
             $description_rule = "nullable";
-            $posted_by_rule = "required|numeric|exists:users,id";
+            $posted_by_rule = "required|integer|exists:users,id";
         }
         return [
             "category" => $category_rule,

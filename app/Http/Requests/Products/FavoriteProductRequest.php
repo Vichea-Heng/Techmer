@@ -15,8 +15,8 @@ class FavoriteProductRequest extends FormRequest
     public function rules()
     {
 
-        $user_id_rule = "bail|required|numeric|exists:users,id";
-        $product_id_rule = "bail|required|numeric|exists:products,id";
+        $user_id_rule = "bail|required|integer|exists:users,id";
+        $product_id_rule = "bail|required|integer|exists:products,id";
 
         return [
             "user_id" => $user_id_rule,

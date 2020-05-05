@@ -20,7 +20,7 @@ class ProductRatedRequest extends FormRequest
                 "rated" => $rated_rule,
             ];
         } else {
-            $product_id_rule = "required|numeric|exists:products,id|unique:product_rateds";
+            $product_id_rule = "required|integer|exists:products,id|unique:product_rateds";
             $rated_rule = "nullable|numeric|gte:0|lte:5";
             return [
                 "product_id" => $product_id_rule,

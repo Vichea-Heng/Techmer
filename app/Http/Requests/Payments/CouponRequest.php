@@ -17,17 +17,15 @@ class CouponRequest extends FormRequest
     public function rules()
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
-            $request = $this->all();
-
             $coupon_rule = ["filled", "alpha", "unique:coupons,coupon," . $this->route("coupon")->id];
             $discount_rule = ["filled", "numeric"];
             $expired_date_rule = ["filled", "date"];
-            $posted_by_rule = ["filled", "numeric", "exists:users,id"];
+            $posted_by_rule = ["filled", "integer", "exists:users,id"];
         } else {
             $coupon_rule = "required|alpha_num|unique:coupons";
             $discount_rule = "required|numeric";
             $expired_date_rule = "required|date|after:" . Carbon::now();
-            $posted_by_rule = "required|numeric|exists:users,id";
+            $posted_by_rule = "required|integer|exists:users,id";
         }
         return [
             "coupon" => $coupon_rule,
