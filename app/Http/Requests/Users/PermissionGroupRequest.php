@@ -16,9 +16,9 @@ class PermissionGroupRequest extends FormRequest
     public function rules()
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
-            $name_rule = ["required", new LetterSpaceRule, "unique:permission_groups,name," . $this->route("permission_group")->id];
+            $name_rule = ["bail", "filled", new LetterSpaceRule, "unique:permission_groups,name," . $this->route("permission_group")->id];
         } else {
-            $name_rule = ["required", new LetterSpaceRule, "unique:permission_groups"];
+            $name_rule = ["bail", "required", new LetterSpaceRule, "unique:permission_groups"];
         }
         return [
             "name" => $name_rule,

@@ -18,13 +18,13 @@ class UserCartRequest extends FormRequest
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
             $product = ProductOption::where("id", $this->get("product_option_id"))->first();
-            $qty_rule = ["filled", "integer", "gt:0", "" . ((isset($product->qty)) ? "lte:$product->qty" : "")];
+            $qty_rule = ["bail", "filled", "integer", "gt:0", "" . ((isset($product->qty)) ? "lte:$product->qty" : "")];
 
             return [
                 "qty" => $qty_rule,
             ];
         } else {
-            $user_id_rule = "required|integer|exists:users,id";
+            $user_id_rule = "bail|required|integer|exists:users,id";
             $product = ProductOption::where("id", $this->get("product_option_id"))->first();
             $product_option_id_rule = ["bail", "required", "integer", "exists:product_options,id", function ($attribute, $value, $fail) use ($product) {
                 if ($product->qty == 0) {

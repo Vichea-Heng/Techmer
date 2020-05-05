@@ -14,10 +14,10 @@ class ProductFeedbackRequest extends FormRequest
 
     public function rules()
     {
-        $user_id_rule = "required|integer|exists:users,id";
-        $product_id_rule = "required|integer|exists:products,id";
+        $user_id_rule = "bail|required|integer|exists:users,id";
+        $product_id_rule = "bail|required|integer|exists:products,id";
         $feedback_rule = "required";
-        $rated_rule = "required|numeric|gte:0|lte:5";
+        $rated_rule = "bail|required|numeric|gte:0|lte:5";
 
         return [
             "user_id" => $user_id_rule,

@@ -15,9 +15,9 @@ class ShippingAddressRequest extends FormRequest
     public function rules()
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
-            $phone_number_rule = ["filled", "numeric"];
+            $phone_number_rule = ["bail", "filled", "numeric"];
         } else {
-            $phone_number_rule = "required|numeric";
+            $phone_number_rule = "bail|required|numeric";
         }
         return [
             "phone_number" => $phone_number_rule,

@@ -18,15 +18,15 @@ class RoleRequest extends FormRequest
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
 
-            $name_rule = ["filled", new LetterSpaceRule, Rule::unique("roles")->where(function ($query) use ($request) {
+            $name_rule = ["bail", "filled", new LetterSpaceRule, Rule::unique("roles")->where(function ($query) use ($request) {
                 return $query->where(["name" => $request["name"], "guard_name" => $request["guard_name"]]);
             })->ignore($this->route("role")->id)];
-            $guard_name_rule = ["filled", "in:api,web"];
+            $guard_name_rule = ["bail", "filled", "in:api,web"];
         } else {
-            $name_rule = ["required", new LetterSpaceRule, Rule::unique("roles")->where(function ($query) {
+            $name_rule = ["bail", "required", new LetterSpaceRule, Rule::unique("roles")->where(function ($query) {
                 return $query->where(["name" => $this->get("name"), "guard_name" => $this->get("guard_name")]);
             })];
-            $guard_name_rule = "required|in:api,web";
+            $guard_name_rule = "bail|required|in:api,web";
         }
         return [
             "name" => $name_rule,

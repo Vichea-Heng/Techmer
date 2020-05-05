@@ -20,15 +20,15 @@ class ProductOptionRequest extends FormRequest
             $request = $this->all();
             $data = $this->route("product_option");
             // $product_id_rule = [Rule::requiredIf(check_empty_array($request, "product_id")), "numeric", "exists:products,id"];
-            $option_rule = ["filled", Rule::unique("product_options")->where(function ($query) use ($request) {
+            $option_rule = ["bail", "filled", Rule::unique("product_options")->where(function ($query) use ($request) {
                 return $query->where(["product_id" => $request["product_id"], "option" => $request["option"], "category" => $request["category"]]);
             })->ignore($data->id)];
             $category_rule = ["filled"];
-            $price_rule = ["filled", "numeric", "gte:0"];
-            $qty_rule = ["filled", "numeric", "gte:0"];
-            $discount_rule = ["filled", "numeric", "gte:0"];
-            $warrenty_rule = ["filled", "alpha_num"];
-            $photo_rule = ["filled", "image", "max:15000"];
+            $price_rule = ["bail", "filled", "numeric", "gte:0"];
+            $qty_rule = ["bail", "filled", "numeric", "gte:0"];
+            $discount_rule = ["bail", "filled", "numeric", "gte:0"];
+            $warrenty_rule = ["bail", "filled", "alpha_num"];
+            $photo_rule = ["bail", "filled", "image", "max:15000"];
 
             return [
                 // "product_id" => $product_id_rule,
@@ -42,16 +42,16 @@ class ProductOptionRequest extends FormRequest
             ];
         } else {
             $request = $this->all();
-            $product_id_rule = "required|integer|exists:products,id";
-            $category_rule = "required";
+            $product_id_rule = "bail|required|integer|exists:products,id";
+            $category_rule = "bail|required";
             $option_rule = ["bail", "required", Rule::unique("product_options")->where(function ($query) use ($request) {
                 return $query->where(["product_id" => $request["product_id"], "option" => $request["option"], "category" => $request["category"] ?? ""]);
             })];
-            $price_rule = "required|numeric|gte:0";
-            $qty_rule = "required|numeric|gte:0";
-            $discount_rule = "required|numeric|gte:0";
-            $warrenty_rule = "required|alpha_num";
-            $photo_rule = "required|image|max:15000";
+            $price_rule = "bail|required|numeric|gte:0";
+            $qty_rule = "bail|required|numeric|gte:0";
+            $discount_rule = "bail|required|numeric|gte:0";
+            $warrenty_rule = "bail|required|alpha_num";
+            $photo_rule = "bail|required|image|max:15000";
         }
         return [
             "product_id" => $product_id_rule,

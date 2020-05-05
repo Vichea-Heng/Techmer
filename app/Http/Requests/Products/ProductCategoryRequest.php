@@ -17,13 +17,13 @@ class ProductCategoryRequest extends FormRequest
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
             $request = $this->all();
-            $category_rule = ["filled", new LetterSpaceRule, "unique:product_categories,category," . $this->route("product_category")->id];
+            $category_rule = ["bail", "filled", new LetterSpaceRule, "unique:product_categories,category," . $this->route("product_category")->id];
             $description_rule = "nullable";
-            $posted_by_rule = ["filled", "integer", "exists:users,id"];
+            $posted_by_rule = ["bail", "filled", "integer", "exists:users,id"];
         } else {
-            $category_rule = ["required", new LetterSpaceRule, "unique:product_categories"];
+            $category_rule = ["bail", "required", new LetterSpaceRule, "unique:product_categories"];
             $description_rule = "nullable";
-            $posted_by_rule = "required|integer|exists:users,id";
+            $posted_by_rule = "bail|required|integer|exists:users,id";
         }
         return [
             "category" => $category_rule,

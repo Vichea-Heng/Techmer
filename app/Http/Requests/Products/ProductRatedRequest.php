@@ -15,13 +15,13 @@ class ProductRatedRequest extends FormRequest
     public function rules()
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
-            $rated_rule = ["filled", "numeric", "gte:0", "lte:5"];
+            $rated_rule = ["bail", "filled", "numeric", "gte:0", "lte:5"];
             return [
                 "rated" => $rated_rule,
             ];
         } else {
-            $product_id_rule = "required|integer|exists:products,id|unique:product_rateds";
-            $rated_rule = "nullable|numeric|gte:0|lte:5";
+            $product_id_rule = "bail|required|integer|exists:products,id|unique:product_rateds";
+            $rated_rule = "bail|nullable|numeric|gte:0|lte:5";
             return [
                 "product_id" => $product_id_rule,
                 // "rated" => $rated_rule,

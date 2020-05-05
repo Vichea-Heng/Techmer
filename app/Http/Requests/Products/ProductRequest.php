@@ -16,11 +16,11 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
-            $title_rule = ["filled", "unique:products,title," . $this->route("product")->id];
-            $brand_id_rule = ["filled", "integer", "exists:product_brands,id"];
+            $title_rule = ["bail", "filled", "unique:products,title," . $this->route("product")->id];
+            $brand_id_rule = ["bail", "filled", "integer", "exists:product_brands,id"];
             $content_rule = ["filled"];
-            $category_id_rule = ["filled", "integer", "exists:product_categories,id"];
-            $posted_by_rule = ["filled", "integer", "exists:users,id"];
+            $category_id_rule = ["bail", "filled", "integer", "exists:product_categories,id"];
+            $posted_by_rule = ["bail", "filled", "integer", "exists:users,id"];
             return [
                 "title" => $title_rule,
                 "brand_id" => $brand_id_rule,
@@ -30,12 +30,12 @@ class ProductRequest extends FormRequest
                 // "published" => $published_rule,
             ];
         } else {
-            $title_rule = ["required", "unique:products"];
-            $brand_id_rule = "required|integer|exists:product_brands,id";
+            $title_rule = ["bail", "required", "unique:products"];
+            $brand_id_rule = "bail|required|integer|exists:product_brands,id";
             $content_rule = "required";
-            $category_id_rule = "required|integer|exists:product_categories,id";
-            $posted_by_rule = "required|integer|exists:users,id";
-            $published_rule = "required|boolean";
+            $category_id_rule = "bail|required|integer|exists:product_categories,id";
+            $posted_by_rule = "bail|required|integer|exists:users,id";
+            $published_rule = "bail|required|boolean";
         }
         return [
             "title" => $title_rule,
