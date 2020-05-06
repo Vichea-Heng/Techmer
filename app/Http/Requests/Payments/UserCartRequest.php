@@ -24,9 +24,9 @@ class UserCartRequest extends FormRequest
                 "qty" => $qty_rule,
             ];
         } else {
-            $user_id_rule = "bail|required|integer|exists:users,id";
+            $user_id_rule = "bail|required|integer|exists:users,id,deleted_at,NULL";
             $product = ProductOption::where("id", $this->get("product_option_id"))->first();
-            $product_option_id_rule = ["bail", "required", "integer", "exists:product_options,id", function ($attribute, $value, $fail) use ($product) {
+            $product_option_id_rule = ["bail", "required", "integer", "exists:product_options,id,deleted_at,NULL", function ($attribute, $value, $fail) use ($product) {
                 if ($product->qty == 0) {
                     $fail($attribute . ' is not available.');
                 }

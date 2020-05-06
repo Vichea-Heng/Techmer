@@ -42,7 +42,7 @@ class ProductOptionRequest extends FormRequest
             ];
         } else {
             $request = $this->all();
-            $product_id_rule = "bail|required|integer|exists:products,id";
+            $product_id_rule = "bail|required|integer|exists:products,id,deleted_at,NULL";
             $category_rule = "bail|required";
             $option_rule = ["bail", "required", Rule::unique("product_options")->where(function ($query) use ($request) {
                 return $query->where(["product_id" => $request["product_id"], "option" => $request["option"], "category" => $request["category"] ?? ""]);

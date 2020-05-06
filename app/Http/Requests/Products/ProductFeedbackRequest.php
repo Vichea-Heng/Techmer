@@ -22,8 +22,8 @@ class ProductFeedbackRequest extends FormRequest
                 "rated" => $rated_rule,
             ];
         } else {
-            $user_id_rule = "bail|required|integer|exists:users,id";
-            $product_id_rule = "bail|required|integer|exists:products,id";
+            $user_id_rule = "bail|required|integer|exists:users,id,deleted_at,NULL";
+            $product_id_rule = "bail|required|integer|exists:products,id,deleted_at,NULL";
             $feedback_rule = "nullable";
             $rated_rule = "bail|required|numeric|gte:0|lte:5";
         }

@@ -16,7 +16,7 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
 
-        $user_id_rule = "bail|required|integer|exists:users,id";
+        $user_id_rule = "bail|required|integer|exists:users,id,deleted_at,NULL";
         $cart_id_rule = "bail|required|array";
         $each_cart_id_rule = "bail|required|integer|distinct|exists:user_carts,id";
         $discount_rule = "bail|required|numeric|gte:0|lte:100";

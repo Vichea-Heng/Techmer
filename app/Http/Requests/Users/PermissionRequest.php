@@ -22,13 +22,13 @@ class PermissionRequest extends FormRequest
                 return $query->where(["name" => $request["name"], "guard_name" => $request["guard_name"]]);
             })->ignore($this->route("permission")->id)];
             $guard_name_rule = ["bail", "filled", "in:api,web"];
-            $group_id_rule = ["bail", "filled", "integer", "exists:permission_groups,id"];
+            $group_id_rule = ["bail", "filled", "integer", "exists:permission_groups,id,deleted_at,NULL"];
         } else {
             $name_rule = ["bail", "required", new LetterSpaceRule, Rule::unique("permissions")->where(function ($query) {
                 return $query->where(["name" => $this->get("name"), "guard_name" => $this->get("guard_name")]);
             })];
             $guard_name_rule = "bail|required|in:api,web";
-            $group_id_rule = "bail|required|integer|exists:permission_groups,id";
+            $group_id_rule = "bail|required|integer|exists:permission_groups,id,deleted_at,NULL";
         }
         return [
             "name" => $name_rule,
