@@ -57,11 +57,11 @@ class ProductFeedbackController extends Controller
 
         $data = ProductFeedback::create($data);
 
-        $last_rated = ProductRated::findOrFail($data["product_id"])->first();
+        $last_rated = ProductRated::findOrFail($data["product_id"]);
 
-        $amount_rated = count(ProductFeedback::select("rated")->where("product_id", $data["product_id"])->get());
+        $amount_rated = ProductFeedback::where("product_id", $data["product_id"])->count();
 
-        $rated = (($last_rated->rated / (($amount_rated - 1) == 0 ? 1 : ($amount_rated - 1))) + $data["rated"]) / $amount_rated;
+        $rated = (($last_rated->rated * (($amount_rated - 1) == 0 ? 1 : ($amount_rated - 1)) + $data["rated"])) / $amount_rated;
 
         $last_rated->update(["rated" => $rated]);
 
@@ -82,19 +82,33 @@ class ProductFeedbackController extends Controller
         return response()->json($data, Response::HTTP_OK);
     }
 
-    // public function update(ProductFeedbackRequest $request, ProductFeedback $product_feedback)
-    // {
+    public function update(ProductFeedbackRequest $request, ProductFeedback $product_feedback)
+    {
 
-    //     // $this->authorize("update", ProductFeedback::class);
+        // $this->authorize("update", ProductFeedback::class);
 
-    //     $data = $request->validated();
+        $data = $request->validated();
 
-    //     $product_feedback->update($data);
+        DB::beginTransaction();
 
-    //     $data = new ProductFeedbackResource($product_feedback);
+        if (array_key_exists("rated", $data)) {
+            $last_rated = ProductRated::findOrFail($product_feedback->product_id);
 
-    //     return response()->json($data, Response::HTTP_OK);
-    // }
+            $amount_rated = ProductFeedback::where("product_id", $product_feedback->product_id)->count();
+
+            $rated = (($last_rated->rated * (($amount_rated) == 0 ? 1 : ($amount_rated))) - $product_feedback->rated + $data["rated"]) / $amount_rated;
+
+            $last_rated->update(["rated" => $rated]);
+        }
+
+        $product_feedback->update($data);
+
+        DB::commit();
+
+        $data = new ProductFeedbackResource($product_feedback);
+
+        return response()->json($data, Response::HTTP_OK);
+    }
 
     public function destroy(ProductFeedback $product_feedback)
     {

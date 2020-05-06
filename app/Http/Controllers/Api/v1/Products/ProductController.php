@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Products\Product;
 use App\Http\Requests\Products\ProductRequest;
 use App\Http\Resources\Products\ProductResource;
-
+use App\Models\Products\ProductRated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -52,7 +52,13 @@ class ProductController extends Controller
 
         $data = $request->validated();
 
+        DB::beginTransaction();
+
         $data = Product::create($data);
+
+        ProductRated::create(["product_id" => $data->id]);
+
+        DB::commit();
 
         $data = new ProductResource($data);
 

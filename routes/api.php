@@ -81,7 +81,7 @@ Route::group(["prefix" => "/v1"], function () {
             apiSoftDelete("product_rated", "ProductRatedController");
             // });
 
-            Route::apiResource('/product_feedback', 'ProductFeedbackController', ["except" => ["update"]]);
+            Route::apiResource('/product_feedback', 'ProductFeedbackController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
             apiSoftDelete("product_feedback", "ProductFeedbackController");
             // });

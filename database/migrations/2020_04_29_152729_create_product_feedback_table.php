@@ -21,7 +21,7 @@ class CreateProductFeedbackTable extends Migration
             $table->unsignedInteger("product_id");
             $table->foreign("product_id")->references("id")->on("products")->onDelete("cascade");
 
-            $table->text("feedback");
+            $table->text("feedback")->nullable();
             $table->double("rated");
             $table->timestamps();
         });
