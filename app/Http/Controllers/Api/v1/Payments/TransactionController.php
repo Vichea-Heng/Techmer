@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1\Payments;
 
 use App\Exceptions\MessageException;
 use App\Http\Controllers\Controller;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 use App\Models\Payments\Transaction;
 use App\Http\Requests\Payments\TransactionRequest;
@@ -53,6 +54,8 @@ class TransactionController extends Controller
 
         $data = $request->validated();
 
+        $total = 0;
+        DB::beginTransaction();
         foreach ($data["cart_id"] as $cart) {
             $cart = UserCart::findOrFail($cart);
             $product = ProductOption::findOrFail($cart->product_option_id);
@@ -61,18 +64,28 @@ class TransactionController extends Controller
                 throw new MessageException("The qty must be less than or equal " . $product->qty . ".");
             }
 
-            DB::beginTransaction();
             $data = Transaction::create([
                 "user_id" => $data["user_id"],
                 "product_option_id" => $cart->product_option_id,
                 "discount" => $data["discount"],
-                "purchase_price" => $product->price * $cart->qty * (100 - $data["discount"]) / 100,
+                "purchase_price" => ($total += $product->price * $cart->qty * (100 - $data["discount"]) / 100),
                 "qty" => $cart->qty,
             ]);
             $cart->delete();
             $product->update(["qty" => ($product->qty - $cart->qty)]);
-            DB::commit();
         }
+        try {
+            Stripe::charges()->create([
+                'amount' => $total,
+                'currency' => "USD",
+                'source' => $request->stripe_token,
+                'description' => "",
+                'receipt_email' => "mr.vichea.007@gmail.com",
+            ]);
+        } catch (\Throwable $th) {
+            throw new MessageException($th);
+        }
+        DB::commit();
 
         // $data = new TransactionResource($data);
         $data = ["message" => "SUCCESSFUL"];
