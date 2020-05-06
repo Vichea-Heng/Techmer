@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+function apiSoftDelete($path, $controller)
+{
+    Route::get("/$path/index/only_trashed", "$controller@indexOnlyTrashed");
+    Route::post("/$path/restore/{$path}", "$controller@restore");
+    Route::delete("/$path/forceDelete/{$path}", "$controller@forceDestroy");
+}
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -32,106 +39,78 @@ Route::group(["prefix" => "/v1"], function () {
 
             Route::apiResource('/role', 'RoleController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/role/index/only_trashed', 'RoleController@indexOnlyTrashed');
-            Route::post('/role/restore/{role}', 'RoleController@restore');
-            Route::delete('/role/forceDelete/{role}', 'RoleController@forceDestroy');
+            apiSoftDelete("role", "RoleController");
             // });
 
             Route::apiResource('/permission', 'PermissionController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/permission/index/only_trashed', 'PermissionController@indexOnlyTrashed');
-            Route::post('/permission/restore/{permission}', 'PermissionController@restore');
-            Route::delete('/permission/forceDelete/{permission}', 'PermissionController@forceDestroy');
+            apiSoftDelete("permission", "PermissionController");
             // });
 
             Route::apiResource('/permission_group', 'PermissionGroupController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/permission_group/index/only_trashed', 'PermissionGroupController@indexOnlyTrashed');
-            Route::post('/permission_group/restore/{permission_group}', 'PermissionGroupController@restore');
-            Route::delete('/permission_group/forceDelete/{permission_group}', 'PermissionGroupController@forceDestroy');
+            apiSoftDelete("permission_group", "PermissionGroupController");
             // });
         });
 
         Route::group(["namespace" => "Products\\"], function () {
             Route::apiResource('/product_brand', 'ProductBrandController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/product_brand/index/only_trashed', 'ProductBrandController@indexOnlyTrashed');
-            Route::post('/product_brand/restore/{product_brand}', 'ProductBrandController@restore');
-            Route::delete('/product_brand/forceDelete/{product_brand}', 'ProductBrandController@forceDestroy');
+            apiSoftDelete("product_brand", "ProductBrandController");
             // });
 
             Route::apiResource('/product_category', 'ProductCategoryController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/product_category/index/only_trashed', 'ProductCategoryController@indexOnlyTrashed');
-            Route::post('/product_category/restore/{product_category}', 'ProductCategoryController@restore');
-            Route::delete('/product_category/forceDelete/{product_category}', 'ProductCategoryController@forceDestroy');
+            apiSoftDelete("product_category", "ProductCategoryController");
             // });
 
             Route::apiResource('/product', 'ProductController');
             Route::post('/product/publish/{product}', 'ProductController@publishProduct');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/product/index/only_trashed', 'ProductController@indexOnlyTrashed');
-            Route::post('/product/restore/{product}', 'ProductController@restore');
-            Route::delete('/product/forceDelete/{product}', 'ProductController@forceDestroy');
+            apiSoftDelete("product", "ProductController");
             // });
 
             Route::apiResource('/product_option', 'ProductOptionController');
             Route::get("/product_option/file/{product_option}", 'ProductOptionController@getFile');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/product_option/index/only_trashed', 'ProductOptionController@indexOnlyTrashed');
-            Route::post('/product_option/restore/{product_option}', 'ProductOptionController@restore');
-            Route::delete('/product_option/forceDelete/{product_option}', 'ProductOptionController@forceDestroy');
+            apiSoftDelete("product_option", "ProductOptionController");
             // });
 
             Route::apiResource('/product_rated', 'ProductRatedController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/product_rated/index/only_trashed', 'ProductRatedController@indexOnlyTrashed');
-            Route::post('/product_rated/restore/{product_rated}', 'ProductRatedController@restore');
-            Route::delete('/product_rated/forceDelete/{product_rated}', 'ProductRatedController@forceDestroy');
+            apiSoftDelete("product_rated", "ProductRatedController");
             // });
 
             Route::apiResource('/product_feedback', 'ProductFeedbackController', ["except" => ["update"]]);
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/product_feedback/index/only_trashed', 'ProductFeedbackController@indexOnlyTrashed');
-            Route::post('/product_feedback/restore/{product_feedback}', 'ProductFeedbackController@restore');
-            Route::delete('/product_feedback/forceDelete/{product_feedback}', 'ProductFeedbackController@forceDestroy');
+            apiSoftDelete("product_feedback", "ProductFeedbackController");
             // });
 
             Route::apiResource('/favorite_product', 'FavoriteProductController', ["except" => ["update"]]);
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/favorite_product/index/only_trashed', 'FavoriteProductController@indexOnlyTrashed');
-            Route::post('/favorite_product/restore/{favorite_product}', 'FavoriteProductController@restore');
-            Route::delete('/favorite_product/forceDelete/{favorite_product}', 'FavoriteProductController@forceDestroy');
+            apiSoftDelete("favorite_product", "FavoriteProductController");
             // });
         });
 
         Route::group(["namespace" => "Payments\\"], function () {
             Route::apiResource('/user_cart', 'UserCartController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/user_cart/index/only_trashed', 'UserCartController@indexOnlyTrashed');
-            Route::post('/user_cart/restore/{user_cart}', 'UserCartController@restore');
-            Route::delete('/user_cart/forceDelete/{user_cart}', 'UserCartController@forceDestroy');
+            apiSoftDelete("user_cart", "UserCartController");
             // });
 
             Route::apiResource('/coupon', 'CouponController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/coupon/index/only_trashed', 'CouponController@indexOnlyTrashed');
-            Route::post('/coupon/restore/{coupon}', 'CouponController@restore');
-            Route::delete('/coupon/forceDelete/{coupon}', 'CouponController@forceDestroy');
+            apiSoftDelete("coupon", "CouponController");
             // });
 
             Route::apiResource('/transaction', 'TransactionController', ["except" => ["update"]]);
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/transaction/index/only_trashed', 'TransactionController@indexOnlyTrashed');
-            Route::post('/transaction/restore/{transaction}', 'TransactionController@restore');
-            Route::delete('/transaction/forceDelete/{transaction}', 'TransactionController@forceDestroy');
+            apiSoftDelete("transaction", "TransactionController");
             // });
 
             Route::apiResource('/shipping_address', 'ShippingAddressController');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            Route::get('/shipping_address/index/only_trashed', 'ShippingAddressController@indexOnlyTrashed');
-            Route::post('/shipping_address/restore/{shipping_address}', 'ShippingAddressController@restore');
-            Route::delete('/shipping_address/forceDelete/{shipping_address}', 'ShippingAddressController@forceDestroy');
+            apiSoftDelete("shipping_address", "ShippingAddressController");
             // });
         });
     });
