@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 function apiSoftDelete($path, $controller)
 {
     Route::get("/$path/indexOnlyTrashed", "$controller@indexOnlyTrashed");
-    Route::post("/$path/restore/{$path}", "$controller@restore");
-    Route::delete("/$path/forceDelete/{$path}", "$controller@forceDestroy");
+    Route::post("/$path/restore/{" . $path . "}", "$controller@restore");
+    Route::delete("/$path/forceDelete/{" . $path . "}", "$controller@forceDestroy");
 }
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

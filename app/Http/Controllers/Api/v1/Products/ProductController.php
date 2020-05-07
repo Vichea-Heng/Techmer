@@ -216,6 +216,8 @@ class ProductController extends Controller
 
         $data->forceDelete();
 
+        Storage::deleteDirectory("/Techmer/Products/" . $id);
+
         $data = ['message' => "Data Force Delete Successfully !!!"];
 
         return response()->json($data, Response::HTTP_OK);
