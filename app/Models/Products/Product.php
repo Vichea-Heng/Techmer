@@ -16,5 +16,15 @@ class Product extends Model
         "category_id",
         "posted_by",
         "published",
+        "gallery",
     ];
+
+    public function getUrlGalleryAttribute()
+    {
+        if (!empty($this->gallery)) {
+            $gallery = json_decode($this->gallery);
+
+            return (array_map(fn ($val) => url(env("APP_URL") . "v1/product/" . $this->id . "/" . $val), $gallery));
+        }
+    }
 }

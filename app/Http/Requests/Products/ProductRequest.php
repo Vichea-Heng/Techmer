@@ -36,6 +36,8 @@ class ProductRequest extends FormRequest
             $category_id_rule = "bail|required|integer|exists:product_categories,id,deleted_at,NULL";
             $posted_by_rule = "bail|required|integer|exists:users,id,deleted_at,NULL";
             $published_rule = "bail|required|boolean";
+            $photo_rule = "bail|required|array|max:10";
+            $each_photo_rule = "bail|required|image|max:15000";
         }
         return [
             "title" => $title_rule,
@@ -44,6 +46,8 @@ class ProductRequest extends FormRequest
             "category_id" => $category_id_rule,
             "posted_by" => $posted_by_rule,
             "published" => $published_rule,
+            "photo" => $photo_rule,
+            "photo.*" => $each_photo_rule,
         ];
     }
 }

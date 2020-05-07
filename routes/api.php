@@ -64,6 +64,10 @@ Route::group(["prefix" => "/v1"], function () {
             // });
             Route::apiResource('/product_category', 'ProductCategoryController');
 
+            Route::get('/product/{product}/{file_name}', 'ProductController@getFile');
+            Route::delete('/product/{product}/deleteFile', 'ProductController@deleteFile');
+            Route::post('/product/{product}/addFile', 'ProductController@addFile');
+            Route::get('/product/gallery/{product}', 'ProductController@getGallery');
             Route::post('/product/publish/{product}', 'ProductController@publishProduct');
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
             apiSoftDelete("product", "ProductController");
