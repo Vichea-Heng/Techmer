@@ -21,4 +21,9 @@ class ProductRated extends Model
         "product_id",
         "rated",
     ];
+
+    public function product()
+    {
+        return $this->belongsTo("App\Models\Products\Product", "product_id", "id");
+    }
 }

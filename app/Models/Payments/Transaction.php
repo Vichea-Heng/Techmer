@@ -13,4 +13,13 @@ class Transaction extends Model
         "purchase_price",
         "discount",
     ];
+
+    public function user()
+    {
+        return $this->belongsTo("App\Models\Users\User", "user_id", "id");
+    }
+    public function productOption()
+    {
+        return $this->belongsTo("App\Models\Products\ProductOption", "product_option_id", "id");
+    }
 }

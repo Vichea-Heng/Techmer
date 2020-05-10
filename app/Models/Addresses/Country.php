@@ -13,4 +13,13 @@ class Country extends Model
         "country",
         "phone_code"
     ];
+
+    public function productBrands()
+    {
+        return $this->hasMany("App\Models\Products\ProductBrand", "from_country");
+    }
+    public function Addresses()
+    {
+        return $this->hasMany("App\Models\Addresses\Address", "country_id");
+    }
 }

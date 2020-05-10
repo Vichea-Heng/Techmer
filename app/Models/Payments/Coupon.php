@@ -14,4 +14,9 @@ class Coupon extends Model
         "expired_date",
         "posted_by",
     ];
+
+    public function user()
+    {
+        return $this->belongsTo("App\Models\Users\User", "posted_by", "id");
+    }
 }

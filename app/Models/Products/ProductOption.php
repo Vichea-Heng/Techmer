@@ -21,13 +21,17 @@ class ProductOption extends Model
         "photo",
     ];
 
-    public function UserCart()
+    public function userCarts()
     {
         return $this->hasMany("App\Models\Payments\UserCart", "product_option_id");
     }
-
-    public function uploadFile()
+    public function transactions()
     {
-        dd(1);
+        return $this->hasMany("App\Models\Payments\Transaction", "product_option_id");
+    }
+
+    public function product()
+    {
+        return $this->belongsTo("App\Models\Products\Product", "product_id", "id");
     }
 }

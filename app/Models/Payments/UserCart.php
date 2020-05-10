@@ -12,4 +12,13 @@ class UserCart extends Model
         "product_option_id",
         "qty",
     ];
+
+    public function user()
+    {
+        return $this->belongsTo("App\Models\Users\User", "user_id", "id");
+    }
+    public function productOption()
+    {
+        return $this->belongsTo("App\Models\Products\ProductOption", "product_option_id", "id");
+    }
 }

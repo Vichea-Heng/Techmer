@@ -14,4 +14,14 @@ class ProductCategory extends Model
         "description",
         "posted_by",
     ];
+
+    public function products()
+    {
+        return $this->hasMany("App\Models\Products\Product", "category_id");
+    }
+
+    public function user()
+    {
+        return $this->belongsTo("App\Models\Users\User", "posted_by", "id");
+    }
 }

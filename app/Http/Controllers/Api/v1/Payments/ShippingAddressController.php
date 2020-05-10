@@ -86,7 +86,7 @@ class ShippingAddressController extends Controller
 
         DB::beginTransaction();
         $shipping_address->update($data);
-        $shipping_address->Address->update($address);
+        $shipping_address->address->update($address);
         DB::commit();
 
         $data = new ShippingAddressResource($shipping_address);
@@ -99,7 +99,7 @@ class ShippingAddressController extends Controller
 
         // $this->authorize("delete", ShippingAddress::class);
 
-        $shipping_address->Address->delete();
+        $shipping_address->address->delete();
 
         $data = ["message" => "Data Delete successfully !!!"];
 
