@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Storage;
 
-if (!function_exists('check_file_exist')) {
-    function check_file_exist($path, $fileName, $ext = null)
+if (!function_exists('checkFileExist')) {
+    function checkFileExist($path, $fileName, $ext = null)
     {
         if (Storage::exists("$path/" . "$fileName." . $ext)) {
             $key = 1;

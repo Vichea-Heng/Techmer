@@ -43,7 +43,8 @@
             "App\\": "app/"
         },
         "files": [
-            "App/Helper/Helper.php"
+            "App/Helper/Helper.php",
+            "App/Helper/ResponseHelper.php"
         ],
         "classmap": [
             "database/seeds",

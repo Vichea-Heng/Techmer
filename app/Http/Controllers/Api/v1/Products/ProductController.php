@@ -65,7 +65,7 @@ class ProductController extends Controller
         $gallery_name = array();
 
         foreach ($request->file("photo") as $key => $gallery) {
-            $file_name = check_file_exist($path, $data->id . "-" . ($key + 1), $gallery->getClientOriginalExtension());
+            $file_name = checkFileExist($path, $data->id . "-" . ($key + 1), $gallery->getClientOriginalExtension());
             Storage::putFileAs($path, $gallery, $file_name);
             array_push($gallery_name, $file_name);
         }
@@ -106,7 +106,7 @@ class ProductController extends Controller
 
         foreach ($gallery_name as $key => &$each) {
             $ext = pathinfo($each, PATHINFO_EXTENSION);
-            $file_name = check_file_exist($path, $product->id . "-" . ($key + 1), $ext);
+            $file_name = checkFileExist($path, $product->id . "-" . ($key + 1), $ext);
 
             Storage::move("$path/" . $each, "$path/" . $file_name);
             if (!Storage::exists("$path/" . $product->id . "-" . ($key + 1) . "." . $ext)) {
@@ -137,7 +137,7 @@ class ProductController extends Controller
         ]);
         $path = "/Techmer/Products/" . $product->id . "/Gallery";
         foreach ($request->file("photo") as $key => $gallery) {
-            $file_name = check_file_exist($path, $product->id . "-" . ($key + 1 + $cnt), $gallery->getClientOriginalExtension());
+            $file_name = checkFileExist($path, $product->id . "-" . ($key + 1 + $cnt), $gallery->getClientOriginalExtension());
             Storage::putFileAs($path, $gallery, $file_name);
             array_push($gallery_name, $file_name);
         }

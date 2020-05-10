@@ -62,7 +62,7 @@ class ProductOptionController extends Controller
 
         $path = "/Techmer/Products/" . $data["product_id"] . "/ProductOptions";
 
-        $data["photo"] = check_file_exist($path, $data["id"], $data["photo"]->getClientOriginalExtension());
+        $data["photo"] = checkFileExist($path, $data["id"], $data["photo"]->getClientOriginalExtension());
         Storage::putFileAs($path, $request->file("photo"), $data["photo"]);
 
         $data = ProductOption::create($data);

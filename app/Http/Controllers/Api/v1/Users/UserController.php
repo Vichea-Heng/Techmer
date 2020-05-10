@@ -103,6 +103,14 @@ class UserController extends Controller
         return response()->json(["success" => $data], Response::HTTP_OK);
     }
 
+    public function blockUser(User $user)
+    {
+        //permission
+        $user->update(["status" => false]);
+
+        return response()->json(["message" => "SUCCESSFUL"], Response::HTTP_OK);
+    }
+
     // public function generate_username($data)
     // {
     //     $username = strtolower($data["first_name"][0] . $data["last_name"]);
