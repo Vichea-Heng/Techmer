@@ -36,17 +36,17 @@ class TransactionController extends Controller
         return response()->json($datas, Response::HTTP_OK);
     }
 
-    public function indexOnlyTrashed()
-    {
+    // public function indexOnlyTrashed()
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $datas = Transaction::onlyTrashed()->get();
+    //     $datas = Transaction::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : TransactionResource::collection($datas));
+    //     $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : TransactionResource::collection($datas));
 
-        return response()->json($datas, Response::HTTP_OK);
-    }
+    //     return response()->json($datas, Response::HTTP_OK);
+    // }
 
     public function store(TransactionRequest $request)
     {
@@ -129,31 +129,31 @@ class TransactionController extends Controller
         return response()->json($data, Response::HTTP_OK);
     }
 
-    public function restore($id)
-    {
+    // public function restore($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = Transaction::onlyTrashed()->findOrFail($id);
+    //     $data = Transaction::onlyTrashed()->findOrFail($id);
 
-        $data->restore();
+    //     $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
+    //     $data = ["message" => "Data Restore successfully !!!"];
 
-        return response()->json($data, Response::HTTP_OK);
-    }
+    //     return response()->json($data, Response::HTTP_OK);
+    // }
 
-    public function forceDestroy($id)
-    {
+    // public function forceDestroy($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = Transaction::withTrashed()->findOrFail($id);
+    //     $data = Transaction::withTrashed()->findOrFail($id);
 
-        $data->forceDelete();
+    //     $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
+    //     $data = ['message' => "Data Force Delete Successfully !!!"];
 
-        return response()->json($data, Response::HTTP_OK);
-    }
+    //     return response()->json($data, Response::HTTP_OK);
+    // }
 }

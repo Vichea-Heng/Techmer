@@ -102,6 +102,8 @@ class CouponController extends Controller
 
         $data = Coupon::onlyTrashed()->findOrFail($id);
 
+        $data->checkBeforeRestore();
+
         $data->restore();
 
         $data = ["message" => "Data Restore successfully !!!"];

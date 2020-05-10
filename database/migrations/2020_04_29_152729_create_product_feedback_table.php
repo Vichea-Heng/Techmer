@@ -24,6 +24,7 @@ class CreateProductFeedbackTable extends Migration
             $table->text("feedback")->nullable();
             $table->double("rated");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

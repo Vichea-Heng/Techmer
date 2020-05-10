@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\Response;
 
 class PermissionGroupController extends Controller
@@ -33,17 +34,17 @@ class PermissionGroupController extends Controller
         return response()->json($datas, Response::HTTP_OK);
     }
 
-    public function indexOnlyTrashed()
-    {
+    // public function indexOnlyTrashed()
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $datas = PermissionGroup::onlyTrashed()->get();
+    //     $datas = PermissionGroup::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : PermissionGroupResource::collection($datas));
+    //     $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : PermissionGroupResource::collection($datas));
 
-        return response()->json($datas, Response::HTTP_OK);
-    }
+    //     return response()->json($datas, Response::HTTP_OK);
+    // }
 
     public function store(PermissionGroupRequest $request)
     {
@@ -88,6 +89,8 @@ class PermissionGroupController extends Controller
 
         // $this->authorize("delete", PermissionGroup::class);
 
+        Permission::where("group_id", $permission_group->id)->each(fn ($query) => $query->delete());
+
         $permission_group->delete();
 
         $data = ["message" => "Data Delete successfully !!!"];
@@ -95,31 +98,31 @@ class PermissionGroupController extends Controller
         return response()->json($data, Response::HTTP_OK);
     }
 
-    public function restore($id)
-    {
+    // public function restore($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = PermissionGroup::onlyTrashed()->findOrFail($id);
+    //     $data = PermissionGroup::onlyTrashed()->findOrFail($id);
 
-        $data->restore();
+    //     $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
+    //     $data = ["message" => "Data Restore successfully !!!"];
 
-        return response()->json($data, Response::HTTP_OK);
-    }
+    //     return response()->json($data, Response::HTTP_OK);
+    // }
 
-    public function forceDestroy($id)
-    {
+    // public function forceDestroy($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = PermissionGroup::withTrashed()->findOrFail($id);
+    //     $data = PermissionGroup::withTrashed()->findOrFail($id);
 
-        $data->forceDelete();
+    //     $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
+    //     $data = ['message' => "Data Force Delete Successfully !!!"];
 
-        return response()->json($data, Response::HTTP_OK);
-    }
+    //     return response()->json($data, Response::HTTP_OK);
+    // }
 }

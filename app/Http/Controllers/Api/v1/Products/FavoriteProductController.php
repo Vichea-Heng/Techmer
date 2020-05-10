@@ -33,17 +33,17 @@ class FavoriteProductController extends Controller
         return response()->json($datas, Response::HTTP_OK);
     }
 
-    public function indexOnlyTrashed()
-    {
+    // public function indexOnlyTrashed()
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $datas = FavoriteProduct::onlyTrashed()->get();
+    //     $datas = FavoriteProduct::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : FavoriteProductResource::collection($datas));
+    //     $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : FavoriteProductResource::collection($datas));
 
-        return response()->json($datas, Response::HTTP_OK);
-    }
+    //     return response()->json($datas, Response::HTTP_OK);
+    // }
 
     public function store(FavoriteProductRequest $request)
     {
@@ -95,31 +95,31 @@ class FavoriteProductController extends Controller
         return response()->json($data, Response::HTTP_OK);
     }
 
-    public function restore($id)
-    {
+    // public function restore($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = FavoriteProduct::onlyTrashed()->findOrFail($id);
+    //     $data = FavoriteProduct::onlyTrashed()->findOrFail($id);
 
-        $data->restore();
+    //     $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
+    //     $data = ["message" => "Data Restore successfully !!!"];
 
-        return response()->json($data, Response::HTTP_OK);
-    }
+    //     return response()->json($data, Response::HTTP_OK);
+    // }
 
-    public function forceDestroy($id)
-    {
+    // public function forceDestroy($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = FavoriteProduct::withTrashed()->findOrFail($id);
+    //     $data = FavoriteProduct::withTrashed()->findOrFail($id);
 
-        $data->forceDelete();
+    //     $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
+    //     $data = ['message' => "Data Force Delete Successfully !!!"];
 
-        return response()->json($data, Response::HTTP_OK);
-    }
+    //     return response()->json($data, Response::HTTP_OK);
+    // }
 }

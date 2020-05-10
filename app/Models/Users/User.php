@@ -25,6 +25,20 @@ class User extends Authenticatable
 
     protected $guard_name = "api";
 
+    // protected $softCascade = [
+    //     // 'addresses',
+    //     'coupons',
+    //     // 'shippingAddresses',
+    //     // 'transactions',
+    //     // 'userCarts',
+    //     // 'favoriteProducts',
+    //     'products',
+    //     'productBrands',
+    //     'productCategories',
+    //     'productFeedback',
+    //     // 'identity',
+    // ];
+
     public function addresses()
     {
         return $this->hasMany("App\Models\Addresses\Address", "user_id");
@@ -69,4 +83,23 @@ class User extends Authenticatable
     {
         return $this->hasOne("App\Models\Users\Identity", "user_id");
     }
+
+    // public function beforeForceDelete()
+    // {
+    //     $this->productFeedback->each(function ($query) {
+    //         return $query->forceDelete();
+    //     });
+    //     $this->productBrands->each(function ($query) {
+    //         return $query->forceDelete();
+    //     });
+    //     $this->productCategories->each(function ($query) {
+    //         return $query->forceDelete();
+    //     });
+    //     $this->products->each(function ($query) {
+    //         return $query->forceDelete();
+    //     });
+    //     $this->coupons->each(function ($query) {
+    //         return $query->forceDelete();
+    //     });
+    // }
 }

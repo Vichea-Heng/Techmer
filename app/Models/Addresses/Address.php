@@ -13,21 +13,21 @@ class Address extends Model
         "country_id",
     ];
 
-    public function shippingAddresses()
-    {
-        return $this->hasMany("App\Models\Payments\ShippingAddress", "address_id");
-    }
-    public function identity()
-    {
-        return $this->hasOne("App\Models\Users\Identity", "address_id");
-    }
+    // public function shippingAddresses()
+    // {
+    //     return $this->hasMany("App\Models\Payments\ShippingAddress", "address_id");
+    // }
+    // public function identity()
+    // {
+    //     return $this->hasOne("App\Models\Users\Identity", "address_id");
+    // }
 
-    public function user()
-    {
-        return $this->belongsTo("App\Models\Users\User", "user_id", "id");
-    }
-    public function country()
-    {
-        return $this->belongsTo("App\Models\Addresses\Country", "country_id", "id");
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo("App\Models\Users\User", "user_id", "id");
+    // }
+    // public function country()
+    // {
+    //     return $this->belongsTo("App\Models\Addresses\Country", "country_id", "id");
+    // }
 }

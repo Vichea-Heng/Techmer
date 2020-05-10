@@ -34,17 +34,17 @@ class ShippingAddressController extends Controller
         return response()->json($datas, Response::HTTP_OK);
     }
 
-    public function indexOnlyTrashed()
-    {
+    // public function indexOnlyTrashed()
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $datas = ShippingAddress::onlyTrashed()->get();
+    //     $datas = ShippingAddress::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ShippingAddressResource::collection($datas));
+    //     $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ShippingAddressResource::collection($datas));
 
-        return response()->json($datas, Response::HTTP_OK);
-    }
+    //     return response()->json($datas, Response::HTTP_OK);
+    // }
 
     public function store(ShippingAddressRequest $request, AddressRequest $request1)
     {
@@ -106,31 +106,31 @@ class ShippingAddressController extends Controller
         return response()->json($data, Response::HTTP_OK);
     }
 
-    public function restore($id)
-    {
+    // public function restore($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = ShippingAddress::onlyTrashed()->findOrFail($id);
+    //     $data = ShippingAddress::onlyTrashed()->findOrFail($id);
 
-        $data->restore();
+    //     $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
+    //     $data = ["message" => "Data Restore successfully !!!"];
 
-        return response()->json($data, Response::HTTP_OK);
-    }
+    //     return response()->json($data, Response::HTTP_OK);
+    // }
 
-    public function forceDestroy($id)
-    {
+    // public function forceDestroy($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = ShippingAddress::withTrashed()->findOrFail($id);
+    //     $data = ShippingAddress::withTrashed()->findOrFail($id);
 
-        $data->forceDelete();
+    //     $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
+    //     $data = ['message' => "Data Force Delete Successfully !!!"];
 
-        return response()->json($data, Response::HTTP_OK);
-    }
+    //     return response()->json($data, Response::HTTP_OK);
+    // }
 }

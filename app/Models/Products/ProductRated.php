@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductRated extends Model
 {
-    protected $guard_name = "";
-
     protected $primaryKey = "product_id";
 
     public $incrementing = false;

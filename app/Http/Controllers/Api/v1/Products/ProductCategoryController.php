@@ -102,6 +102,8 @@ class ProductCategoryController extends Controller
 
         $data = ProductCategory::onlyTrashed()->findOrFail($id);
 
+        $data->checkBeforeRestore();
+
         $data->restore();
 
         $data = ["message" => "Data Restore successfully !!!"];
@@ -115,6 +117,8 @@ class ProductCategoryController extends Controller
         // only super admin can access, and check with middleware at the __construct function
 
         $data = ProductCategory::withTrashed()->findOrFail($id);
+
+        $data->beforeForceDelete();
 
         $data->forceDelete();
 

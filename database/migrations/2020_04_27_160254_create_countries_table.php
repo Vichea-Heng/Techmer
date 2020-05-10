@@ -19,7 +19,6 @@ class CreateCountriesTable extends Migration
             $table->unsignedInteger("phone_code")->unique();
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

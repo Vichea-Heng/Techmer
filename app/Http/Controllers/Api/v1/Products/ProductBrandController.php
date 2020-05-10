@@ -102,6 +102,8 @@ class ProductBrandController extends Controller
 
         $data = ProductBrand::onlyTrashed()->findOrFail($id);
 
+        $data->checkBeforeRestore();
+
         $data->restore();
 
         $data = ["message" => "Data Restore successfully !!!"];
@@ -115,6 +117,8 @@ class ProductBrandController extends Controller
         // only super admin can access, and check with middleware at the __construct function
 
         $data = ProductBrand::withTrashed()->findOrFail($id);
+
+        $data->beforeForceDelete();
 
         $data->forceDelete();
 

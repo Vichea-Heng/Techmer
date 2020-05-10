@@ -18,7 +18,6 @@ class CreateNationalitiesTable extends Migration
             $table->string("nationality");
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
