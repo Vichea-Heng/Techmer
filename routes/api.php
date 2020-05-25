@@ -39,12 +39,12 @@ Route::group(["prefix" => "/v1"], function () {
             Route::post("/block-user/{id}", "UserController@addIdentity");
 
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            apiSoftDelete("role", "RoleController");
+            // apiSoftDelete("role", "RoleController");
             // });
             Route::apiResource('/role', 'RoleController');
 
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-            apiSoftDelete("permission", "PermissionController");
+            // apiSoftDelete("permission", "PermissionController");
             // });
             Route::apiResource('/permission', 'PermissionController');
 

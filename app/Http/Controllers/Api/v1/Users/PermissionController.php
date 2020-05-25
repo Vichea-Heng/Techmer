@@ -34,18 +34,18 @@ class PermissionController extends Controller
         return dataResponse(PermissionResource::collection($datas));
     }
 
-    public function indexOnlyTrashed()
-    {
+    // public function indexOnlyTrashed()
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $datas = Permission::onlyTrashed()->get();
+    //     $datas = Permission::onlyTrashed()->get();
 
-        if (count($datas) == 0)
-            throw new ModelNotFoundException;
+    //     if (count($datas) == 0)
+    //         throw new ModelNotFoundException;
 
-        return dataResponse(PermissionResource::collection($datas));
-    }
+    //     return dataResponse(PermissionResource::collection($datas));
+    // }
 
     public function store(PermissionRequest $request)
     {
@@ -89,27 +89,27 @@ class PermissionController extends Controller
         return destoryResponse();
     }
 
-    public function restore($id)
-    {
+    // public function restore($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = Permission::onlyTrashed()->findOrFail($id);
+    //     $data = Permission::onlyTrashed()->findOrFail($id);
 
-        $data->restore();
+    //     $data->restore();
 
-        return restoreResponse();
-    }
+    //     return restoreResponse();
+    // }
 
-    public function forceDestroy($id)
-    {
+    // public function forceDestroy($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = Permission::withTrashed()->findOrFail($id);
+    //     $data = Permission::withTrashed()->findOrFail($id);
 
-        $data->forceDelete();
+    //     $data->forceDelete();
 
-        return forceDestoryResponse();
-    }
+    //     return forceDestoryResponse();
+    // }
 }

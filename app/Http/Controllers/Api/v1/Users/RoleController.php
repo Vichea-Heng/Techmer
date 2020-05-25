@@ -34,18 +34,18 @@ class RoleController extends Controller
         return dataResponse(RoleResource::collection($datas));
     }
 
-    public function indexOnlyTrashed()
-    {
+    // public function indexOnlyTrashed()
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $datas = Role::onlyTrashed()->get();
+    //     $datas = Role::onlyTrashed()->get();
 
-        if (count($datas) == 0)
-            throw new ModelNotFoundException;
+    //     if (count($datas) == 0)
+    //         throw new ModelNotFoundException;
 
-        return dataResponse(RoleResource::collection($datas));
-    }
+    //     return dataResponse(RoleResource::collection($datas));
+    // }
 
     public function store(RoleRequest $request)
     {
@@ -89,27 +89,27 @@ class RoleController extends Controller
         return destoryResponse();
     }
 
-    public function restore($id)
-    {
+    // public function restore($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = Role::onlyTrashed()->findOrFail($id);
+    //     $data = Role::onlyTrashed()->findOrFail($id);
 
-        $data->restore();
+    //     $data->restore();
 
-        return restoreResponse();
-    }
+    //     return restoreResponse();
+    // }
 
-    public function forceDestroy($id)
-    {
+    // public function forceDestroy($id)
+    // {
 
-        // only super admin can access, and check with middleware at the __construct function
+    //     // only super admin can access, and check with middleware at the __construct function
 
-        $data = Role::withTrashed()->findOrFail($id);
+    //     $data = Role::withTrashed()->findOrFail($id);
 
-        $data->forceDelete();
+    //     $data->forceDelete();
 
-        return forceDestoryResponse();
-    }
+    //     return forceDestoryResponse();
+    // }
 }
