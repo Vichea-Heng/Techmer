@@ -116,6 +116,7 @@ class ProductOptionController extends Controller
         // $this->authorize("delete", ProductOption::class);
 
         $product_option->userCarts->each(fn ($item) => $item->delete());
+        $product_option->transactions->each(fn ($item) => $item->delete());
 
         $product_option->delete();
 

@@ -168,7 +168,18 @@ class ProductController extends Controller
 
     public function publishProduct(Product $product)
     {
+        DB::beginTransaction();
+
         $product->update(["published" => !$product->published]);
+
+        if (!$product->published) {
+            $product->productOptions->each(function ($item) {
+                $item->userCarts->each(fn ($item2) => $item2->delete());
+                $item->transactions->each(fn ($item2) => $item2->delete());
+            });
+        }
+
+        DB::commit();
 
         return dataResponse(new ProductResource($product));
     }
@@ -176,6 +187,11 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         // $this->authorize("delete", Product::class);
+
+        $product->productOptions->each(function ($item) {
+            $item->userCarts->each(fn ($item2) => $item2->delete());
+            $item->transactions->each(fn ($item2) => $item2->delete());
+        });
 
         $product->delete();
 
