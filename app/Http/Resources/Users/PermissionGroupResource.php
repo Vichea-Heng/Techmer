@@ -8,17 +8,10 @@ class PermissionGroupResource extends JsonResource
 {
     public function toArray($request)
     {
-        if ($this->deleted_at != NULL) {
-            return [
-                'id' => $this->id,
-                'name' => $this->name,
-                'deleted_at' => $this->deleted_at,
-            ];
-        }
-
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }
 }

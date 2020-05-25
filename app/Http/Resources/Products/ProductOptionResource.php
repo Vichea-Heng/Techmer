@@ -8,21 +8,6 @@ class ProductOptionResource extends JsonResource
 {
     public function toArray($request)
     {
-        if ($this->deleted_at != NULL) {
-            return [
-                "id" => $this->id,
-                "product_id" => $this->product_id,
-                "option" => $this->option,
-                "category" => $this->category,
-                "price" => $this->price,
-                "qty" => $this->qty,
-                "discount" => $this->discount,
-                "warrenty" => $this->warrenty,
-                "photo" => $this->photo,
-                'deleted_at' => $this->deleted_at,
-            ];
-        }
-
         return [
             "id" => $this->id,
             "product_id" => $this->product_id,
@@ -33,6 +18,7 @@ class ProductOptionResource extends JsonResource
             "discount" => $this->discount,
             "warrenty" => $this->warrenty,
             "photo" => $this->photo,
+            'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }
 }

@@ -8,17 +8,10 @@ class ProductRatedResource extends JsonResource
 {
     public function toArray($request)
     {
-        if ($this->deleted_at != NULL) {
-            return [
-                "product_id" => $this->product_id,
-                "rated" => $this->rated ?? 0,
-                'deleted_at' => $this->deleted_at,
-            ];
-        }
-
         return [
             "product_id" => $this->product_id,
             "rated" => $this->rated ?? 0,
+            'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }
 }

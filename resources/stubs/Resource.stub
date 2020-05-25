@@ -8,15 +8,8 @@ class {{modelName}}Resource extends JsonResource
 {
     public function toArray($request)
     {
-        if($this->deleted_at != NULL){
-            return [
-     
-                'deleted_at' => $this->deleted_at,    
-            ];
-        }
-        
         return [
-     
+            'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
         
     }

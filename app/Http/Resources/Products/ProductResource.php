@@ -8,20 +8,6 @@ class ProductResource extends JsonResource
 {
     public function toArray($request)
     {
-        if ($this->deleted_at != NULL) {
-            return [
-                "id" => $this->id,
-                "title" => $this->title,
-                "brand_id" => $this->brand_id,
-                "content" => $this->content,
-                "category_id" => $this->category_id,
-                "posted_by" => $this->posted_by,
-                "published" => $this->published,
-                "gallery" => $this->url_gallery,
-                'deleted_at' => $this->deleted_at,
-            ];
-        }
-
         return [
             "id" => $this->id,
             "title" => $this->title,
@@ -31,6 +17,7 @@ class ProductResource extends JsonResource
             "posted_by" => $this->posted_by,
             "published" => $this->published,
             "gallery" => $this->url_gallery,
+            'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }
 }
