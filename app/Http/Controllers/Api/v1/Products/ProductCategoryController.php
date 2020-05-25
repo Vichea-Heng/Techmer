@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Products\ProductCategory;
 use App\Http\Requests\Products\ProductCategoryRequest;
 use App\Http\Resources\Products\ProductCategoryResource;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -28,9 +28,10 @@ class ProductCategoryController extends Controller
 
         $datas = ProductCategory::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductCategoryResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductCategoryResource::collection($datas));
     }
 
     public function indexOnlyTrashed()
@@ -40,9 +41,10 @@ class ProductCategoryController extends Controller
 
         $datas = ProductCategory::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductCategoryResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductCategoryResource::collection($datas));
     }
 
     public function store(ProductCategoryRequest $request)
@@ -54,9 +56,7 @@ class ProductCategoryController extends Controller
 
         $data = ProductCategory::create($data);
 
-        $data = new ProductCategoryResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductCategoryResource($data));
     }
 
     public function show(ProductCategory $product_category)
@@ -64,9 +64,7 @@ class ProductCategoryController extends Controller
 
         // $this->authorize("view", ProductCategory::class);
 
-        $data = new ProductCategoryResource($product_category);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductCategoryResource($product_category));
     }
 
     public function update(ProductCategoryRequest $request, ProductCategory $product_category)
@@ -78,9 +76,7 @@ class ProductCategoryController extends Controller
 
         $product_category->update($data);
 
-        $data = new ProductCategoryResource($product_category);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductCategoryResource($product_category));
     }
 
     public function destroy(ProductCategory $product_category)
@@ -90,9 +86,7 @@ class ProductCategoryController extends Controller
 
         $product_category->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     public function restore($id)
@@ -106,9 +100,7 @@ class ProductCategoryController extends Controller
 
         $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return restoreResponse();
     }
 
     public function forceDestroy($id)
@@ -122,8 +114,6 @@ class ProductCategoryController extends Controller
 
         $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return forceDestoryResponse();
     }
 }

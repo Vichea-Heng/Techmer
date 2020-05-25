@@ -9,6 +9,7 @@ use App\Models\Products\Product;
 use App\Http\Requests\Products\ProductRequest;
 use App\Http\Resources\Products\ProductResource;
 use App\Models\Products\ProductRated;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -30,9 +31,10 @@ class ProductController extends Controller
 
         $datas = Product::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductResource::collection($datas));
     }
 
     public function indexOnlyTrashed()
@@ -42,9 +44,10 @@ class ProductController extends Controller
 
         $datas = Product::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductResource::collection($datas));
     }
 
     public function store(ProductRequest $request)
@@ -73,9 +76,7 @@ class ProductController extends Controller
 
         DB::commit();
 
-        $data = new ProductResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductResource($data));
     }
 
     public function getFile(Product $product, $file_name)
@@ -118,9 +119,7 @@ class ProductController extends Controller
 
         $product->update(["gallery" => json_encode($gallery_name)]);
 
-        $data = new ProductResource($product);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductResource($product));
     }
 
     public function addFile(Request $request, Product $product)
@@ -144,9 +143,7 @@ class ProductController extends Controller
 
         $product->update(["gallery" => json_encode($gallery_name)]);
 
-        $data = new ProductResource($product);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductResource($product));
     }
 
     public function show(Product $product)
@@ -154,9 +151,7 @@ class ProductController extends Controller
 
         // $this->authorize("view", Product::class);
 
-        $data = new ProductResource($product);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductResource($product));
     }
 
     public function update(ProductRequest $request, Product $product)
@@ -168,18 +163,14 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        $data = new ProductResource($product);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductResource($product));
     }
 
     public function publishProduct(Product $product)
     {
         $product->update(["published" => !$product->published]);
 
-        $data = new ProductResource($product);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductResource($product));
     }
 
     public function destroy(Product $product)
@@ -188,9 +179,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     public function restore($id)
@@ -204,9 +193,7 @@ class ProductController extends Controller
 
         $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return restoreResponse();
     }
 
     public function forceDestroy($id)
@@ -222,8 +209,6 @@ class ProductController extends Controller
 
         Storage::deleteDirectory("/Techmer/Products/" . $id);
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return forceDestoryResponse();
     }
 }

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\Users\RoleRequest;
 use App\Http\Resources\Users\RoleResource;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -28,9 +28,10 @@ class RoleController extends Controller
 
         $datas = Role::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : RoleResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(RoleResource::collection($datas));
     }
 
     public function indexOnlyTrashed()
@@ -40,9 +41,10 @@ class RoleController extends Controller
 
         $datas = Role::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : RoleResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(RoleResource::collection($datas));
     }
 
     public function store(RoleRequest $request)
@@ -54,9 +56,7 @@ class RoleController extends Controller
 
         $data = Role::create($data);
 
-        $data = new RoleResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new RoleResource($data));
     }
 
     public function show(Role $role)
@@ -64,9 +64,7 @@ class RoleController extends Controller
 
         // $this->authorize("view", Role::class);
 
-        $data = new RoleResource($role);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new RoleResource($role));
     }
 
     public function update(RoleRequest $request, Role $role)
@@ -78,9 +76,7 @@ class RoleController extends Controller
 
         $role->update($data);
 
-        $data = new RoleResource($role);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new RoleResource($role));
     }
 
     public function destroy(Role $role)
@@ -90,9 +86,7 @@ class RoleController extends Controller
 
         $role->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     public function restore($id)
@@ -104,9 +98,7 @@ class RoleController extends Controller
 
         $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return restoreResponse();
     }
 
     public function forceDestroy($id)
@@ -118,8 +110,6 @@ class RoleController extends Controller
 
         $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return forceDestoryResponse();
     }
 }

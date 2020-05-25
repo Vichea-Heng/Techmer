@@ -9,6 +9,7 @@ use App\Http\Requests\Payments\ShippingAddressRequest;
 use App\Http\Requests\Users\AddressRequest;
 use App\Http\Resources\Payments\ShippingAddressResource;
 use App\Models\Addresses\Address;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -29,9 +30,10 @@ class ShippingAddressController extends Controller
 
         $datas = ShippingAddress::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ShippingAddressResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ShippingAddressResource::collection($datas));
     }
 
     // public function indexOnlyTrashed()
@@ -60,9 +62,7 @@ class ShippingAddressController extends Controller
 
         $data = ShippingAddress::create($data);
 
-        $data = new ShippingAddressResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ShippingAddressResource($data));
     }
 
     public function show(ShippingAddress $shipping_address)
@@ -70,9 +70,7 @@ class ShippingAddressController extends Controller
 
         // $this->authorize("view", ShippingAddress::class);
 
-        $data = new ShippingAddressResource($shipping_address);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ShippingAddressResource($shipping_address));
     }
 
     public function update(ShippingAddressRequest $request, AddressRequest $request1, ShippingAddress $shipping_address)
@@ -89,9 +87,7 @@ class ShippingAddressController extends Controller
         $shipping_address->address->update($address);
         DB::commit();
 
-        $data = new ShippingAddressResource($shipping_address);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ShippingAddressResource($shipping_address));
     }
 
     public function destroy(ShippingAddress $shipping_address)
@@ -101,9 +97,7 @@ class ShippingAddressController extends Controller
 
         $shipping_address->address->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     // public function restore($id)

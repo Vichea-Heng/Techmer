@@ -11,6 +11,7 @@ use App\Http\Requests\Payments\TransactionRequest;
 use App\Http\Resources\Payments\TransactionResource;
 use App\Models\Payments\UserCart;
 use App\Models\Products\ProductOption;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -31,9 +32,10 @@ class TransactionController extends Controller
 
         $datas = Transaction::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : TransactionResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(TransactionResource::collection($datas));
     }
 
     // public function indexOnlyTrashed()
@@ -88,9 +90,9 @@ class TransactionController extends Controller
         DB::commit();
 
         // $data = new TransactionResource($data);
-        $data = ["message" => "SUCCESSFUL"];
+        // $data = ["message" => "SUCCESSFUL"];
 
-        return response()->json($data, Response::HTTP_OK);
+        return successResponse("SUCCESSFUL");
     }
 
     public function show(Transaction $transaction)
@@ -98,9 +100,7 @@ class TransactionController extends Controller
 
         // $this->authorize("view", Transaction::class);
 
-        $data = new TransactionResource($transaction);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new TransactionResource($transaction));
     }
 
     // public function update(TransactionRequest $request, Transaction $transaction)
@@ -124,9 +124,7 @@ class TransactionController extends Controller
 
         $transaction->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     // public function restore($id)

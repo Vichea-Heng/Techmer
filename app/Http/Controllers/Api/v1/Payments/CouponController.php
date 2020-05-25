@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CouponController extends Controller
 {
@@ -28,9 +29,10 @@ class CouponController extends Controller
 
         $datas = Coupon::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : CouponResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(CouponResource::collection($datas));
     }
 
     public function indexOnlyTrashed()
@@ -40,9 +42,10 @@ class CouponController extends Controller
 
         $datas = Coupon::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : CouponResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(CouponResource::collection($datas));
     }
 
     public function store(CouponRequest $request)
@@ -54,9 +57,7 @@ class CouponController extends Controller
 
         $data = Coupon::create($data);
 
-        $data = new CouponResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new CouponResource($data));
     }
 
     public function show(Coupon $coupon)
@@ -64,9 +65,7 @@ class CouponController extends Controller
 
         // $this->authorize("view", Coupon::class);
 
-        $data = new CouponResource($coupon);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new CouponResource($coupon));
     }
 
     public function update(CouponRequest $request, Coupon $coupon)
@@ -78,9 +77,7 @@ class CouponController extends Controller
 
         $coupon->update($data);
 
-        $data = new CouponResource($coupon);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new CouponResource($coupon));
     }
 
     public function destroy(Coupon $coupon)
@@ -90,9 +87,7 @@ class CouponController extends Controller
 
         $coupon->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     public function restore($id)
@@ -102,13 +97,9 @@ class CouponController extends Controller
 
         $data = Coupon::onlyTrashed()->findOrFail($id);
 
-        $data->checkBeforeRestore();
-
         $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return restoreResponse();
     }
 
     public function forceDestroy($id)
@@ -120,8 +111,6 @@ class CouponController extends Controller
 
         $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return forceDestoryResponse();
     }
 }

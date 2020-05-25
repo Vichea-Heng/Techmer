@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Products\FavoriteProduct;
 use App\Http\Requests\Products\FavoriteProductRequest;
 use App\Http\Resources\Products\FavoriteProductResource;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -28,9 +28,10 @@ class FavoriteProductController extends Controller
 
         $datas = FavoriteProduct::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : FavoriteProductResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(FavoriteProductResource::collection($datas));
     }
 
     // public function indexOnlyTrashed()
@@ -54,9 +55,7 @@ class FavoriteProductController extends Controller
 
         $data = FavoriteProduct::create($data);
 
-        $data = new FavoriteProductResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new FavoriteProductResource($data));
     }
 
     public function show(FavoriteProduct $favorite_product)
@@ -64,9 +63,7 @@ class FavoriteProductController extends Controller
 
         // $this->authorize("view", FavoriteProduct::class);
 
-        $data = new FavoriteProductResource($favorite_product);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new FavoriteProductResource($favorite_product));
     }
 
     // public function update(FavoriteProductRequest $request, FavoriteProduct $favorite_product)
@@ -90,9 +87,7 @@ class FavoriteProductController extends Controller
 
         $favorite_product->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     // public function restore($id)

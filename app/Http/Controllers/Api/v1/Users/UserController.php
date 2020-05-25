@@ -37,7 +37,7 @@ class UserController extends Controller
             $user = Auth::user()->createToken("blah");
             // $user = Auth::user()->createSetupIntent();
 
-            return response()->json($user, Response::HTTP_OK);
+            return dataResponse($user);
         } else {
             throw new MessageException("blah");
         }
@@ -70,7 +70,7 @@ class UserController extends Controller
 
         // $user->createAsStripeCustomer();
 
-        return response()->json($user, Response::HTTP_OK);
+        return dataResponse($user);
     }
 
     public function logout(User $user)
@@ -78,7 +78,7 @@ class UserController extends Controller
         $user->tokens->each(function ($token) {
             $token->delete();
         });
-        return response()->json(["success" => "SUCCESSFULLY"], Response::HTTP_OK);
+        return successResponse("Logout Successfully");
     }
 
     public function addIdentity(Request $request1, AddressRequest $request)
@@ -100,7 +100,7 @@ class UserController extends Controller
         }
         DB::commit();
 
-        return response()->json(["success" => $data], Response::HTTP_OK);
+        return dataResponse($data);
     }
 
     public function blockUser(User $user)
@@ -108,7 +108,7 @@ class UserController extends Controller
         //permission
         $user->update(["status" => false]);
 
-        return response()->json(["message" => "SUCCESSFUL"], Response::HTTP_OK);
+        return successResponse("Block Successfully");
     }
 
     // public function generate_username($data)

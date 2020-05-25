@@ -8,6 +8,7 @@ use App\Models\Products\ProductOption;
 use App\Http\Requests\Products\ProductOptionRequest;
 use App\Http\Resources\Products\ProductOptionResource;
 use App\Models\Products\Product;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -29,9 +30,10 @@ class ProductOptionController extends Controller
 
         $datas = ProductOption::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductOptionResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductOptionResource::collection($datas));
     }
 
     public function indexOnlyTrashed()
@@ -41,9 +43,10 @@ class ProductOptionController extends Controller
 
         $datas = ProductOption::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductOptionResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductOptionResource::collection($datas));
     }
 
     public function store(ProductOptionRequest $request)
@@ -69,9 +72,7 @@ class ProductOptionController extends Controller
 
         DB::commit();
 
-        $data = new ProductOptionResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductOptionResource($data));
     }
 
     public function getFile(ProductOption $product_option)
@@ -86,9 +87,7 @@ class ProductOptionController extends Controller
 
         // $this->authorize("view", ProductOption::class);
 
-        $data = new ProductOptionResource($product_option);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductOptionResource($product_option));
     }
 
     public function update(ProductOptionRequest $request, ProductOption $product_option)
@@ -108,9 +107,7 @@ class ProductOptionController extends Controller
 
         $product_option->update($data);
 
-        $data = new ProductOptionResource($product_option);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductOptionResource($product_option));
     }
 
     public function destroy(ProductOption $product_option)
@@ -122,9 +119,7 @@ class ProductOptionController extends Controller
 
         $product_option->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     public function restore($id)
@@ -136,9 +131,7 @@ class ProductOptionController extends Controller
 
         $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return restoreResponse();
     }
 
     public function forceDestroy($id)
@@ -152,8 +145,6 @@ class ProductOptionController extends Controller
 
         Storage::delete("/Techmer/Products/" . $data->product_id . "/ProductOptions/" . $data->photo);
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return forceDestoryResponse();
     }
 }

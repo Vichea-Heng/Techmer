@@ -8,7 +8,7 @@ use App\Models\Products\ProductFeedback;
 use App\Http\Requests\Products\ProductFeedbackRequest;
 use App\Http\Resources\Products\ProductFeedbackResource;
 use App\Models\Products\ProductRated;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -29,9 +29,10 @@ class ProductFeedbackController extends Controller
 
         $datas = ProductFeedback::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductFeedbackResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductFeedbackResource::collection($datas));
     }
 
     // public function indexOnlyTrashed()
@@ -67,9 +68,7 @@ class ProductFeedbackController extends Controller
 
         DB::commit();
 
-        $data = new ProductFeedbackResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductFeedbackResource($data));
     }
 
     public function show(ProductFeedback $product_feedback)
@@ -77,9 +76,7 @@ class ProductFeedbackController extends Controller
 
         // $this->authorize("view", ProductFeedback::class);
 
-        $data = new ProductFeedbackResource($product_feedback);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductFeedbackResource($product_feedback));
     }
 
     public function update(ProductFeedbackRequest $request, ProductFeedback $product_feedback)
@@ -105,9 +102,7 @@ class ProductFeedbackController extends Controller
 
         DB::commit();
 
-        $data = new ProductFeedbackResource($product_feedback);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductFeedbackResource($product_feedback));
     }
 
     public function destroy(ProductFeedback $product_feedback)
@@ -117,9 +112,7 @@ class ProductFeedbackController extends Controller
 
         $product_feedback->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     // public function restore($id)

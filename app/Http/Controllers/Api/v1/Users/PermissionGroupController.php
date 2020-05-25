@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Users\PermissionGroup;
 use App\Http\Requests\Users\PermissionGroupRequest;
 use App\Http\Resources\Users\PermissionGroupResource;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -29,9 +29,10 @@ class PermissionGroupController extends Controller
 
         $datas = PermissionGroup::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : PermissionGroupResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(PermissionGroupResource::collection($datas));
     }
 
     // public function indexOnlyTrashed()
@@ -55,9 +56,7 @@ class PermissionGroupController extends Controller
 
         $data = PermissionGroup::create($data);
 
-        $data = new PermissionGroupResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new PermissionGroupResource($data));
     }
 
     public function show(PermissionGroup $permission_group)
@@ -65,9 +64,7 @@ class PermissionGroupController extends Controller
 
         // $this->authorize("view", PermissionGroup::class);
 
-        $data = new PermissionGroupResource($permission_group);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new PermissionGroupResource($permission_group));
     }
 
     public function update(PermissionGroupRequest $request, PermissionGroup $permission_group)
@@ -79,9 +76,7 @@ class PermissionGroupController extends Controller
 
         $permission_group->update($data);
 
-        $data = new PermissionGroupResource($permission_group);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new PermissionGroupResource($permission_group));
     }
 
     public function destroy(PermissionGroup $permission_group)
@@ -93,9 +88,7 @@ class PermissionGroupController extends Controller
 
         $permission_group->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     // public function restore($id)

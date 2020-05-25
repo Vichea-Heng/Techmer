@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Payments\UserCart;
 use App\Http\Requests\Payments\UserCartRequest;
 use App\Http\Resources\Payments\UserCartResource;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -28,9 +28,10 @@ class UserCartController extends Controller
 
         $datas = UserCart::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : UserCartResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(UserCartResource::collection($datas));
     }
 
     // public function indexOnlyTrashed()
@@ -58,9 +59,7 @@ class UserCartController extends Controller
 
         $data = UserCart::create($data);
 
-        $data = new UserCartResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new UserCartResource($data));
     }
 
     public function show(UserCart $user_cart)
@@ -68,9 +67,7 @@ class UserCartController extends Controller
 
         // $this->authorize("view", UserCart::class);
 
-        $data = new UserCartResource($user_cart);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new UserCartResource($user_cart));
     }
 
     public function update(UserCartRequest $request, UserCart $user_cart)
@@ -82,9 +79,7 @@ class UserCartController extends Controller
 
         $user_cart->update($data);
 
-        $data = new UserCartResource($user_cart);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new UserCartResource($user_cart));
     }
 
     public function destroy(UserCart $user_cart)
@@ -94,9 +89,7 @@ class UserCartController extends Controller
 
         $user_cart->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     // public function restore($id)

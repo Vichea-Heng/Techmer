@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\Users\PermissionRequest;
 use App\Http\Resources\Users\PermissionResource;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -28,9 +28,10 @@ class PermissionController extends Controller
 
         $datas = Permission::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : PermissionResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(PermissionResource::collection($datas));
     }
 
     public function indexOnlyTrashed()
@@ -40,9 +41,10 @@ class PermissionController extends Controller
 
         $datas = Permission::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : PermissionResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(PermissionResource::collection($datas));
     }
 
     public function store(PermissionRequest $request)
@@ -54,9 +56,7 @@ class PermissionController extends Controller
 
         $data = Permission::create($data);
 
-        $data = new PermissionResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new PermissionResource($data));
     }
 
     public function show(Permission $permission)
@@ -64,9 +64,7 @@ class PermissionController extends Controller
 
         // $this->authorize("view", Permission::class);
 
-        $data = new PermissionResource($permission);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new PermissionResource($permission));
     }
 
     public function update(PermissionRequest $request, Permission $permission)
@@ -78,9 +76,7 @@ class PermissionController extends Controller
 
         $permission->update($data);
 
-        $data = new PermissionResource($permission);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new PermissionResource($permission));
     }
 
     public function destroy(Permission $permission)
@@ -90,9 +86,7 @@ class PermissionController extends Controller
 
         $permission->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     public function restore($id)
@@ -104,9 +98,7 @@ class PermissionController extends Controller
 
         $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return restoreResponse();
     }
 
     public function forceDestroy($id)
@@ -118,8 +110,6 @@ class PermissionController extends Controller
 
         $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return forceDestoryResponse();
     }
 }

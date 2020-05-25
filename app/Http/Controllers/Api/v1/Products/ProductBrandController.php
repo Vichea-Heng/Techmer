@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Products\ProductBrand;
 use App\Http\Requests\Products\ProductBrandRequest;
 use App\Http\Resources\Products\ProductBrandResource;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -28,9 +28,10 @@ class ProductBrandController extends Controller
 
         $datas = ProductBrand::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductBrandResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductBrandResource::collection($datas));
     }
 
     public function indexOnlyTrashed()
@@ -40,9 +41,10 @@ class ProductBrandController extends Controller
 
         $datas = ProductBrand::onlyTrashed()->get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductBrandResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductBrandResource::collection($datas));
     }
 
     public function store(ProductBrandRequest $request)
@@ -54,9 +56,7 @@ class ProductBrandController extends Controller
 
         $data = ProductBrand::create($data);
 
-        $data = new ProductBrandResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductBrandResource($data));
     }
 
     public function show(ProductBrand $product_brand)
@@ -64,9 +64,7 @@ class ProductBrandController extends Controller
 
         // $this->authorize("view", ProductBrand::class);
 
-        $data = new ProductBrandResource($product_brand);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductBrandResource($product_brand));
     }
 
     public function update(ProductBrandRequest $request, ProductBrand $product_brand)
@@ -78,9 +76,7 @@ class ProductBrandController extends Controller
 
         $product_brand->update($data);
 
-        $data = new ProductBrandResource($product_brand);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductBrandResource($product_brand));
     }
 
     public function destroy(ProductBrand $product_brand)
@@ -90,9 +86,7 @@ class ProductBrandController extends Controller
 
         $product_brand->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     public function restore($id)
@@ -106,9 +100,7 @@ class ProductBrandController extends Controller
 
         $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return restoreResponse();
     }
 
     public function forceDestroy($id)
@@ -122,8 +114,6 @@ class ProductBrandController extends Controller
 
         $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return forceDestoryResponse();
     }
 }

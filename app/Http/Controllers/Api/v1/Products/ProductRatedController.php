@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Products\ProductRated;
 use App\Http\Requests\Products\ProductRatedRequest;
 use App\Http\Resources\Products\ProductRatedResource;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -28,9 +28,10 @@ class ProductRatedController extends Controller
 
         $datas = ProductRated::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : ProductRatedResource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas, Response::HTTP_OK);
+        return dataResponse(ProductRatedResource::collection($datas));
     }
 
     // public function indexOnlyTrashed()
@@ -54,9 +55,7 @@ class ProductRatedController extends Controller
 
         $data = ProductRated::create($data);
 
-        $data = new ProductRatedResource($data);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductRatedResource($data));
     }
 
     public function show(ProductRated $product_rated)
@@ -64,9 +63,7 @@ class ProductRatedController extends Controller
 
         // $this->authorize("view", ProductRated::class);
 
-        $data = new ProductRatedResource($product_rated);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductRatedResource($product_rated));
     }
 
     public function update(ProductRatedRequest $request, ProductRated $product_rated)
@@ -78,9 +75,7 @@ class ProductRatedController extends Controller
 
         $product_rated->update($data);
 
-        $data = new ProductRatedResource($product_rated);
-
-        return response()->json($data, Response::HTTP_OK);
+        return dataResponse(new ProductRatedResource($product_rated));
     }
 
     public function destroy(ProductRated $product_rated)
@@ -90,9 +85,7 @@ class ProductRatedController extends Controller
 
         $product_rated->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data, Response::HTTP_OK);
+        return destoryResponse();
     }
 
     // public function restore($id)
