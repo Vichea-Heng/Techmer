@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class {{modelName}}Controller extends Controller
 {
@@ -27,9 +28,10 @@ class {{modelName}}Controller extends Controller
 
         $datas = {{modelName}}::get();
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : {{modelName}}Resource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas , Response::HTTP_OK);
+        return dataResponse({{modelName}}Resource::collection($datas));
     }
 
     public function indexOnlyTrashed(){
@@ -38,9 +40,10 @@ class {{modelName}}Controller extends Controller
 
         $datas = {{modelName}}::onlyTrashed()->get();  
 
-        $datas = (count($datas) == 0 ? ["message" => "Record not Found"] : {{modelName}}Resource::collection($datas));
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
 
-        return response()->json($datas , Response::HTTP_OK);
+        return dataResponse({{modelName}}Resource::collection($datas));
     }
 
     public function store({{modelName}}Request $request){
@@ -51,18 +54,14 @@ class {{modelName}}Controller extends Controller
 
         $data = {{modelName}}::create($data);
 
-        $data = new {{modelName}}Resource($data);
-
-        return response()->json($data , Response::HTTP_OK);
+        return dataResponse(new {{modelName}}Resource($data));
     }
 
     public function show({{modelName}} ${{modelSnakeCaseName}}){
 
         // $this->authorize("view", {{modelName}}::class);
 
-        $data = new {{modelName}}Resource(${{modelSnakeCaseName}});
-
-        return response()->json($data , Response::HTTP_OK);
+        return dataResponse(new {{modelName}}Resource(${{modelSnakeCaseName}}));
     }
 
     public function update({{modelName}}Request $request,{{modelName}} ${{modelSnakeCaseName}}){
@@ -72,10 +71,8 @@ class {{modelName}}Controller extends Controller
         $data = $request->validated();
 
         ${{modelSnakeCaseName}}->update($data); 
-
-        $data = new {{modelName}}Resource(${{modelSnakeCaseName}});
         
-        return response()->json($data , Response::HTTP_OK);
+        return dataResponse(new {{modelName}}Resource(${{modelSnakeCaseName}}));
     }
 
     public function destroy({{modelName}} ${{modelSnakeCaseName}}){
@@ -84,9 +81,7 @@ class {{modelName}}Controller extends Controller
 
         ${{modelSnakeCaseName}}->delete();
 
-        $data = ["message" => "Data Delete successfully !!!"];
-
-        return response()->json($data , Response::HTTP_OK);
+        return destoryResponse();
     }
 
     public function restore($id){
@@ -97,9 +92,7 @@ class {{modelName}}Controller extends Controller
 
         $data->restore();
 
-        $data = ["message" => "Data Restore successfully !!!"];
-
-        return response()->json($data , Response::HTTP_OK);
+        return restoreResponse();
     }
 
     public function forceDestroy($id){
@@ -110,8 +103,6 @@ class {{modelName}}Controller extends Controller
 
         $data->forceDelete();
 
-        $data = ['message' => "Data Force Delete Successfully !!!"];
-
-        return response()->json($data , Response::HTTP_OK);
+        return forceDestoryResponse();
     }
 }
