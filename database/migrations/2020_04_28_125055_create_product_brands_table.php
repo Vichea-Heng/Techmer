@@ -21,7 +21,7 @@ class CreateProductBrandsTable extends Migration
             $table->foreign("from_country")->references("id")->on("countries")->onDelete("restrict");
 
             $table->unsignedInteger("posted_by");
-            $table->foreign("posted_by")->references("id")->on("Users")->onDelete("restrict");
+            $table->foreign("posted_by")->references("id")->on("users")->onDelete("restrict");
 
             $table->timestamps();
             $table->softDeletes();
