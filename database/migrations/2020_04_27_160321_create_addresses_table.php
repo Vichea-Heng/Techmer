@@ -17,7 +17,7 @@ class CreateAddressesTable extends Migration
             $table->increments("id");
 
             $table->unsignedInteger("user_id");
-            $table->foreign("user_id")->references("id")->on("Users")->onDelete("cascade");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
 
             $table->text("address_line1");
             $table->text("address_line2");
