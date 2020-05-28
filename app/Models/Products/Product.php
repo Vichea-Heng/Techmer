@@ -25,7 +25,7 @@ class Product extends Model
         if (!empty($this->gallery)) {
             $gallery = json_decode($this->gallery);
 
-            return (array_map(fn ($val) => url(env("APP_URL") . "v1/product/" . $this->id . "/" . $val), $gallery));
+            return (array_map((fn ($val) => url(env("APP_URL") . "v1/product/" . $this->id . "/" . $val)), $gallery));
         }
     }
 
