@@ -17,7 +17,7 @@ class CreateIdentitiesTable extends Migration
             $table->increments("id");
 
             $table->unsignedInteger("user_id");
-            $table->foreign("user_id")->references("id")->on("Users")->onDelete("cascade");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
 
             $table->string("first_name");
             $table->string("last_name");
