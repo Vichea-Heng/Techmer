@@ -9,6 +9,8 @@ If you want to just try out the features of this package you can get started wit
 
 The examples on this page are primarily added for assistance in creating a quick demo app for troubleshooting purposes, to post the repo on github for convenient sharing to collaborate or get support.
 
+If you're new to Laravel or to any of the concepts mentioned here, you can learn more in the [Laravel documentation](https://laravel.com/docs/) and in the free videos at Laracasts such as this series: https://laracasts.com/series/laravel-6-from-scratch/
+
 ### Initial setup:
 
 ```sh
@@ -44,8 +46,7 @@ git add . && git commit -m "Setup auth scaffold"
 ```
 
 ### Add some basic permissions
-
--   Add a new file, `/database/seeds/PermissionsDemoSeeder.php` such as the following (You could create it with `php artisan make:seed` and then edit the file accordingly):
+- Add a new file, `/database/seeds/PermissionsDemoSeeder.php` such as the following (You could create it with `php artisan make:seed` and then edit the file accordingly):
 
 ```php
 <?php
@@ -86,24 +87,21 @@ class PermissionsDemoSeeder extends Seeder
         // gets all permissions via Gate::before rule; see AuthServiceProvider
 
         // create demo users
-        $user = Factory(App\Models\Users\User::class)->create([
+        $user = Factory(App\User::class)->create([
             'name' => 'Example User',
             'email' => 'test@example.com',
-            // factory default password is 'secret'
         ]);
         $user->assignRole($role1);
 
-        $user = Factory(App\Models\Users\User::class)->create([
+        $user = Factory(App\User::class)->create([
             'name' => 'Example Admin User',
             'email' => 'admin@example.com',
-            // factory default password is 'secret'
         ]);
         $user->assignRole($role2);
 
-        $user = Factory(App\Models\Users\User::class)->create([
+        $user = Factory(App\User::class)->create([
             'name' => 'Example Super-Admin User',
             'email' => 'superadmin@example.com',
-            // factory default password is 'secret'
         ]);
         $user->assignRole($role3);
     }
@@ -111,7 +109,7 @@ class PermissionsDemoSeeder extends Seeder
 
 ```
 
--   re-migrate and seed the database:
+- re-migrate and seed the database:
 
 ```sh
 composer dump-autoload
@@ -119,16 +117,15 @@ php artisan migrate:fresh --seed --seeder=PermissionsDemoSeeder
 ```
 
 ### Grant Super-Admin access
-
 Super-Admins are a common feature. Using the following approach allows that when your Super-Admin user is logged in, all permission-checks in your app which call `can()` or `@can()` will return true.
 
--   Add a Gate::before check in your `AuthServiceProvider`:
+- Add a Gate::before check in your `AuthServiceProvider`:
 
 ```diff
     public function boot()
     {
         $this->registerPolicies();
-
+        
         //
 
 +        // Implicitly grant "Super Admin" role all permission checks using can()
@@ -140,8 +137,8 @@ Super-Admins are a common feature. Using the following approach allows that when
     }
 ```
 
-### Application Code
 
+### Application Code
 The permissions created in the seeder above imply that there will be some sort of Posts or Article features, and that various users will have various access control levels to manage/view those objects.
 
 Your app will have Models, Controllers, routes, Views, Factories, Policies, Tests, middleware, and maybe additional Seeders.
@@ -149,27 +146,24 @@ Your app will have Models, Controllers, routes, Views, Factories, Policies, Test
 You can see examples of these in the demo app at https://github.com/drbyte/spatie-permissions-demo/
 
 ## Sharing
-
 To share your app on Github for easy collaboration:
 
--   create a new public repository on Github, without any extras like readme/etc.
--   follow github's sample code for linking your local repo and uploading the code. It will look like this:
+- create a new public repository on Github, without any extras like readme/etc.
+- follow github's sample code for linking your local repo and uploading the code. It will look like this:
 
 ```sh
 git remote add origin git@github.com:YOURUSERNAME/REPONAME.git
 git push -u origin master
 ```
+The above only needs to be done once. 
 
-The above only needs to be done once.
-
--   then add the rest of your code by making new commits:
+- then add the rest of your code by making new commits:
 
 ```sh
 git add .
 git commit -m "Explain what your commit is about here"
 git push origin master
 ```
-
 Repeat the above process whenever you change code that you want to share.
 
 Those are the basics!
