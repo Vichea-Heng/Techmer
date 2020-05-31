@@ -46,6 +46,6 @@ return array(
     '6124b4c8570aa390c21fafd04a26c69f' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     'decc78cc4436b1292c6c0d151b19445c' => $vendorDir . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
     '377b22b161c09ed6e5152de788ca020a' => $vendorDir . '/spatie/laravel-permission/src/helpers.php',
-    'e62767646676910d46dd7c2691d9f61d' => $baseDir . '/App/Helper/Helper.php',
-    '9db344a8c2e1ac4e48143d5872c3abe4' => $baseDir . '/App/Helper/ResponseHelper.php',
+    '2678778370ecbdd62f0e4fc70eb072ea' => $baseDir . '/app/Helper/Helper.php',
+    '35bccaab9d03255fd0863953de689ba5' => $baseDir . '/app/Helper/ResponseHelper.php',
 );
