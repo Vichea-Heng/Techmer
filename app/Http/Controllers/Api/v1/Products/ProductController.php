@@ -103,9 +103,7 @@ class ProductController extends Controller
         $gallery_name = array_values(array_filter($gallery_name, function ($val) use ($to_delete) {
             return !in_array($val, $to_delete);
         }));
-        Storage::delete(array_map(function ($val) use ($path) {
-            return "$path/" . $val;
-        }, $to_delete));
+        Storage::delete(array_map(fn ($val) => "$path/" . $val, $to_delete));
 
         foreach ($gallery_name as $key => &$each) {
             $ext = pathinfo($each, PATHINFO_EXTENSION);

@@ -4,7 +4,7 @@ namespace App\Policies{{modelDir}};
 
 use App\Models\{{modelNameWithDir}};
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Users\User;
+use App\Models\User;
 
 class {{modelName}}Policy
 {
