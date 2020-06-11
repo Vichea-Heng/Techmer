@@ -17,6 +17,7 @@ class ProductResource extends JsonResource
             "posted_by" => $this->posted_by,
             "published" => $this->published,
             "gallery" => $this->url_gallery,
+            "rated" => $this->productRated->rated,
             'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }
