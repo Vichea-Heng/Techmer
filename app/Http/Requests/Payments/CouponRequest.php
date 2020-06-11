@@ -17,7 +17,7 @@ class CouponRequest extends FormRequest
     public function rules()
     {
         if ($this->method() == 'PATCH' or $this->method() == "PUT") {
-            $coupon_rule = ["bail", "filled", "alpha", "unique:coupons,coupon," . $this->route("coupon")->id];
+            $coupon_rule = ["bail", "filled", "alpha_num", "unique:coupons,coupon," . $this->route("coupon")->id];
             $discount_rule = ["bail", "filled", "numeric"];
             $expired_date_rule = ["bail", "filled", "date"];
             $posted_by_rule = ["bail", "filled", "integer", "exists:users,id,deleted_at,NULL"];

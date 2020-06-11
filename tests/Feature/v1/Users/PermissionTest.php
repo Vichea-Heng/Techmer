@@ -1,31 +1,37 @@
 <?php
 
-namespace Tests\Feature{{modelDir}};
+namespace Tests\Feature\v1\Users;
 
+use App\Models\Users\PermissionGroup;
 use Tests\TestCase;
 use App\Models\Users\User;
 use Illuminate\Foundation\Testing\WithFaker;
 
-class {{modelName}}Test extends TestCase
+class PermissionTest extends TestCase
 {
     use WithFaker;
 
-    private $model = '{{modelRoute}}';
+    private $model = 'permission';
 
     public function data_to_create()
     {
         return [
-            
+            "name" => "Create Role",
+            "guard_name" => "api",
+            "group_id" => "1",
         ];
     }
 
     private $data_to_update = [
-        
+        "name" => "Create Role",
+        "guard_name" => "api",
+        "group_id" => "1",
     ];
 
     private function all_factory()
     {
         factory(User::class, 1)->create();
+        PermissionGroup::create(["name" => "Role"]);
     }
 
     public function test_index()
@@ -37,14 +43,14 @@ class {{modelName}}Test extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_indexOnlyTrashed()
-    {
-        $this->test_delete();
+    // public function test_indexOnlyTrashed()
+    // {
+    //     $this->test_delete();
 
-        $response = $this->get("v1/" . $this->model . "/indexOnlyTrashed");
+    //     $response = $this->get("v1/" . $this->model . "/indexOnlyTrashed");
 
-        $response->assertStatus(200);
-    }
+    //     $response->assertStatus(200);
+    // }
 
     public function test_store()
     {
@@ -58,7 +64,7 @@ class {{modelName}}Test extends TestCase
     public function test_show()
     {
         $this->all_factory();
-        
+
         $response = $this->post('v1/' . $this->model, $this->data_to_create());
 
         $response = $this->get('v1/' . $this->model . '/1');
@@ -69,7 +75,7 @@ class {{modelName}}Test extends TestCase
     public function test_update()
     {
         $this->all_factory();
-        
+
         $response = $this->post('v1/' . $this->model, $this->data_to_create());
 
         $response = $this->put('v1/' . $this->model . '/1', $this->data_to_update);
@@ -88,27 +94,27 @@ class {{modelName}}Test extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_restore()
-    {
-        $this->all_factory();
+    // public function test_restore()
+    // {
+    //     $this->all_factory();
 
-        $response = $this->post('v1/' . $this->model, $this->data_to_create());
+    //     $response = $this->post('v1/' . $this->model, $this->data_to_create());
 
-        $response = $this->delete('v1/' . $this->model . '/1');
+    //     $response = $this->delete('v1/' . $this->model . '/1');
 
-        $response = $this->post('v1/' . $this->model . '/restore/1');
+    //     $response = $this->post('v1/' . $this->model . '/restore/1');
 
-        $response->assertStatus(200);
-    }
+    //     $response->assertStatus(200);
+    // }
 
-    public function test_forceDelete()
-    {
-        $this->all_factory();
-        
-        $response = $this->post('v1/' . $this->model, $this->data_to_create());
+    // public function test_forceDelete()
+    // {
+    //     $this->all_factory();
 
-        $response = $this->delete('v1/' . $this->model . '/forceDelete/1');
+    //     $response = $this->post('v1/' . $this->model, $this->data_to_create());
 
-        $response->assertStatus(200);
-    }
+    //     $response = $this->delete('v1/' . $this->model . '/forceDelete/1');
+
+    //     $response->assertStatus(200);
+    // }
 }

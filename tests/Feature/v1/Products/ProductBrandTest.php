@@ -1,31 +1,33 @@
 <?php
 
-namespace Tests\Feature{{modelDir}};
+namespace Tests\Feature\v1\Products;
 
+use App\Models\Addresses\Country;
 use Tests\TestCase;
 use App\Models\Users\User;
 use Illuminate\Foundation\Testing\WithFaker;
 
-class {{modelName}}Test extends TestCase
+class ProductBrandTest extends TestCase
 {
     use WithFaker;
 
-    private $model = '{{modelRoute}}';
+    private $model = 'product-brand';
 
     public function data_to_create()
     {
         return [
-            
+            "brand" => "Intel",
+            "from_country" => "1",
+            "posted_by" => "1",
         ];
     }
 
-    private $data_to_update = [
-        
-    ];
+    private $data_to_update = [];
 
     private function all_factory()
     {
         factory(User::class, 1)->create();
+        factory(Country::class, 1)->create();
     }
 
     public function test_index()
@@ -58,7 +60,7 @@ class {{modelName}}Test extends TestCase
     public function test_show()
     {
         $this->all_factory();
-        
+
         $response = $this->post('v1/' . $this->model, $this->data_to_create());
 
         $response = $this->get('v1/' . $this->model . '/1');
@@ -69,7 +71,7 @@ class {{modelName}}Test extends TestCase
     public function test_update()
     {
         $this->all_factory();
-        
+
         $response = $this->post('v1/' . $this->model, $this->data_to_create());
 
         $response = $this->put('v1/' . $this->model . '/1', $this->data_to_update);
@@ -104,7 +106,7 @@ class {{modelName}}Test extends TestCase
     public function test_forceDelete()
     {
         $this->all_factory();
-        
+
         $response = $this->post('v1/' . $this->model, $this->data_to_create());
 
         $response = $this->delete('v1/' . $this->model . '/forceDelete/1');
