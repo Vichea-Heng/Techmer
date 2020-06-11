@@ -8,7 +8,7 @@ class ShippingAddressResource extends JsonResource
 {
     public function toArray($request)
     {
-        $address = $this->Address;
+        $address = $this->address;
         return [
             "id" => $this->id,
             "user_id" => $this->user_id,

@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-function apiSoftDelete($path, $controller)
-{
-    Route::get("/$path/indexOnlyTrashed", "$controller@indexOnlyTrashed");
-    Route::post("/$path/restore/{" . $path . "}", "$controller@restore");
-    Route::delete("/$path/forceDelete/{" . $path . "}", "$controller@forceDestroy");
+if (!function_exists("apiSoftDelete")) {
+    function apiSoftDelete($path, $controller)
+    {
+        Route::get("/$path/indexOnlyTrashed", "$controller@indexOnlyTrashed");
+        Route::post("/$path/restore/{" . str_replace("-", "_", $path) . "}", "$controller@restore");
+        Route::delete("/$path/forceDelete/{" . str_replace("-", "_", $path) . "}", "$controller@forceDestroy");
+    }
 }
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
