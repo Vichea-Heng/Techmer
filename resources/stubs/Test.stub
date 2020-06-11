@@ -1,0 +1,95 @@
+<?php
+
+namespace Tests\Feature{{modelDir}};
+
+use Tests\TestCase;
+use App\Models\Users\User;
+use Illuminate\Foundation\Testing\WithFaker;
+
+class {{modelName}}Test extends TestCase
+{
+    use WithFaker;
+
+    private $model = '{{modelRoute}}';
+
+    public function data_to_create()
+    {
+        return [
+            
+        ];
+    }
+
+    private $data_to_update = [
+        
+    ];
+
+
+
+    public function test_index()
+    {
+        $response = $this->get("v1/" . $this->model);
+
+        $response->assertStatus(200);
+    }
+
+    public function test_indexOnlyTrashed()
+    {
+        $response = $this->get("v1/" . $this->model . "/indexOnlyTrashed");
+
+        $response->assertStatus(200);
+    }
+
+    public function test_store()
+    {
+        $response = $this->post('v1/' . $this->model, $this->data_to_create());
+
+        $response->assertStatus(200);
+    }
+
+    public function test_show()
+    {
+        $response = $this->post('v1/' . $this->model, $this->data_to_create());
+
+        $response = $this->get('v1/' . $this->model . '/1');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_update()
+    {
+        $response = $this->post('v1/' . $this->model, $this->data_to_create());
+
+        $response = $this->put('v1/' . $this->model . '/1', $this->data_to_update);
+
+        $response->assertStatus(200);
+    }
+
+    public function test_delete()
+    {
+        $response = $this->post('v1/' . $this->model, $this->data_to_create());
+
+        $response = $this->delete('v1/' . $this->model . '/1');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_restore()
+    {
+        $response = $this->post('v1/' . $this->model, $this->data_to_create());
+
+        $response = $this->delete('v1/' . $this->model . '/1');
+
+        $response = $this->post('v1/' . $this->model . '/restore/1');
+
+        $response->assertStatus(200);
+    }
+
+    public function test_forceDelete()
+    {
+        $response = $this->post('v1/' . $this->model, $this->data_to_create());
+
+        $response = $this->delete('v1/' . $this->model . '/forceDelete/1');
+
+        $response->assertStatus(200);
+    }
+}

@@ -15,7 +15,7 @@ class CrudApiCommand extends Command
      * @var string
      * 
      */
-    protected $signature = 'crud:api-generator {name} {--policy} {--request} {--resource} {--factory} {--seeder} {--model} {--controller} {--all}';
+    protected $signature = 'crud:api-generator {name} {--policy} {--test} {--request} {--resource} {--factory} {--seeder} {--model} {--controller} {--all}';
 
     /**
      * The console command description.
@@ -90,6 +90,9 @@ class CrudApiCommand extends Command
             }
             if ($this->option("seeder")) {
                 $this->seeder($name, $name_snake_case, $name_with_dir);
+            }
+            if ($this->option("test")) {
+                $this->test($name, $dir, $name_snake_case);
             }
         }
     }
@@ -200,6 +203,23 @@ class CrudApiCommand extends Command
             mkdir($path, 0777, true);
 
         file_put_contents(base_path("database/factories/{$name}Factory.php"), $modelTemplate);
+    }
+
+    public function test($name, $dir, $name_snake_case)
+    {
+        $modelTemplate = str_replace(
+            ['{{modelName}}',  "{{modelDir}}", '{{modelRoute}}',],
+            [$name, $dir, (str_replace("_", "-", $name_snake_case))],
+            file_get_contents(resource_path("stubs/Test.stub"))
+        );
+
+        $dir = str_replace('\\', '/', $dir);
+
+        if (!file_exists($path = base_path("tests/Feature{$dir}")))
+            mkdir($path, 0777, true);
+
+
+        file_put_contents(base_path("tests/Feature{$dir}/{$name}Test.php"), $modelTemplate);
     }
 
 
