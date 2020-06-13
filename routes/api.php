@@ -33,6 +33,7 @@ Route::group(["prefix" => "/v1"], function () {
         Route::post("/login", "UserController@login");
         Route::post("/register", "UserController@register");
         Route::post("/logout/{user}", "UserController@logout");
+        Route::post("/reset-password", "UserController@resetPassword");
     });
     // Route::group(["middleware" => "auth:api"], function () {
     Route::group(["namespace" => "Api\\v1\\"], function () {

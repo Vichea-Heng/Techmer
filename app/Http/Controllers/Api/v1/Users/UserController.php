@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\Users;
 use App\Exceptions\MessageException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\AddressRequest;
+use App\Mail\ResetPasswordMail;
 use App\Models\Addresses\Address;
 use App\Models\Users\Identity;
 use App\Models\Users\User;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -119,4 +121,14 @@ class UserController extends Controller
 
     //     return $username;
     // }
+
+    public function resetPassword(Request $request)
+    {
+        $data = $request->validate([
+            // "email" => "required|email|exists:users,email",
+            "email" => "required|email",
+        ]);
+
+        Mail::to($data["email"])->sendNow(new ResetPasswordMail($data));
+    }
 }
