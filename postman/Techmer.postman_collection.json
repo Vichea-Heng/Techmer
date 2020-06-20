@@ -1,0 +1,4449 @@
+{
+	"info": {
+		"_postman_id": "5d44d6a1-8836-4ec8-aec1-85ee0293bae7",
+		"name": "Techmer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/login?username=admin&password=blah123123",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "password",
+									"value": "blah123123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addIdentity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/addIdentity?user_id=1&address_line1=blah&address_line2=blah&country_id=1&nationality_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"addIdentity"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "address_line1",
+									"value": "blah"
+								},
+								{
+									"key": "address_line2",
+									"value": "blah"
+								},
+								{
+									"key": "country_id",
+									"value": "1"
+								},
+								{
+									"key": "nationality_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/logout/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"logout",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/register?username=blahblahblah3&first_name=Vichea&last_name=Heng&date_of_birth=2020-01-10&phone_number=85577774586&email=vheng1@gmail.com&password=admin&password_confirmation=admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"register"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "blahblahblah3"
+								},
+								{
+									"key": "first_name",
+									"value": "Vichea"
+								},
+								{
+									"key": "last_name",
+									"value": "Heng"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "2020-01-10"
+								},
+								{
+									"key": "phone_number",
+									"value": "85577774586"
+								},
+								{
+									"key": "email",
+									"value": "vheng1@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "admin"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resetPassword",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/v1/reset-password?token=XgaZ8TjyTqnHqG8s1Rvd&password=blah123123&password_confirmation=blah123123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"reset-password"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "XgaZ8TjyTqnHqG8s1Rvd"
+								},
+								{
+									"key": "password",
+									"value": "blah123123"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "blah123123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendEmailReset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/send-reset-email?email=vengtear1399@gmail.com",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"send-reset-email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "vengtear1399@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://api.vichea.xyz/api/v1/role?name=Create User&guard_name=web",
+							"protocol": "http",
+							"host": [
+								"api",
+								"vichea",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"v1",
+								"role"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Create User"
+								},
+								{
+									"key": "guard_name",
+									"value": "web"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://api.vichea.xyz/v1/role",
+							"protocol": "http",
+							"host": [
+								"api",
+								"vichea",
+								"xyz"
+							],
+							"path": [
+								"v1",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1?name=Create User&guard_name=api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Create User"
+								},
+								{
+									"key": "guard_name",
+									"value": "api"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Permission",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/permission?name=Create Blah&guard_name=api&group_id=2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"permission"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Create Blah"
+								},
+								{
+									"key": "guard_name",
+									"value": "api"
+								},
+								{
+									"key": "group_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/permission",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1?name=Create User&guard_name=api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Create User"
+								},
+								{
+									"key": "guard_name",
+									"value": "api"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PermissionGroup",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/permission_group?name=Blah",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"permission_group"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Blah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/permission_group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"permission_group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1?name=Create User&guard_name=api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Create User"
+								},
+								{
+									"key": "guard_name",
+									"value": "api"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ProductBrand",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product-brand?brand=b&from_country=1&posted_by=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product-brand"
+							],
+							"query": [
+								{
+									"key": "brand",
+									"value": "b"
+								},
+								{
+									"key": "from_country",
+									"value": "1"
+								},
+								{
+									"key": "posted_by",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjI3ZTJhOWM4Yjg5YjNmMTE1YTE4MTJkMTk3MDdhMWRiYjQzZjRkMmY1ZjQ1OWYyM2EzYmExMmIzM2IzNWI4NmMwMWI1NGE3M2ZmN2RjNjIiLCJpYXQiOjE1ODg0NzU1NDAsIm5iZiI6MTU4ODQ3NTU0MCwiZXhwIjoxNTg4NTYxOTQwLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.n-9K0UBMmPjmr5-xAc8tNqhzwF6FQMGRpX6evYCVJ1NdC84zVn51QKzwexcvnzRNyY53lGVG248JKklP00w40pes2uguJIOoJBtvNaqrEzhA6-ULbDpNe-tKRA7c3SN5UqohDlhK1h5S23MiTsua_MOxiuHZno0wacoddGbPHMl0YJMwx8FQ57sP-MsB8KHucQJGmPfcMtXLJJYeywIF4OjluvkJ08ZduyMme7JshZR_9acI-Xfkzo2S5uySGMsR4gqGZITl4-zSUBbL7YQivPHiZ0piKNxgttahiMJqi-WeRSrRLIfWzIHNWLIjAh1cLUQv3LYO-elSusDY86KyRF7I50mYv19j_I4sY-ZC5zudFReLEKr6FUXQ5tWrbZ13osYeyYIZnVfC0gI_QIvpAyM0xQdm2qZQDiSBoSbtAdmSEYHuUE7GCFthBy5L7t2eFuol2Ce-7kZUZkfHXMK53-tfexA99LGtZOb6IVfd9wEpyN0k2_JTwm8Ei-PE52V67FOohnbJbCDkOcTJwsM9hql39vhA1PpUOhOer1MQFh8snxKdoj_ZFvtymfRszw8OMVzeH9eAYANtdZ2VO7paqSJ8QeghNzdm0eMLnzUv4e8hfjizIOGdd8edaeB30UpQnlwhMXxJWR_zGNnzNf9MuHB8NUDUbGfPRIFl2nleQks",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product-brand",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product-brand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_brand/1?brand=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_brand",
+								"1"
+							],
+							"query": [
+								{
+									"key": "brand",
+									"value": "1"
+								},
+								{
+									"key": "guard_name",
+									"value": "api",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjI3ZTJhOWM4Yjg5YjNmMTE1YTE4MTJkMTk3MDdhMWRiYjQzZjRkMmY1ZjQ1OWYyM2EzYmExMmIzM2IzNWI4NmMwMWI1NGE3M2ZmN2RjNjIiLCJpYXQiOjE1ODg0NzU1NDAsIm5iZiI6MTU4ODQ3NTU0MCwiZXhwIjoxNTg4NTYxOTQwLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.n-9K0UBMmPjmr5-xAc8tNqhzwF6FQMGRpX6evYCVJ1NdC84zVn51QKzwexcvnzRNyY53lGVG248JKklP00w40pes2uguJIOoJBtvNaqrEzhA6-ULbDpNe-tKRA7c3SN5UqohDlhK1h5S23MiTsua_MOxiuHZno0wacoddGbPHMl0YJMwx8FQ57sP-MsB8KHucQJGmPfcMtXLJJYeywIF4OjluvkJ08ZduyMme7JshZR_9acI-Xfkzo2S5uySGMsR4gqGZITl4-zSUBbL7YQivPHiZ0piKNxgttahiMJqi-WeRSrRLIfWzIHNWLIjAh1cLUQv3LYO-elSusDY86KyRF7I50mYv19j_I4sY-ZC5zudFReLEKr6FUXQ5tWrbZ13osYeyYIZnVfC0gI_QIvpAyM0xQdm2qZQDiSBoSbtAdmSEYHuUE7GCFthBy5L7t2eFuol2Ce-7kZUZkfHXMK53-tfexA99LGtZOb6IVfd9wEpyN0k2_JTwm8Ei-PE52V67FOohnbJbCDkOcTJwsM9hql39vhA1PpUOhOer1MQFh8snxKdoj_ZFvtymfRszw8OMVzeH9eAYANtdZ2VO7paqSJ8QeghNzdm0eMLnzUv4e8hfjizIOGdd8edaeB30UpQnlwhMXxJWR_zGNnzNf9MuHB8NUDUbGfPRIFl2nleQks",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product-brand/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product-brand",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMGQ3MGM1Mjg3ODYzMDU2Y2Y3Yzg0YmJhZDYwZTdiM2Y5NDYwNzNiNDY5MDMyNmZhZDA0ZjZjOTNmZWJlNjRmODFhMjk0MmM2MzRmYmFhNjYiLCJpYXQiOjE1ODg0NzU4NjgsIm5iZiI6MTU4ODQ3NTg2OCwiZXhwIjoxNTg4NTYyMjY4LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.n3gsDMctlxgzO80iLLHIotmRl4qDdKHJiMgc3-gyxiBI-V4WiCommqbrvoBLxIroS1ial37T1PcaooXPdsYr3spA6at_dx-fqgjxdWIJIbMEbsLouHplIuDUp44Q2bdLpXMZdWnCWR3LxQKVIdQTk3vUUDkNVcfV0zxUAu6QPg_IZ5iO9OkUVrxYkqtSQvhlCLcCBbhdXxyKvstVGsKau0rFmMo1pVPKEGVbLm1gNK4IEqwQCYl-G4k0uWbcJ3QbhW-EecKOOtj9ri4q5GLtfu6m5iqIX8ZmNx8b3pSGG7dvkXxKlEB6X_qAdkzqLMEoOVzmBS0D7mE61sGl2svOl7xr0evZkV_P-uaybNI48sAtTw7WSyLV-efjbduIfGKpN8asEdWxYPpcZq5PNGYBJfESlCUNk-rl9Kgru5emacbdhC7T8xGYeWOkXF5nqG2u9GMD1xo0KaTXo3SY5bPMLz2IcJ0vMfH2yL83LK5Eal-luTBgP6mzViyp9gejBdD4NQGJoufOZaDKbK_Z2G8Ujpna_0uJ6hPDlSszOS-uGkcJ91PtRzJEfWmtMlPHjI0sTZh7ag-UMiQMy8R-Oz5DyeP4YaNsWj2wzODAnHBWn7wl_xTDwn4wg_w7mLyLgmlIZRhyio6Yf9i-RkYanIXKJCYPm4WfP3jA1F4GtHWrO2o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product-brand/indexOnlyTrashed",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product-brand",
+								"indexOnlyTrashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product-brand/restore/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product-brand",
+								"restore",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product-brand/forceDelete/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product-brand",
+								"forceDelete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ProductCategory",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_category?category=Mother Board&description=blah&posted_by=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_category"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Mother Board"
+								},
+								{
+									"key": "description",
+									"value": "blah"
+								},
+								{
+									"key": "posted_by",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1?name=Create User&guard_name=api",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Create User"
+								},
+								{
+									"key": "guard_name",
+									"value": "api"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_category/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_category/indexOnlyTrashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_category",
+								"indexOnlyTrashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_category/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_category",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_category/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_category",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Adataa Ram",
+									"type": "text"
+								},
+								{
+									"key": "brand_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "blah",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "posted_by",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "published",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "photo[]",
+									"type": "file",
+									"src": [
+										"/Users/vichea/Documents/ScreenShots/Screen Shot 2020-05-06 at 16.13.32.png",
+										"/Users/vichea/Documents/ScreenShots/Screen Shot 2020-05-06 at 16.22.35.png",
+										"/Users/vichea/Documents/ScreenShots/Screen Shot 2020-05-06 at 17.21.11.png",
+										"/Users/vichea/Documents/ScreenShots/Screen Shot 2020-05-06 at 17.21.20.png",
+										"/Users/vichea/Documents/ScreenShots/Screen Shot 2020-05-06 at 17.21.30.png",
+										"/Users/vichea/Documents/ScreenShots/Screen Shot 2020-05-06 at 17.21.38.png",
+										"/Users/vichea/Documents/ScreenShots/Screen Shot 2020-05-06 at 20.03.12.png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addFile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo[]",
+									"type": "file",
+									"src": [
+										"/Users/vichea/Pictures/Wallpaper/city-art-sky-buildings-4k_1541971527.jpg",
+										"/Users/vichea/Pictures/Wallpaper/Fingerprints_brand_make_ADIDAS_sports_background_wallpapers_colorful_3840x2400.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product/3/addFile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"3",
+								"addFile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getGallery",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product/gallery/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"gallery",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product/3/3-1.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"3",
+								"3-1.jpg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFile",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product/3/deleteFile?photo[0]=3-2_(1).png&photo[1]=3-3_(1).png",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"3",
+								"deleteFile"
+							],
+							"query": [
+								{
+									"key": "photo[0]",
+									"value": "3-2_(1).png"
+								},
+								{
+									"key": "photo[1]",
+									"value": "3-3_(1).png"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"1"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "publishProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product/publish/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"publish",
+								"1"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product/forceDelete/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"forceDelete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ProductOption",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "product_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "option",
+									"value": "64GB",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Capacity",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "qty",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "discount",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "warrenty",
+									"value": "24 Months",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/Users/vichea/Documents/ScreenShots/Screen Shot 2020-06-03 at 12.24.26.png"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/product-option",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product-option"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product-option",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product-option"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_option/file/1005",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_option",
+								"file",
+								"1005"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/Users/vichea/Pictures/Wallpaper/city-art-sky-buildings-4k_1541971527.jpg"
+								},
+								{
+									"key": "price",
+									"value": "45",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product-option/1004",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product-option",
+								"1004"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product-option/1001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product-option",
+								"1001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_option/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_option",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_option/forceDelete/1005",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_option",
+								"forceDelete",
+								"1005"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ProductRated",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_rated?product_id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_rated"
+							],
+							"query": [
+								{
+									"key": "product_id",
+									"value": "2"
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_rated",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_rated"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_rated/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_rated",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_rated/2/?rated=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_rated",
+								"2",
+								""
+							],
+							"query": [
+								{
+									"key": "rated",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ProductFeedback",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_feedback?user_id=1&product_id=1&feedback=The product is poor&rated=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_feedback"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "product_id",
+									"value": "1"
+								},
+								{
+									"key": "feedback",
+									"value": "The product is poor"
+								},
+								{
+									"key": "rated",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product-feedback",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product-feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_rated/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_rated",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/product_feedback/3/?rated=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"product_feedback",
+								"3",
+								""
+							],
+							"query": [
+								{
+									"key": "rated",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "UserCart",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/user_cart?user_id=1&product_option_id=1001&qty=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"user_cart"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "product_option_id",
+									"value": "1001"
+								},
+								{
+									"key": "qty",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/user-cart",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/user_cart/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"user_cart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/user_cart/1?qty=6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"user_cart",
+								"1"
+							],
+							"query": [
+								{
+									"key": "qty",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/transaction?user_id=1&cart_id[0]=101&discount=30&stripe_token=tok_1GfV0eEB7Nac3brYRYaAKiqe&cart_id[1]=102",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "cart_id[0]",
+									"value": "101"
+								},
+								{
+									"key": "discount",
+									"value": "30"
+								},
+								{
+									"key": "stripe_token",
+									"value": "tok_1GfV0eEB7Nac3brYRYaAKiqe"
+								},
+								{
+									"key": "cart_id[1]",
+									"value": "102"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/user_cart/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"user_cart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/user_cart/1?qty=6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"user_cart",
+								"1"
+							],
+							"query": [
+								{
+									"key": "qty",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Coupon",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/coupon?coupon=COVID18&discount=30&expired_date=2020-10-10&posted_by=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"coupon"
+							],
+							"query": [
+								{
+									"key": "coupon",
+									"value": "COVID18"
+								},
+								{
+									"key": "discount",
+									"value": "30"
+								},
+								{
+									"key": "expired_date",
+									"value": "2020-10-10"
+								},
+								{
+									"key": "posted_by",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/coupon",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"coupon"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/coupon/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"coupon",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/coupon/1?coupon=COVID18&discount=30&expired_date=2020-10-10&posted_by=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"coupon",
+								"1"
+							],
+							"query": [
+								{
+									"key": "coupon",
+									"value": "COVID18"
+								},
+								{
+									"key": "discount",
+									"value": "30"
+								},
+								{
+									"key": "expired_date",
+									"value": "2020-10-10"
+								},
+								{
+									"key": "posted_by",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/coupon/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"coupon",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/coupon/indexOnlyTrashed",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"coupon",
+								"indexOnlyTrashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/coupon/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"coupon",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/coupon/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"coupon",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ShippingAddress",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/shipping-address?phone_number=85577774587&user_id=1&address_line1=asd&address_line2=asd&country_id=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shipping-address"
+							],
+							"query": [
+								{
+									"key": "phone_number",
+									"value": "85577774587"
+								},
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "address_line1",
+									"value": "asd"
+								},
+								{
+									"key": "address_line2",
+									"value": "asd"
+								},
+								{
+									"key": "country_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/shipping_address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"shipping_address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/user_cart/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"user_cart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/shipping-address/3?phone_number=85577774587&user_id=1&address_line1=asd&address_line2=asd&country_id=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shipping-address",
+								"3"
+							],
+							"query": [
+								{
+									"key": "phone_number",
+									"value": "85577774587"
+								},
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "address_line1",
+									"value": "asd"
+								},
+								{
+									"key": "address_line2",
+									"value": "asd"
+								},
+								{
+									"key": "country_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/shipping_address/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"shipping_address",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "FavoriteProduct",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNGUyMjgzMmJjZjE1MmEyNmUzZDUwY2M2NDRhNTk0ZDBjOTc1N2RjZGEzZDgyZTY1YjkxMWI1ZTZhNTg0NzNjMzVjYTBhZmNmZTdmZjMxOTkiLCJpYXQiOjE1ODgwNDU3OTYsIm5iZiI6MTU4ODA0NTc5NiwiZXhwIjoxNTg4MTMyMTk2LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.QRWw3rs48O-qacdiu9OIJygv0G8eeKeyGFzMonmGtDdGJSSak3FOEhosqzjW0SiM96F1FxyYqXO3i3ZQltHhAgTeOSW9hM2o6sdI7ZfePfh8tU9596dIdVBF6k9aH9lYoJxumjWMOn4v7s-5yn7VJQPH8S16nNnfBtKxZbDpGJ_lLaqgxXD3EcZBq79RYtHw54Mlyv_ttgD5NRCvXncaahTQf7gxKFYxpH_wbY1ynd1_BFofUtUixpo9hrhqUgpfTz61CEgQzA2YfA8nXCqfmwAFaNy1q-r3O7JMHMcJrMhEEDtdyfnNr9DQZF-Rb_9idy8eUQKbd0zttmekd-qyxohJF7y9KIG2ktIlUy3y9vmpn-ygae5RHqzrX0Q4d027_5w8xVNOvbLUBUT8WID_jH37Agtpny2y5sQrC7iPuMwoVgjof3phmrADk60a4NLf5QaGl1sqHFxhokWx88tMeNk06UATrlyLHEylBf-oNVrvMgs08_rrcCftA6sclnQ6EVXaAjWyMDIHeZrWX3fKwdWYgj3mtcC582weoya5PcQer3-SN7mpUkbyLnoJOY814ldljK6Et7udd5vLtlbvXj0xFHI4Nrq04pwIF9gN7mtRHC0YigvcDoqGX52ACg824ZEiBayzMCfQD-7XLPDxGRW21bBAOEpRMNA8VWJXyJA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host}}/favorite-product?user_id=1&product_id=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"favorite-product"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "product_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/favorite_product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"favorite_product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/user_cart/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"user_cart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/favorite-product/2?user_id=1&product_id=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"favorite-product",
+								"2"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "product_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "softDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/shipping_address/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"shipping_address",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "indexOnlyTrash",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/index/only_trashed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"index",
+								"only_trashed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "restore",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/restore/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"restore",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forceDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/role/forceDelete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"role",
+								"forceDelete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/post?title=blah&category_id=1&posted_by=1&content=blah",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "blah"
+								},
+								{
+									"key": "category_id",
+									"value": "1"
+								},
+								{
+									"key": "posted_by",
+									"value": "1"
+								},
+								{
+									"key": "content",
+									"value": "blah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/post",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/post/4?title=blah&category_id=1&posted_by=1&content=blah",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"4"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "blah"
+								},
+								{
+									"key": "category_id",
+									"value": "1"
+								},
+								{
+									"key": "posted_by",
+									"value": "1"
+								},
+								{
+									"key": "content",
+									"value": "blah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/post/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/category?name=blah&description=blah",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"category"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "blah"
+								},
+								{
+									"key": "description",
+									"value": "blah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/category",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/category/4?name=blah&description=blah",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"category",
+								"4"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "blah"
+								},
+								{
+									"key": "description",
+									"value": "blah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/category/4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"category",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
