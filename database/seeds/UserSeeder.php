@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
 
         $data = [
             "username" => "admin",
-            "email" => "vheng@gmail.com",
+            "email" => "kevin.heng.009@gmail.com",
             "email_verified" => 1,
             "phone_number" => "85577774587",
             "phone_verified" => 1,

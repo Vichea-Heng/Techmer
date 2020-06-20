@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\AddressRequest;
 use App\Mail\ResetPasswordMail;
 use App\Models\Addresses\Address;
+use App\Models\Auth\PasswordReset;
 use App\Models\Users\Identity;
 use App\Models\Users\User;
 use Carbon\Carbon;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -41,7 +43,7 @@ class UserController extends Controller
 
             return dataResponse($user);
         } else {
-            throw new MessageException("blah");
+            throw new MessageException("Wrong Password");
         }
     }
 
@@ -122,13 +124,47 @@ class UserController extends Controller
     //     return $username;
     // }
 
+    public function sendResetEmail(Request $request)
+    {
+        $data = $request->validate([
+            "email" => "required|email|exists:users,email",
+        ]);
+
+        $token = Str::random(60);
+
+        PasswordReset::updateOrCreate(
+            ['email' => $data["email"]],
+            [
+                'email' => $data["email"],
+                'token' => $token,
+            ]
+        );
+
+        Mail::to($data["email"])->sendNow(new ResetPasswordMail($token));
+
+        return successResponse("Please Check your Email with your reset password link");
+    }
+
     public function resetPassword(Request $request)
     {
         $data = $request->validate([
-            // "email" => "required|email|exists:users,email",
-            "email" => "required|email",
+            "token" => "required",
+            "password" => "required|min:8|confirmed",
         ]);
 
-        Mail::to($data["email"])->sendNow(new ResetPasswordMail($data));
+        $password_reset = PasswordReset::where("token", $data["token"])->first();
+
+        if (Carbon::parse($password_reset->updated_at)->addMinutes(20)->isPast()) {
+            $password_reset->delete();
+            throw new MessageException("This password reset token is invalid.");
+        }
+
+        $user = User::where("email", $password_reset["email"])->first();
+
+        $user->update(["password" => bcrypt($data["password"])]);
+
+        $password_reset->delete();
+
+        return successResponse("Reset Successfully");
     }
 }
