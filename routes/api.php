@@ -88,7 +88,7 @@ Route::group(["prefix" => "/v1"], function () {
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
             // apiSoftDelete("product-rated", "ProductRatedController");
             // });
-            Route::apiResource('/product-rated', 'ProductRatedController');
+            // Route::apiResource('/product-rated', 'ProductRatedController');
 
             // Route::group(["middleware" => CheckSuperAdmin::class], function () {
             // apiSoftDelete("product-feedback", "ProductFeedbackController");
@@ -121,6 +121,13 @@ Route::group(["prefix" => "/v1"], function () {
             // apiSoftDelete("shipping-address", "ShippingAddressController");
             // });
             Route::apiResource('/shipping-address', 'ShippingAddressController');
+        });
+
+        Route::group(["namespace" => "Addresses\\"], function () {
+            // Route::group(["middleware" => CheckSuperAdmin::class], function () {
+            // apiSoftDelete("user-cart", "UserCartController");
+            // });
+            Route::apiResource('/country', 'CountryController', ["only" => ["index"]]);
         });
     });
     // });

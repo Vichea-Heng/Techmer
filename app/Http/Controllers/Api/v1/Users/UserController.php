@@ -38,12 +38,12 @@ class UserController extends Controller
         }
 
         if (Auth::attempt($cred)) {
-            $user = Auth::user()->createToken("blah");
+            $user = Auth::user()->createToken("asd");
             // $user = Auth::user()->createSetupIntent();
 
             return dataResponse($user);
         } else {
-            throw new MessageException("Wrong Password");
+            throw new MessageException("Your Username and Password are incorrect");
         }
     }
 
