@@ -54,7 +54,7 @@ class UserController extends Controller
             "first_name" => "required|max:255|alpha",
             "last_name" => "required|max:255|alpha",
             "date_of_birth" => "required|date|before:" . Carbon::now(),
-            "phone_number" => "required|numeric|unique:users",
+            "phone_number" => "required|numeric|min:7|max:14|unique:users",
             "email" => "required|max:255|email|unique:users",
             "password" => "required|min:3|max:255|confirmed",
         ]);
