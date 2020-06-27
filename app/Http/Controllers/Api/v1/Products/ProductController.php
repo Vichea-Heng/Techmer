@@ -205,8 +205,6 @@ class ProductController extends Controller
 
         $data = Product::onlyTrashed()->findOrFail($id);
 
-        $data->checkBeforeRestore();
-
         $data->restore();
 
         return restoreResponse();
@@ -218,8 +216,6 @@ class ProductController extends Controller
         // only super admin can access, and check with middleware at the __construct function
 
         $data = Product::withTrashed()->findOrFail($id);
-
-        $data->beforeForceDelete();
 
         $data->forceDelete();
 
