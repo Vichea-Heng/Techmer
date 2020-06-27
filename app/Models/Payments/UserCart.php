@@ -2,16 +2,20 @@
 
 namespace App\Models\Payments;
 
+use App\Traits\AuthIdField;
 use Illuminate\Database\Eloquent\Model;
 
 class UserCart extends Model
 {
+    use AuthIdField;
+
     protected $fillable = [
         "id",
-        "user_id",
         "product_option_id",
         "qty",
     ];
+
+    protected $authIdFields = ["user_id"];
 
     // public function user()
     // {

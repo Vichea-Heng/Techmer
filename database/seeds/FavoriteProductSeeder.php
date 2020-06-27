@@ -9,7 +9,7 @@ class FavoriteProductSeeder extends Seeder
     public function run()
     {
         $datas = [
-            ["user_id" => 1, "product_id" => 1]
+            ["product_id" => 1]
         ];
 
         foreach ($datas as $data) {

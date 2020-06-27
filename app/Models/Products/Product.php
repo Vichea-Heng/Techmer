@@ -2,22 +2,37 @@
 
 namespace App\Models\Products;
 
-use App\Exceptions\MessageException;
+use App\Traits\AuthIdField;
+use App\Traits\SoftDeleteAndRestore;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, AuthIdField, SoftDeleteAndRestore;
 
     protected $fillable = [
         "title",
         "brand_id",
         "content",
         "category_id",
-        "posted_by",
         "published",
         "gallery",
+    ];
+
+    protected $authIdFields = ["posted_by"];
+
+    protected $softDeleteCascades = [
+        'favoriteProducts',
+        'productFeedback',
+        'productOptions',
+        'productRateds',
+    ];
+
+    protected $checkBeforeRestore = [
+        "user",
+        "productBrand",
+        "productCategory",
     ];
 
     public function getUrlGalleryAttribute()
@@ -28,13 +43,6 @@ class Product extends Model
             return (array_map((fn ($val) => url(env("APP_URL") . "v1/product/" . $this->id . "/" . $val)), $gallery));
         }
     }
-
-    protected $softCascade = [
-        // 'favoriteProducts', //restrict
-        'productFeedback', //restrict
-        'productOptions', //restrict
-        // 'productRateds', //restrict
-    ];
 
     public function favoriteProducts()
     {
@@ -64,32 +72,5 @@ class Product extends Model
     public function productCategory()
     {
         return $this->belongsTo("App\Models\Products\ProductCategory", "category_id", "id");
-    }
-
-
-
-    public function checkBeforeRestore()
-    {
-        if (
-            !empty($this->user->deleted_at)
-            || !empty($this->productBrand->deleted_at)
-            || !empty($this->productCategory->deleted_at)
-        ) {
-            throw new MessageException("User have to restore parent table first");
-        }
-    }
-
-    public function beforeForceDelete()
-    {
-        $this->favoriteProducts->each(function ($query) {
-            return $query->delete();
-        });
-        $this->productFeedback->each(function ($query) {
-            return $query->forceDelete();
-        });
-        $this->productOptions->each(function ($query) {
-            return $query->forceDelete();
-        });
-        $this->productRated->delete();
     }
 }

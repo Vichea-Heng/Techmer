@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Auth::loginUsingId(1);
         $this->call(RoleSeeder::class);
         $this->call(PermissionGroupSeeder::class);
         $this->call(PermissionSeeder::class);

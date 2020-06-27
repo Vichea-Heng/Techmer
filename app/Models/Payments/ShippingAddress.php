@@ -3,15 +3,19 @@
 namespace App\Models\Payments;
 
 use App\Models\Addresses\Address;
+use App\Traits\AuthIdField;
 use Illuminate\Database\Eloquent\Model;
 
 class ShippingAddress extends Model
 {
+    use AuthIdField;
+
     protected $fillable = [
-        "user_id",
         "address_id",
         "phone_number",
     ];
+
+    protected $authIdFields = ["user_id"];
 
     public function address()
     {

@@ -9,7 +9,7 @@ class UserCartSeeder extends Seeder
     public function run()
     {
         $datas = [
-            ["id" => "101", "user_id" => "1", "product_option_id" => "1001", "qty" => "2"],
+            ["id" => "101", "product_option_id" => "1001", "qty" => "2"],
         ];
 
         foreach ($datas as $data) {

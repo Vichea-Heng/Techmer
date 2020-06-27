@@ -18,6 +18,7 @@ class ProductOptionResource extends JsonResource
             "discount" => $this->discount,
             "warrenty" => $this->warrenty,
             "photo" => $this->photo,
+            "posted_by" => $this->posted_by,
             'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }

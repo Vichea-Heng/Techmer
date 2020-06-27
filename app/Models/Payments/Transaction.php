@@ -2,17 +2,21 @@
 
 namespace App\Models\Payments;
 
+use App\Traits\AuthIdField;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    use AuthIdField;
+
     protected $fillable = [
-        "user_id",
         "product_option_id",
         "qty",
         "purchase_price",
         "discount",
     ];
+
+    protected $authIdFields = ["user_id"];
 
     // public function user()
     // {

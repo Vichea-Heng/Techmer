@@ -20,13 +20,11 @@ class ProductRequest extends FormRequest
             $brand_id_rule = ["bail", "filled", "integer", "exists:product_brands,id,deleted_at,NULL"];
             $content_rule = ["filled"];
             $category_id_rule = ["bail", "filled", "integer", "exists:product_categories,id,deleted_at,NULL"];
-            $posted_by_rule = ["bail", "filled", "integer", "exists:users,id,deleted_at,NULL"];
             return [
                 "title" => $title_rule,
                 "brand_id" => $brand_id_rule,
                 "content" => $content_rule,
                 "category_id" => $category_id_rule,
-                "posted_by" => $posted_by_rule,
                 // "published" => $published_rule,
             ];
         } else {
@@ -34,7 +32,6 @@ class ProductRequest extends FormRequest
             $brand_id_rule = "bail|required|integer|exists:product_brands,id,deleted_at,NULL";
             $content_rule = "required";
             $category_id_rule = "bail|required|integer|exists:product_categories,id,deleted_at,NULL";
-            $posted_by_rule = "bail|required|integer|exists:users,id,deleted_at,NULL";
             $published_rule = "bail|required|boolean";
             $photo_rule = "bail|required|array|max:10";
             $each_photo_rule = "bail|required|image|max:15000";
@@ -44,7 +41,6 @@ class ProductRequest extends FormRequest
             "brand_id" => $brand_id_rule,
             "content" => $content_rule,
             "category_id" => $category_id_rule,
-            "posted_by" => $posted_by_rule,
             "published" => $published_rule,
             "photo" => $photo_rule,
             "photo.*" => $each_photo_rule,

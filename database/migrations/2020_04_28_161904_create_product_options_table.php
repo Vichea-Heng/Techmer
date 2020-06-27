@@ -26,6 +26,9 @@ class CreateProductOptionsTable extends Migration
             $table->string("warrenty");
             $table->string("photo");
 
+            $table->unsignedInteger("posted_by");
+            $table->foreign("posted_by")->references("id")->on("users")->onDelete("restrict");
+
             $table->timestamps();
             $table->softDeletes();
         });

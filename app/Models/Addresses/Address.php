@@ -2,16 +2,20 @@
 
 namespace App\Models\Addresses;
 
+use App\Traits\AuthIdField;
 use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
+    use AuthIdField;
+
     protected $fillable = [
-        "user_id",
         "address_line1",
         "address_line2",
         "country_id",
     ];
+
+    protected $authIdFields = ["user_id"];
 
     // public function shippingAddresses()
     // {

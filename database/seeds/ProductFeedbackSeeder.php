@@ -10,8 +10,8 @@ class ProductFeedbackSeeder extends Seeder
     public function run()
     {
         $datas = [
-            ["user_id" => "1", "product_id" => "1", "feedback" => "The product is good", "rated" => 5],
-            ["user_id" => "1", "product_id" => "1", "feedback" => "The product is good", "rated" => 4],
+            ["product_id" => "1", "feedback" => "The product is good", "rated" => 5],
+            ["product_id" => "1", "feedback" => "The product is good", "rated" => 4],
         ];
 
         foreach ($datas as $data) {

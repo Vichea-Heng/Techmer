@@ -15,6 +15,7 @@ $factory->define(ProductOption::class, function (Faker $faker) {
         "discount" => 0,
         "warrenty" => $faker->paragraph,
         "category" => $faker->title,
+        "posted_by" => 1,
         "photo" => "1001.jpg",
     ];
 });

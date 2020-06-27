@@ -58,7 +58,6 @@ class ShippingAddressController extends Controller
         $address = Address::create($address);
 
         $data["address_id"] = $address->id;
-        $data["user_id"] = $address->user_id;
 
         $data = ShippingAddress::create($data);
 

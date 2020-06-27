@@ -3,29 +3,27 @@
 namespace App\Models\Payments;
 
 use App\Exceptions\MessageException;
+use App\Traits\AuthIdField;
+use App\Traits\SoftDeleteAndRestore;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Coupon extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, AuthIdField, SoftDeleteAndRestore;
 
     protected $fillable = [
         "coupon",
         "discount",
         "expired_date",
-        "posted_by",
     ];
+
+    protected $authIdFields = ["posted_by"];
+
+    protected $checkBeforeRestore = ["user"];
 
     public function user()
     {
         return $this->belongsTo("App\Models\Users\User", "posted_by", "id");
-    }
-
-    public function checkBeforeRestore()
-    {
-        if (!empty($this->user->deleted_at)) {
-            throw new MessageException("User have to restore parent table first");
-        }
     }
 }

@@ -9,12 +9,12 @@ class ProductCategorySeeder extends Seeder
     public function run()
     {
         $datas = [
-            ["category" => "Case", "posted_by" => 1],
-            ["category" => "Mother Board", "posted_by" => 1],
-            ["category" => "Ram", "posted_by" => 1],
-            ["category" => "Hard Drive", "posted_by" => 1],
-            ["category" => "Graphic Card", "posted_by" => 1],
-            ["category" => "CPU", "posted_by" => 1],
+            ["category" => "Case"],
+            ["category" => "Mother Board"],
+            ["category" => "Ram"],
+            ["category" => "Hard Drive"],
+            ["category" => "Graphic Card"],
+            ["category" => "CPU"],
         ];
 
         foreach ($datas as $data) {

@@ -2,23 +2,28 @@
 
 namespace App\Models\Products;
 
-use App\Exceptions\MessageException;
-use Askedio\SoftCascade\Traits\SoftCascadeTrait;
+use App\Traits\AuthIdField;
+use App\Traits\SoftDeleteAndRestore;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductCategory extends Model
 {
-    use SoftDeletes, SoftCascadeTrait;
+    use SoftDeletes, AuthIdField, SoftDeleteAndRestore;
 
     protected $fillable = [
         "category",
         "description",
-        "posted_by",
     ];
 
-    protected $softCascade = [
-        'products', //restrict
+    protected $authIdFields = ["posted_by"];
+
+    protected $softDeleteCascades = [
+        "products",
+    ];
+
+    protected $checkBeforeRestore = [
+        "user",
     ];
 
     public function products()
@@ -29,19 +34,5 @@ class ProductCategory extends Model
     public function user()
     {
         return $this->belongsTo("App\Models\Users\User", "posted_by", "id");
-    }
-
-    public function checkBeforeRestore()
-    {
-        if (!empty($this->user->deleted_at)) {
-            throw new MessageException("User have to restore parent table first");
-        }
-    }
-
-    public function beforeForceDelete()
-    {
-        $this->products->each(function ($query) {
-            return $query->delete();
-        });
     }
 }
