@@ -20,7 +20,8 @@ class CreateProductsTable extends Migration
             $table->foreign("brand_id")->references("id")->on("product_brands")->onDelete("restrict");
 
 
-            $table->text("content");
+            $table->text("short_description");
+            $table->longText("full_description");
             $table->unsignedInteger("category_id");
             $table->foreign("category_id")->references("id")->on("product_categories")->onDelete("restrict");
             $table->boolean("published")->default(0);

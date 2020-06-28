@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Products\Product;
 use App\Http\Requests\Products\ProductRequest;
+use App\Http\Resources\Products\EachProductResource;
 use App\Http\Resources\Products\ProductResource;
 use App\Models\Products\ProductRated;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -151,7 +152,7 @@ class ProductController extends Controller
 
         // $this->authorize("view", Product::class);
 
-        return dataResponse(new ProductResource($product));
+        return dataResponse(new EachProductResource($product));
     }
 
     public function update(ProductRequest $request, Product $product)

@@ -9,8 +9,8 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $datas = [
-            ["title" => "XPG Ram", "brand_id" => "1", "content" => "available in RGB light", "category_id" => 1, "published" => 1],
-            ["title" => "Cosair Ram", "brand_id" => "1", "content" => "available in RGB light", "category_id" => 1, "published" => 1],
+            ["title" => "XPG Ram", "brand_id" => "1", "short_description" => "available in RGB light", "full_description" => "available in RGB light", "category_id" => 1, "published" => 1],
+            ["title" => "Cosair Ram", "brand_id" => "1", "short_description" => "available in RGB light", "full_description" => "available in RGB light", "category_id" => 1, "published" => 1],
         ];
 
         foreach ($datas as $data) {

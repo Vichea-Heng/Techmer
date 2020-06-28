@@ -13,7 +13,8 @@ $factory->define(Product::class, function (Faker $faker) {
     return [
         "title" => $faker->title,
         "brand_id" => $brand->id,
-        "content" => $faker->paragraph,
+        "short_description" => $faker->paragraph,
+        "full_description" => $faker->paragraph,
         "category_id" => $category->id,
         "posted_by" => $user->id,
         "published" => 1,

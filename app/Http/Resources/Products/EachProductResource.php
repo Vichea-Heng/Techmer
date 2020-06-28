@@ -4,7 +4,7 @@ namespace App\Http\Resources\Products;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class EachProductResource extends JsonResource
 {
     public function toArray($request)
     {
@@ -19,6 +19,7 @@ class ProductResource extends JsonResource
             "published" => $this->published,
             "gallery" => $this->url_gallery,
             "rated" => $this->productRated->rated,
+            "product_option" => ProductOptionResource::collection($this->productOptions()->get()),
             'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }
