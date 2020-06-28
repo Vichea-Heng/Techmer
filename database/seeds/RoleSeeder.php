@@ -13,6 +13,11 @@ class RoleSeeder extends Seeder
             "guard_name" => "api",
         ]);
 
+        Role::create([
+            "name" => "User",
+            "guard_name" => "api",
+        ]);
+
         // factory(Role::class, 10)->create());
     }
 }

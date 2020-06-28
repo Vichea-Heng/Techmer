@@ -7,9 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Address::class, function (Faker $faker) {
     return [
-        "address_line1" => $faker->paragraph,
-        "address_line2" => $faker->paragraph,
-        "country_id" => 1,
-        "user_id" => 1,
+        "address_line1" => $faker->address,
+        "address_line2" => $faker->address,
+        "country_id" => $faker->numberBetween(1, 246),
     ];
 });

@@ -12,11 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Auth::loginUsingId(1);
         $this->call(RoleSeeder::class);
         $this->call(PermissionGroupSeeder::class);
         $this->call(PermissionSeeder::class);
         $this->call(UserSeeder::class);
+        Auth::loginUsingId(1);
         $this->call(IdentitySeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(NationalitySeeder::class);

@@ -16,6 +16,6 @@ class IdentitySeeder extends Seeder
             Identity::create($data);
         }
 
-        // factory(Country::class, 10)->create());
+        factory(Identity::class, 10)->create();
     }
 }

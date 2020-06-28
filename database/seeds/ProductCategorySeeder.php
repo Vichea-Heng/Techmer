@@ -21,6 +21,6 @@ class ProductCategorySeeder extends Seeder
             ProductCategory::create($data);
         }
 
-        // factory(ProductCategory::class, 10)->create());
+        factory(ProductCategory::class, 20)->create();
     }
 }

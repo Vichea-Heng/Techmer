@@ -15,8 +15,8 @@ trait AuthIdField
             }
 
             foreach ($this->authIdFields as $field)
-                $this->$field = 1;
-            // $this->$field = auth()->id();
+                $this->$field = auth()->id();
+            // $this->$field = 1;
         }
 
         return parent::save($options);

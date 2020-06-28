@@ -16,6 +16,6 @@ class CouponSeeder extends Seeder
             Coupon::create($data);
         }
 
-        // factory(Coupon::class, 10)->create());
+        factory(Coupon::class, 10)->create();
     }
 }

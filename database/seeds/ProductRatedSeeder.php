@@ -9,8 +9,8 @@ class ProductRatedSeeder extends Seeder
     public function run()
     {
         $datas = [
-            ["product_id" => "1", "rated" => "0"],
-            ["product_id" => "2", "rated" => "0"],
+            ["product_id" => "1"],
+            ["product_id" => "2"],
         ];
 
         foreach ($datas as $data) {

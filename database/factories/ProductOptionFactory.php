@@ -5,17 +5,17 @@ use App\Models\Products\ProductOption;
 use Faker\Generator as Faker;
 
 $factory->define(ProductOption::class, function (Faker $faker) {
-    $product = factory(Product::class, 1)->create()[0];
+    // $product = factory(Product::class, 1)->create()[0];
+    $id = $faker->randomDigitNotNull * 1000 + 1;
     return [
-        "id" => $product->id * 1000 + 1,
-        "product_id" => $product->id,
-        "option" => $faker->title,
-        "price" => "12",
-        "qty" => 100,
-        "discount" => 0,
-        "warrenty" => $faker->paragraph,
-        "category" => $faker->title,
-        "posted_by" => 1,
-        "photo" => "1001.jpg",
+        "id" => $id,
+        "product_id" => $faker->randomDigitNotNull,
+        "option" => $faker->unique()->word,
+        "category" => $faker->shuffle(array("Capacity", "Burst Speed", "Speedy"))[0],
+        "price" => $faker->numberBetween(50, 100),
+        "qty" => $faker->numberBetween(20, 30),
+        "discount" => $faker->numberBetween(1, 100),
+        "warrenty" => $faker->numberBetween(12, 36) . "Months",
+        "photo" => "$id.jpg",
     ];
 });

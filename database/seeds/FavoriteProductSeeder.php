@@ -16,6 +16,6 @@ class FavoriteProductSeeder extends Seeder
             FavoriteProduct::create($data);
         }
 
-        // factory(FavoriteProduct::class, 10)->create());
+        factory(FavoriteProduct::class, 10)->create();
     }
 }

@@ -18,6 +18,6 @@ class ProductBrandSeeder extends Seeder
             ProductBrand::create($data);
         }
 
-        // factory(ProductBrand::class, 10)->create());
+        factory(ProductBrand::class, 20)->create();
     }
 }

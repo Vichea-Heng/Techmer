@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Users\Identity;
 use App\Models\Users\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -38,5 +39,10 @@ class UserSeeder extends Seeder
         ];
         $user = User::create($data);
         $user->assignRole("Super Admin");
+
+        $datas = factory(User::class, 10)->create();
+        foreach ($datas as $data) {
+            $user->assignRole("User");
+        }
     }
 }
