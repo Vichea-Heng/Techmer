@@ -14,8 +14,16 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $datas = [
-            ["title" => "XPG Ram", "brand_id" => "1", "short_description" => "available in RGB light", "full_description" => "available in RGB light", "category_id" => 1, "published" => 1],
-            ["title" => "Cosair Ram", "brand_id" => "1", "short_description" => "available in RGB light", "full_description" => "available in RGB light", "category_id" => 1, "published" => 1],
+            ["title" => "XPG Ram", "brand_id" => "1", "short_description" => "available in RGB light", "full_description" => "available in RGB light", "category_id" => 1, "published" => 1, "gallery" => json_encode([
+                "1-1.jpg",
+                "1-2.jpg",
+                "1-3.jpg",
+            ])],
+            ["title" => "Cosair Ram", "brand_id" => "1", "short_description" => "available in RGB light", "full_description" => "available in RGB light", "category_id" => 1, "published" => 1, "gallery" => json_encode([
+                "2-1.jpg",
+                "2-2.jpg",
+                "2-3.jpg",
+            ])],
         ];
 
         foreach ($datas as $data) {
