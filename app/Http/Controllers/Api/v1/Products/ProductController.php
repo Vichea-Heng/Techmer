@@ -224,4 +224,14 @@ class ProductController extends Controller
 
         return forceDestoryResponse();
     }
+
+    public function productByCategory($id)
+    {
+        $datas = Product::where("category_id", $id)->get();
+
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
+
+        return dataResponse(ProductResource::collection($datas));
+    }
 }
