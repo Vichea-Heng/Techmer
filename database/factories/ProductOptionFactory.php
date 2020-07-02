@@ -6,9 +6,9 @@ use Faker\Generator as Faker;
 
 $factory->define(ProductOption::class, function (Faker $faker) {
     // $product = factory(Product::class, 1)->create()[0];
-    $id = $faker->randomDigitNotNull * 1000 + 1;
+    // $id = $faker->randomDigitNotNull * 1000 + 1;
     return [
-        "id" => $id,
+        // "id" => $id,
         "product_id" => $faker->randomDigitNotNull,
         "option" => $faker->unique()->word,
         "category" => $faker->shuffle(array("Capacity", "Burst Speed", "Speedy"))[0],
@@ -16,6 +16,6 @@ $factory->define(ProductOption::class, function (Faker $faker) {
         "qty" => $faker->numberBetween(20, 30),
         "discount" => $faker->numberBetween(1, 100),
         "warrenty" => $faker->numberBetween(12, 36) . "Months",
-        "photo" => "$id.jpg",
+        // "photo" => "$id.jpg",
     ];
 });

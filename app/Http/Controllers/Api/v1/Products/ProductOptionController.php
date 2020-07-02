@@ -56,19 +56,22 @@ class ProductOptionController extends Controller
 
         $data = $request->validated();
 
+        // $id = ProductOption::withTrashed()->select("id")->where("id", "like", $data["product_id"] . "%")->orderBy("id", "desc")->first();
 
-        $id = ProductOption::withTrashed()->select("id")->where("id", "like", $data["product_id"] . "%")->orderBy("id", "desc")->first();
-
-        $data["id"] = ($id ? $id->id + 1 : ($data["product_id"] * 1000 + 1));
+        // $data["id"] = ($id ? $id->id + 1 : ($data["product_id"] * 1000 + 1));
 
         DB::beginTransaction();
 
         $path = "/Techmer/Products/" . $data["product_id"] . "/ProductOptions";
 
-        $data["photo"] = checkFileExist($path, $data["id"], $data["photo"]->getClientOriginalExtension());
-        Storage::putFileAs($path, $request->file("photo"), $data["photo"]);
+        $data = new ProductOption();
+        // $data->save();
+        dd($data->id);
 
         $data = ProductOption::create($data);
+
+        $data["photo"] = checkFileExist($path, $data["id"], $data["photo"]->getClientOriginalExtension());
+        Storage::putFileAs($path, $request->file("photo"), $data["photo"]);
 
         DB::commit();
 
