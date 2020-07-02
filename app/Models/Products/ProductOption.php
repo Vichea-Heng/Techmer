@@ -12,7 +12,6 @@ class ProductOption extends Model
     use SoftDeletes, AuthIdField, SoftDeleteAndRestore;
 
     protected $fillable = [
-        "id",
         "product_id",
         "option",
         "category",

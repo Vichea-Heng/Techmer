@@ -10,7 +10,6 @@ class UserCart extends Model
     use AuthIdField;
 
     protected $fillable = [
-        "id",
         "product_option_id",
         "qty",
     ];

@@ -67,7 +67,7 @@ class ProductSeeder extends Seeder
             $data->productRated->update(["rated" => $avg / 3]);
 
             for ($i = 1; $i <= rand(3, 6); $i++) {
-                $id = factory(ProductOption::class, 1)->create(["id" => $data->id * 1000 + $i, "product_id" => $data->id, "photo" => ($data->id * 1000 + $i) . ".jpg"]);
+                $id = factory(ProductOption::class, 1)->create(["product_id" => $data->id, "photo" => ($data->id * 1000 + $i) . ".jpg"]);
                 factory(Transaction::class, 1)->create(["product_option_id" => $id[0]->id]);
             }
         }
