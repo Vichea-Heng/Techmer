@@ -35,6 +35,7 @@ Route::group(["prefix" => "/v1"], function () {
         Route::post("/logout/{user}", "UserController@logout");
         Route::post("/send-reset-email", "UserController@sendResetEmail");
         Route::post("/reset-password", "UserController@resetPassword");
+        Route::get('/product/{product}/{file_name}', 'ProductController@getFile');
     });
     Route::group(["middleware" => "auth:api"], function () {
         Route::group(["namespace" => "Api\\v1\\"], function () {
@@ -132,5 +133,3 @@ Route::group(["prefix" => "/v1"], function () {
         });
     });
 });
-
-Route::get('/product/{product}/{file_name}', 'ProductController@getFile');
