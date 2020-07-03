@@ -70,7 +70,6 @@ Route::group(["prefix" => "/v1"], function () {
                 Route::apiResource('/product-category', 'ProductCategoryController');
 
                 Route::get('/product/byCategory/{id}', 'ProductController@productByCategory');
-                Route::get('/product/{product}/{file_name}', 'ProductController@getFile');
                 Route::delete('/product/{product}/deleteFile', 'ProductController@deleteFile');
                 Route::post('/product/{product}/addFile', 'ProductController@addFile');
                 // Route::get('/product/gallery/{product}', 'ProductController@getGallery');
@@ -133,3 +132,5 @@ Route::group(["prefix" => "/v1"], function () {
         });
     });
 });
+
+Route::get('/product/{product}/{file_name}', 'ProductController@getFile');
