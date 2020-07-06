@@ -119,4 +119,14 @@ class UserCartController extends Controller
 
     //     return response()->json($data, Response::HTTP_OK);
     // }
+
+    public function eachUser($id)
+    {
+        $datas = UserCart::where("user_id", $id)->get();
+
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
+
+        return dataResponse(UserCartResource::collection($datas));
+    }
 }

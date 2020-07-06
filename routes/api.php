@@ -24,6 +24,13 @@ if (!function_exists("apiSoftDelete")) {
     }
 }
 
+if (!function_exists("eachUser")) {
+    function eachUser($path, $controller)
+    {
+        Route::get("/$path/eachUser/{id}", "$controller@eachUser");
+    }
+}
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -105,6 +112,7 @@ Route::group(["prefix" => "/v1"], function () {
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 // apiSoftDelete("user-cart", "UserCartController");
                 // });
+                eachUser("/user-cart", "UserCartController");
                 Route::apiResource('/user-cart', 'UserCartController');
 
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
