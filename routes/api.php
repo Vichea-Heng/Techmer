@@ -124,13 +124,19 @@ Route::group(["prefix" => "/v1"], function () {
                 Route::apiResource('/shipping-address', 'ShippingAddressController');
             });
 
-            Route::group(["namespace" => "Addresses\\"], function () {
-                // Route::group(["middleware" => CheckSuperAdmin::class], function () {
-                // apiSoftDelete("user-cart", "UserCartController");
-                // });
-                Route::apiResource('/country', 'CountryController', ["only" => ["index"]]);
-            });
+            // Route::group(["namespace" => "Addresses\\"], function () {
+            //     // Route::group(["middleware" => CheckSuperAdmin::class], function () {
+            //     // apiSoftDelete("user-cart", "UserCartController");
+            //     // });
+            //     Route::apiResource('/country', 'CountryController', ["only" => ["index"]]);
+            // });
         });
+    });
+    Route::group(["namespace" => "Addresses\\"], function () {
+        // Route::group(["middleware" => CheckSuperAdmin::class], function () {
+        // apiSoftDelete("user-cart", "UserCartController");
+        // });
+        Route::apiResource('/country', 'CountryController', ["only" => ["index"]]);
     });
     Route::get('/product/{product}/{file_name}', 'Api\\v1\\Products\\ProductController@getFile');
 });
