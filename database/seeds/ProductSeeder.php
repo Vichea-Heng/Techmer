@@ -46,7 +46,16 @@ class ProductSeeder extends Seeder
             ProductOption::create($data);
         }
 
-        $datas = factory(Product::class, 20)->create();
+        $titles = json_decode(file_get_contents(resource_path("/json/title.json")));
+
+        foreach ($titles as $each) {
+            $datas = factory(Product::class, 1)->create(["title" => $each->title, "brand_id" => $each->brand_id, "category_id" => $each->category_id])->first();
+            $datas->update(["gallery" => json_encode([
+                $datas->id . "-1.jpg",
+                $datas->id . "-2.jpg",
+                $datas->id . "-3.jpg",
+            ])]);
+        }
 
         for ($i = 1; $i <= 6; $i++) {
             HomePageProduct::create([
@@ -67,27 +76,24 @@ class ProductSeeder extends Seeder
             ]);
         }
 
-        foreach ($datas as $data) {
-            $data->update(["gallery" => json_encode([
-                $data->id . "-1.jpg",
-                $data->id . "-2.jpg",
-                $data->id . "-3.jpg",
-            ])]);
+        // foreach ($datas as $data) {
+        for ($i = 3; $i <= 77; $i++) {
+            $data = Product::find($i);
 
             ProductRated::create([
                 "product_id" => $data->id,
             ]);
 
             $avg = 0;
-            for ($i = 0; $i < 3; $i++) {
+            for ($ii = 0; $ii < 3; $ii++) {
                 $feedback = factory(ProductFeedback::class, 1)->create(["product_id" => $data->id]);
                 $avg += $feedback[0]->rated;
             }
 
             $data->productRated->update(["rated" => $avg / 3]);
 
-            for ($i = 1; $i <= rand(3, 6); $i++) {
-                $id = factory(ProductOption::class, 1)->create(["product_id" => $data->id, "photo" => ($data->id * 1000 + $i) . ".jpg"]);
+            for ($ii = 1; $ii <= rand(3, 6); $ii++) {
+                $id = factory(ProductOption::class, 1)->create(["product_id" => $data->id, "photo" => ($data->id * 1000 + $ii) . ".jpg"]);
                 factory(Transaction::class, 1)->create(["product_option_id" => $id[0]->id]);
             }
         }

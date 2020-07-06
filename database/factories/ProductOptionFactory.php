@@ -10,7 +10,7 @@ $factory->define(ProductOption::class, function (Faker $faker) {
     return [
         // "id" => $id,
         "product_id" => $faker->randomDigitNotNull,
-        "option" => $faker->unique()->word,
+        "option" => $faker->unique(true)->word,
         "category" => $faker->shuffle(array("Capacity", "Burst Speed", "Speedy"))[0],
         "price" => $faker->numberBetween(50, 100),
         "qty" => $faker->numberBetween(20, 30),

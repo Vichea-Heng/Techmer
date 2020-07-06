@@ -8,16 +8,12 @@ class ProductBrandSeeder extends Seeder
 {
     public function run()
     {
-        $datas = [
-            ["brand" => "Intel", "from_country" => "1"],
-            ["brand" => "AMD", "from_country" => "2"],
-            ["brand" => "Apple", "from_country" => "3"],
-        ];
+        $datas = json_decode(file_get_contents(resource_path("/json/product_brand.json")));
 
         foreach ($datas as $data) {
-            ProductBrand::create($data);
+            factory(ProductBrand::class, 1)->create(["brand" => $data->name]);
         }
 
-        factory(ProductBrand::class, 20)->create();
+        // factory(ProductBrand::class, 20)->create();
     }
 }

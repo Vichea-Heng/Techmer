@@ -8,19 +8,10 @@ class ProductCategorySeeder extends Seeder
 {
     public function run()
     {
-        $datas = [
-            ["category" => "Case"],
-            ["category" => "Mother Board"],
-            ["category" => "Ram"],
-            ["category" => "Hard Drive"],
-            ["category" => "Graphic Card"],
-            ["category" => "CPU"],
-        ];
+        $datas = json_decode(file_get_contents(resource_path("/json/product_category.json")));
 
         foreach ($datas as $data) {
-            ProductCategory::create($data);
+            factory(ProductCategory::class, 1)->create(["category" => $data->name]);
         }
-
-        factory(ProductCategory::class, 20)->create();
     }
 }

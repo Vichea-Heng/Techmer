@@ -1,0 +1,377 @@
+[
+    {
+        "title": "Hisense 32-Inch Class H4 Series LED Roku Smart TV with Alexa Compatibility (32H4F, 2020 Model)",
+        "brand_id": 55,
+        "category_id": 1
+    },
+    {
+        "title": "TCL 50S425 50 inch 4K Smart LED Roku TV (2019)",
+        "brand_id": 55,
+        "category_id": 1
+    },
+    {
+        "title": "LG 24LJ4550 TV, 24-Inch 720p LED - 2017 Model",
+        "brand_id": 27,
+        "category_id": 1
+    },
+    {
+        "title": "Samsung Business 22\" S22R350FHN 1920x1080, IPS Panel, Thin bezels, VGA/HDMI, Monitor, Black",
+        "brand_id": 20,
+        "category_id": 2
+    },
+    {
+        "title": "Samsung SR650 Series 27 inch IPS 1080p 75Hz Computer Monitor for Business with VGA, HDMI, DisplayPort, and USB Hub, 3-Year Warranty (S27R650FDN",
+        "brand_id": 20,
+        "category_id": 2
+    },
+    {
+        "title": "HP VH240a 23.8-inch Full HD 1080p IPS LED Monitor with Built-in Speakers and VESA Mounting, Rotating Portrait &amp; Landscape, Tilt, and HDMI &amp; VGA Ports (1KL30AA) - Black",
+        "brand_id": 42,
+        "category_id": 2
+    },
+    {
+        "title": "Cooler Master MasterLiquid LC240E RGB Close-Loop AIO CPU Liquid Cooler, 240mm Radiator, Dual Chamber RGB Pump, Dual MF120R RGB Fans w/ RGB Lighting Sync for AMD Ryzen/Intel 1151/2066",
+        "brand_id": 4,
+        "category_id": 3
+    },
+    {
+        "title": "Enermax Aquafusion 120 Addressable RGB All-in-One CPU Liquid Cooler Intel/AMD 115x/2066 AM4 Ready AIO ARGB LED Cooling w/ SquA RGB PWM Fan; ELC-AQF120-SQA",
+        "brand_id": 55,
+        "category_id": 3
+    },
+    {
+        "title": "Thermaltake Floe Dual Ring RGB 240 TT Premium Edition PWM TR4 AM4 LGA2066 Ready AIO Liquid Cooling System 240mm High Efficiency Radiator CPU Cooler CL-W157-PL12SW-A",
+        "brand_id": 34,
+        "category_id": 3
+    },
+    {
+        "title": "Seagate BarraCuda 2TB Internal Hard Drive HDD – 3.5 Inch SATA 6Gb/s 7200 RPM 256MB Cache 3.5-Inch – Frustration Free Packaging (ST2000DM008)",
+        "brand_id": 23,
+        "category_id": 4
+    },
+    {
+        "title": "WD Blue 1TB PC Hard Drive - 7200 RPM Class, SATA 6 Gb/s, 64 MB Cache, 3.5\" - WD10EZEX",
+        "brand_id": 29,
+        "category_id": 4
+    },
+    {
+        "title": "Samsung 860 EVO 500GB 2.5 Inch SATA III Internal SSD (MZ-76E500B/AM)",
+        "brand_id": 20,
+        "category_id": 4
+    },
+    {
+        "title": "Cooler Master NotePal X3 - Laptop Cooling Pad with 200mm Blue LED Fan",
+        "brand_id": 4,
+        "category_id": 5
+    },
+    {
+        "title": "Thermaltake Massive V20 Steel Mesh Panel Single 200mm Blue LED Fan Adjustable Speed Control 10\"-17\" Laptop Notebook Cooling Pad CL-N004-PL20BL-A",
+        "brand_id": 34,
+        "category_id": 5
+    },
+    {
+        "title": "Cooler Master NotePal U3 - Laptop Cooling Pad with 3 Movable Fans",
+        "brand_id": 4,
+        "category_id": 5
+    },
+    {
+        "title": "Cooler Master MPY-5501-AFAAG-US MWE 550 Gold Full Modular, 80+ Gold Certified 550W Power Supply, 5 Year Warranty",
+        "brand_id": 4,
+        "category_id": 6
+    },
+    {
+        "title": "EVGA Supernova 650 G5, 80 Plus Gold 650W, Fully Modular, ECO Mode with Fdb Fan, 10 Year Warranty, Compact 150mm Size, Power Supply 220-G5-0650-X1",
+        "brand_id": 2,
+        "category_id": 6
+    },
+    {
+        "title": "Corsair CX Series 650 Watt 80 Plus Bronze Certified Modular Power Supply (CP-9020103-NA)",
+        "brand_id": 5,
+        "category_id": 6
+    },
+    {
+        "title": "TEAMGROUP T-Force Dark Z DDR4 16GB Kit (2 x 8GB) 3600MHz (PC4-28800) CL 18 288-Pin SDRAM Desktop Gaming Memory Module Ram - Gray - TDZGD416G3600HC18JDC01",
+        "brand_id": 55,
+        "category_id": 7
+    },
+    {
+        "title": "XPG DDR4 D60G RGB 16GB (2x8GB) 3600MHz PC4-28800 U-DIMM Desktop Memory CL18-20-20 (AX4U360038G18A-DT60",
+        "brand_id": 25,
+        "category_id": 7
+    },
+    {
+        "title": "HyperX Predator DDR4 RGB 8GB 2933MHz CL15 DIMM XMP RAM Memory with Infrared Sync Technology Memory - Black (HX429C15PB3A/8",
+        "brand_id": 54,
+        "category_id": 7
+    },
+    {
+        "title": "AMD Ryzen 5 3600 6-Core, 12-Thread Unlocked Desktop Processor with Wraith Stealth Cooler",
+        "brand_id": 16,
+        "category_id": 8
+    },
+    {
+        "title": "AMD Ryzen 7 3700X 8-Core, 16-Thread Unlocked Desktop Processor with Wraith Prism LED Cooler",
+        "brand_id": 16,
+        "category_id": 8
+    },
+    {
+        "title": "Intel Core i7-9700K Desktop Processor 8 Cores up to 4.9 GHz Turbo unlocked LGA1151 80 Series 95W",
+        "brand_id": 15,
+        "category_id": 8
+    },
+    {
+        "title": "GIGABYTE H310M S2P 2.0 (LGA1151/ Intel/ H310/ Micro ATX/Ultra Durable/ 8118 Gaming LAN/ DDR4/ HDMI 1.4/ M.2/ DVI-D/Motherboard)",
+        "brand_id": 7,
+        "category_id": 9
+    },
+    {
+        "title": "MSI Performance Gaming Intel Coffee Lake B360 LGA 1151 DDR4 Onboard Graphics CFX ATX Motherboard (B360 Gaming Plus)",
+        "brand_id": 9,
+        "category_id": 9
+    },
+    {
+        "title": "Asus Prime Z390-A Motherboard LGA1151 (Intel 8th and 9th Gen) ATX DDR4 DP HDMI M.2 USB 3.1 Gen2 Gigabit LAN",
+        "brand_id": 13,
+        "category_id": 9
+    },
+    {
+        "title": "NZXT H510 - CA-H510B-W1 - Compact ATX Mid-Tower PC Gaming Case - Front I/O USB Type-C Port - Tempered Glass Side Panel - Cable Management System - Water-Cooling Ready - White/Black",
+        "brand_id": 1,
+        "category_id": 10
+    },
+    {
+        "title": "Cooler Master MCB-Q300L-KANN-S00 MasterBox Matx Tower w/ Magnetic Design Dust Filter, Transparent Acrylic Side Panel, Adjustable I/O And Fully Ventilated for Airflow,Black",
+        "brand_id": 4,
+        "category_id": 10
+    },
+    {
+        "title": "Corsair Crystal 570X RGB Mid-Tower Case, 3 RGB Fans, Tempered Glass - Black",
+        "brand_id": 5,
+        "category_id": 10
+    },
+    {
+        "title": "ASUS TUF Gaming 3 AMD Radeon RX 5600XT OC Edition Gaming Graphics Card (PCIEe 4.0, 6GB, GDDR6, HDMI, DisplayPort, 1080p Gaming, Axial-tech Fan Design, 2.7-Slot Design (TUF-3-RX5600XT-O6G-EVO-GAMING)",
+        "brand_id": 13,
+        "category_id": 11
+    },
+    {
+        "title": "MSI Computer Video Graphic Cards GeForce GTX 1050 TI GAMING X 4G, 4GB",
+        "brand_id": 9,
+        "category_id": 11
+    },
+    {
+        "title": "MSI Gaming GeForce RTX 2060 6GB GDRR6 192-bit HDMI/DP Ray Tracing Turing Architecture VR Ready Graphics Card (RTX 2060 GAMING Z 6G)",
+        "brand_id": 9,
+        "category_id": 11
+    },
+    {
+        "title": "TP-Link AC1900 Smart WiFi Router - High Speed MU- MIMO Wireless Router, Dual Band, Gigabit, VPN Server, Beamforming, Smart Connect, Works with Alexa (Archer A9), Black",
+        "brand_id": 1,
+        "category_id": 12
+    },
+    {
+        "title": "ASUS RT-AC66U B1 AC1750 Dual-Band WiFi Router, AiProtection Lifetime Security by Trend Micro, AiMesh Compatible for Mesh WiFi System",
+        "brand_id": 13,
+        "category_id": 12
+    },
+    {
+        "title": "TP-Link Wifi 6 AX1500 Smart WiFi Router – 802.11ax Router, 4 Gigabit LAN Ports, Dual Band AX Router,Beamforming,OFDMA, MU-MIMO, Parental Controls, Works with Alexa(Archer AX10)",
+        "brand_id": 41,
+        "category_id": 12
+    },
+    {
+        "title": "Lexmark MC3224dwe Color Multifunction Laser Printer with Print, Copy, Scan, and Wireless Capabilities, Two-Sided Printing with Full-Spectrum Security and Prints Up to 24 ppm (40N9040), White, Gray",
+        "brand_id": 55,
+        "category_id": 13
+    },
+    {
+        "title": "HP OfficeJet 3830 All-in-One Wireless Printer, HP Instant Ink, Works with Alexa (K7V40A)",
+        "brand_id": 42,
+        "category_id": 13
+    },
+    {
+        "title": "Canon PIXMA MG3620 Wireless All-In-One Color Inkjet Printer with Mobile and Tablet Printing, White",
+        "brand_id": 43,
+        "category_id": 13
+    },
+    {
+        "title": "USB Cable 20Ft, USB A to A, Tanbin USB to USB Cord USB Male to Male USB 2.0 Cable Type A Male to Type A Male",
+        "brand_id": 55,
+        "category_id": 14
+    },
+    {
+        "title": "AmazonBasics Lightning to USB A Cable, MFi Certified iPhone Charger, White, 6 Foot",
+        "brand_id": 44,
+        "category_id": 14
+    },
+    {
+        "title": "USB Type C Cable 5Pack (3/3/6/6/10FT) Nylon Braided USB C Cable Fast Charger Charging Cord Compatible Samsung Galaxy S9 S8 Note 9 Note 8 Plus,LG V30 G6 G5 V20,Google Pixel, Moto Z2 and More",
+        "brand_id": 55,
+        "category_id": 14
+    },
+    {
+        "title": "Acer Aspire 5 Slim Laptop, 15.6 inches Full HD IPS Display, AMD Ryzen 3 3200U, Vega 3 Graphics, 4GB DDR4, 128GB SSD, Backlit Keyboard, Windows 10 in S Mode, A515-43-R19L,Silver",
+        "brand_id": 14,
+        "category_id": 15
+    },
+    {
+        "title": "Lenovo Chromebook S345 Laptop, 14.0\" FHD (1920 x 1080) Display, AMD A6-9220c Processor, 4GB DDR4 OnBoard RAM, 32GB SSD, AMD Radeon R5 Graphics, Chrome OS, 81WX0001US, Platinum Grey",
+        "brand_id": 38,
+        "category_id": 15
+    },
+    {
+        "title": "Apple MacBook Air (13-inch, 8GB RAM, 256GB SSD Storage) - Space Gray (Latest Model)",
+        "brand_id": 21,
+        "category_id": 15
+    },
+    {
+        "title": "Certified Refurbished Echo Dot (3rd Gen) - Smart speaker with Alexa - Sandstone",
+        "brand_id": 44,
+        "category_id": 16
+    },
+    {
+        "title": "JBL FLIP 4 - Waterproof Portable Bluetooth Speaker - Black",
+        "brand_id": 46,
+        "category_id": 16
+    },
+    {
+        "title": "Bose SoundLink Color Bluetooth Speaker II - Soft Black",
+        "brand_id": 47,
+        "category_id": 16
+    },
+    {
+        "title": "ARCTIC MX-4 - Thermal Compound Paste For Coolers | Heat Sink Paste | Composed of Carbon Micro-particles | Easy to Apply | High Durability - 4 Grams",
+        "brand_id": 55,
+        "category_id": 17
+    },
+    {
+        "title": "Arctic Silver 5 Thermal Cooling Compound Paste 3.5g High-Density Polysynthetic Silver with Bonus Tool (Arctic Silver with Bonus Tool)",
+        "brand_id": 55,
+        "category_id": 17
+    },
+    {
+        "title": "ARCTIC MX-4 (current edition) - Thermal Compound Paste, Carbon Based High Performance, Heatsink Paste, Thermal Compound CPU for All Coolers, Thermal Interface Material - 4 Grams",
+        "brand_id": 55,
+        "category_id": 17
+    },
+    {
+        "title": "Powered USB Hub 3.0, Atolla 7-Port USB Data Hub Splitter with One Smart Charging Port and Individual On/Off Switches and 5V/4A Power Adapter USB Extension for MacBook, Mac Pro/Mini and More.",
+        "brand_id": 55,
+        "category_id": 18
+    },
+    {
+        "title": "Anker 4-Port USB 3.0 Hub, Ultra-Slim Data USB Hub with 2 ft Extended Cable [Charging Not Supported], for MacBook, Mac Pro, Mac mini, iMac, Surface Pro, XPS, PC, Flash Drive, Mobile HDD",
+        "brand_id": 49,
+        "category_id": 18
+    },
+    {
+        "title": "AmazonBasics 4-Port USB to USB 2.0 Ultra-Mini Hub Adapter",
+        "brand_id": 44,
+        "category_id": 18
+    },
+    {
+        "title": "Portable Charger Anker PowerCore 20100mAh - Ultra High Capacity Power Bank with 4.8A Output and PowerIQ Technology, External Battery Pack for iPhone, iPad & Samsung Galaxy & More (Black)",
+        "brand_id": 49,
+        "category_id": 19
+    },
+    {
+        "title": "RAVPower Portable Charger 20000mAh PD 3.0 Power Bank QC 3.0 18W USB C External Battery Pack Tri-input and Tri-output Cell Phone Charger Battery for iPhone, Samsung Galaxy and More",
+        "brand_id": 50,
+        "category_id": 19
+    },
+    {
+        "title": "Anker PowerCore 10000 Portable Charger, One of The Smallest and Lightest 10000mAh Power Bank, Ultra-Compact Battery Pack, High-Speed Charging Technology Phone Charger for iPhone, Samsung and More.",
+        "brand_id": 49,
+        "category_id": 19
+    },
+    {
+        "title": "Anker USB C to HDMI Adapter, Aluminum Portable USB C Adapter, Supports 4K 60Hz, for MacBook Pro, MacBook Air, iPad Pro, Pixelbook, XPS, Galaxy, and More [Compatible with Thunderbolt 3 ports]",
+        "brand_id": 49,
+        "category_id": 20
+    },
+    {
+        "title": "Anker USB C Hub Adapter, PowerExpand 4-in-1 USB-C Hub with 1 Gbps Ethernet Port and 3 USB 3.0 Ports, for MacBook Pro, iMac Pro, ChromeBook, XPS and More",
+        "brand_id": 49,
+        "category_id": 20
+    },
+    {
+        "title": "Anker USB C Hub, 5-in-1 USB C Adapter, with 4K USB C to HDMI, SD/TF Card Reader, 2 USB 3.0 Ports, for MacBook Pro 2016/2017/2018, Chromebook, XPS, and More (Renewed)",
+        "brand_id": 49,
+        "category_id": 20
+    },
+    {
+        "title": "Samsung Galaxy S20 5G Factory Unlocked New Android Cell Phone US Version | 128GB of Storage | Fingerprint ID and Facial Recognition | Long-Lasting Battery | US Warranty |Cosmic Gray",
+        "brand_id": 20,
+        "category_id": 21
+    },
+    {
+        "title": "Google - Pixel 3a with 64GB Memory Cell Phone (Unlocked) - Just Black - G020G",
+        "brand_id": 51,
+        "category_id": 21
+    },
+    {
+        "title": "Apple iPhone 11 Pro Max (64GB, Midnight Green) [Carrier Locked] + Carrier Subscription [Cricket Wireless]",
+        "brand_id": 21,
+        "category_id": 21
+    },
+    {
+        "title": "OFM Essentials Collection Racing Style Bonded Leather Gaming Chair, in Green (ESS-3085-GRN)",
+        "brand_id": 55,
+        "category_id": 22
+    },
+    {
+        "title": "Hbada Gaming Chair Racing Style Ergonomic High Back Computer Chair with Height Adjustment, Headrest and Lumbar Support E-Sports Swivel Chair, Red(1-Year Warranty)",
+        "brand_id": 55,
+        "category_id": 22
+    },
+    {
+        "title": "BestOffice PC Gaming Chair Ergonomic Office Chair Desk Chair with Lumbar Support Flip Up Arms Headrest PU Leather Executive High Back Computer Chair for Adults Women Men, Black and White",
+        "brand_id": 55,
+        "category_id": 22
+    },
+    {
+        "title": "Anker Soundcore Life Q20 Hybrid Active Noise Cancelling Headphones, Wireless Over Ear Bluetooth Headphones, 40H Playtime, Hi-Res Audio, Deep Bass, Memory Foam Ear Cups, for Travel, Home Office",
+        "brand_id": 49,
+        "category_id": 23
+    },
+    {
+        "title": "Sony MDRZX110/BLK ZX Series Stereo Headphones (Black)",
+        "brand_id": 28,
+        "category_id": 23
+    },
+    {
+        "title": "Sony Noise Cancelling Headphones WH1000XM3: Wireless Bluetooth Over the Ear Headset with Mic for phone-call and Alexa voice control - Industry Leading Active Noise Cancellation – Black",
+        "brand_id": 28,
+        "category_id": 23
+    },
+    {
+        "title": "AmazonBasics Wireless Computer Mouse with USB Nano Receiver - Silver, 5-Pack",
+        "brand_id": 44,
+        "category_id": 24
+    },
+    {
+        "title": "Logitech M510 Wireless Computer Mouse – Comfortable Shape with USB Unifying Receiver, with Back/Forward Buttons and Side-to-Side Scrolling, Dark Gray",
+        "brand_id": 52,
+        "category_id": 24
+    },
+    {
+        "title": "Dell Wireless Computer Mouse-WM126 – Long Life Battery, with Comfortable Design (Black)",
+        "brand_id": 6,
+        "category_id": 24
+    },
+    {
+        "title": "Corsair K95 RGB Platinum XT Mechanical Gaming Keyboard, Backlit RGB LED, Cherry MX RGB Blue, Black",
+        "brand_id": 5,
+        "category_id": 25
+    },
+    {
+        "title": "Apple Magic Keyboard with Numeric Keypad (Wireless, Rechargable) (US English) - Silver",
+        "brand_id": 21,
+        "category_id": 25
+    },
+    {
+        "title": "HP USB Slim Business Keyboard",
+        "brand_id": 42,
+        "category_id": 25
+    }
+]

@@ -252,37 +252,44 @@ class ProductController extends Controller
         return dataResponse(EachProductResource::collection($datas));
     }
 
+    protected function searchAlgorithm($toSearch, &$array)
+    {
+        Product::where("title", "like", "%$toSearch%")->get()->each(function ($each) use (&$array) {
+            array_push($array, new EachProductResource($each));
+        });
+
+        $datas = ProductBrand::where("brand", "like", "%$toSearch%")->with("products")->get();
+        $datas->each(
+            function ($each) use (&$array) {
+                $each->products->each(function ($each1)  use (&$array) {
+                    array_push($array, new EachProductResource($each1));
+                });
+            }
+        );
+
+        $datas = ProductCategory::where("category", "like", "%$toSearch%")->with("products")->get();
+
+        $datas->each(
+            function ($each) use (&$array) {
+                $each->products->each(function ($each1)  use (&$array) {
+                    array_push($array, new EachProductResource($each1));
+                });
+            }
+        );
+    }
+
     public function searchProduct(Request $request)
     {
-        $toSearch = $request->validate([
+        $data = $request->validate([
             "toSearch" => "required"
         ]);
 
-        $toSearch = $toSearch["toSearch"];
-
-        $datas = Product::where("title", "like", "%$toSearch%")->get();
-
-        if (count($datas) == 0) {
-
-            $datas = ProductBrand::where("brand", "like", "%$toSearch%")->with("products")->get();
-
-            if (count($datas) == 0) {
-                $datas = ProductCategory::where("category", "like", "%$toSearch%")->with("products")->get();
-                if (count($datas) == 0) {
-                    throw new ModelNotFoundException;
-                }
-            }
-            $array = [];
-            $datas->each(
-                function ($each) use (&$array) {
-                    $each->products->each(function ($each1)  use (&$array) {
-                        array_push($array, new EachProductResource($each1));
-                    });
-                }
-            );
-            return dataResponse($array);
+        $array = [];
+        $this->searchAlgorithm($data["toSearch"], $array);
+        foreach (explode(" ", $data["toSearch"]) as $word) {
+            $this->searchAlgorithm($word, $array);
         }
 
-        return dataResponse(EachProductResource::collection($datas));
+        return dataResponse($array);
     }
 }

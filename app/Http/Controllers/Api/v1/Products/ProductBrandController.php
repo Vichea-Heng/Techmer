@@ -23,9 +23,6 @@ class ProductBrandController extends Controller
 
     public function index()
     {
-        $api_datas = json_decode(file_get_contents("https://gist.githubusercontent.com/Goles/3196253/raw/9ca4e7e62ea5ad935bb3580dc0a07d9df033b451/CountryCodes.json"));
-
-        dd(count($api_datas));
 
         // $this->authorize("viewAny", ProductBrand::class);
 
