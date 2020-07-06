@@ -13,7 +13,7 @@ class CountrySeeder extends Seeder
         $datas = [];
 
         foreach ($api_datas as $api_data) {
-            $array = ["country" => $api_data->name, "phone_code" => (int) $api_data->dial_code];
+            $array = ["country" => $api_data->name, "phone_code" => (int) $api_data->dial_code, "country_code" => $api_data->code];
             array_push($datas, $array);
         }
 

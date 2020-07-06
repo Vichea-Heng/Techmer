@@ -17,6 +17,7 @@ class CreateCountriesTable extends Migration
             $table->increments("id");
             $table->string("country")->unique();
             $table->unsignedInteger("phone_code");
+            $table->string("country_code")->unique();
 
             $table->timestamps();
         });
