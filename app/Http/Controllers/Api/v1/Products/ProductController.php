@@ -234,4 +234,14 @@ class ProductController extends Controller
 
         return dataResponse(EachProductResource::collection($datas));
     }
+
+    public function productByBrand($id)
+    {
+        $datas = Product::where("brand_id", $id)->get();
+
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
+
+        return dataResponse(EachProductResource::collection($datas));
+    }
 }

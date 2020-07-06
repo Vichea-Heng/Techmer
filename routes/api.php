@@ -70,7 +70,6 @@ Route::group(["prefix" => "/v1"], function () {
                 // });
                 Route::apiResource('/product-category', 'ProductCategoryController', ["except", "index"]);
 
-                Route::get('/product/byCategory/{id}', 'ProductController@productByCategory');
                 Route::delete('/product/{product}/deleteFile', 'ProductController@deleteFile');
                 Route::post('/product/{product}/addFile', 'ProductController@addFile');
                 // Route::get('/product/gallery/{product}', 'ProductController@getGallery');
@@ -133,7 +132,12 @@ Route::group(["prefix" => "/v1"], function () {
         });
     });
     Route::apiResource('/product-category', 'Api\\v1\\Products\\ProductCategoryController', ["only", "index"]);
-    Route::apiResource('/product', 'Api\\v1\\Products\\ProductController', ["only", ["index", "show"]]);
+    Route::group(["namespace" => "Api\\v1\\Products"], function () {
+        Route::apiResource('/product', 'ProductController', ["only", ["index", "show"]]);
+        Route::get('/product/byCategory/{id}', 'ProductController@productByCategory');
+        Route::get('/product/byBrand/{id}', 'ProductController@productByBrand');
+    });
+
 
     Route::group(["namespace" => "Api\\v1\\Addresses\\"], function () {
         // Route::group(["middleware" => CheckSuperAdmin::class], function () {
