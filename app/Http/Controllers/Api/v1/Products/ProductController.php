@@ -9,6 +9,8 @@ use App\Models\Products\Product;
 use App\Http\Requests\Products\ProductRequest;
 use App\Http\Resources\Products\EachProductResource;
 use App\Http\Resources\Products\ProductResource;
+use App\Models\Products\ProductBrand;
+use App\Models\Products\ProductCategory;
 use App\Models\Products\ProductRated;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -245,6 +247,32 @@ class ProductController extends Controller
 
         if (count($datas) == 0)
             throw new ModelNotFoundException;
+
+        return dataResponse(EachProductResource::collection($datas));
+    }
+
+    public function searchProduct(Request $request)
+    {
+        $toSearch = $request->validate([
+            "toSearch" => "required"
+        ]);
+
+        $toSearch = $toSearch["toSearch"];
+
+        $datas = Product::where("title", "like", "%$toSearch%")->get();
+
+        if (count($datas) == 0) {
+
+            $datas = ProductBrand::where("brand", "like", "%$toSearch%")->with("products")->get();
+
+            if (count($datas) == 0) {
+                $datas = ProductCategory::where("category", "like", "%$toSearch%")->with("products")->get();
+                if (count($datas) == 0) {
+                    throw new ModelNotFoundException;
+                }
+            }
+            $datas = $datas->products;
+        }
 
         return dataResponse(EachProductResource::collection($datas));
     }

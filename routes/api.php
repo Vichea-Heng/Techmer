@@ -145,6 +145,7 @@ Route::group(["prefix" => "/v1"], function () {
         Route::get('/product/byCategory/{id}', 'ProductController@productByCategory');
         Route::get("/product/page/{page}", 'ProductController@index');
         Route::get('/product/byBrand/{id}', 'ProductController@productByBrand');
+        Route::post('/product/search', 'ProductController@searchProduct');
 
         Route::get('/home-page-product/productHotDeal', 'HomePageProductController@productHotDeal');
         Route::get('/home-page-product/productPopular', 'HomePageProductController@productPopular');
