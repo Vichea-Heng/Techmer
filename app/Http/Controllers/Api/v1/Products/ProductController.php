@@ -9,6 +9,7 @@ use App\Models\Products\Product;
 use App\Http\Requests\Products\ProductRequest;
 use App\Http\Resources\Products\EachProductResource;
 use App\Http\Resources\Products\ProductResource;
+use App\Http\Resources\Products\SearchProductResource;
 use App\Models\Products\ProductBrand;
 use App\Models\Products\ProductCategory;
 use App\Models\Products\ProductRated;
@@ -271,7 +272,15 @@ class ProductController extends Controller
                     throw new ModelNotFoundException;
                 }
             }
-            $datas = $datas->products;
+            $array = [];
+            $datas->each(
+                function ($each) use (&$array) {
+                    $each->products->each(function ($each1)  use (&$array) {
+                        array_push($array, new EachProductResource($each1));
+                    });
+                }
+            );
+            return dataResponse($array);
         }
 
         return dataResponse(EachProductResource::collection($datas));
