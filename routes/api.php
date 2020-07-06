@@ -132,7 +132,7 @@ Route::group(["prefix" => "/v1"], function () {
             // });
         });
     });
-    Route::group(["namespace" => "Addresses\\"], function () {
+    Route::group(["namespace" => "Api\\v1\\Addresses\\"], function () {
         // Route::group(["middleware" => CheckSuperAdmin::class], function () {
         // apiSoftDelete("user-cart", "UserCartController");
         // });
