@@ -2,6 +2,7 @@
 
 use App\Models\Payments\Transaction;
 use App\Models\Payments\UserCart;
+use App\Models\Products\HomePageProduct;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Products\Product;
@@ -46,6 +47,25 @@ class ProductSeeder extends Seeder
         }
 
         $datas = factory(Product::class, 20)->create();
+
+        for ($i = 1; $i <= 6; $i++) {
+            HomePageProduct::create([
+                "product_id" => "$i",
+                "product_type" => "product-hot-deal",
+            ]);
+        }
+        for ($i = 7; $i <= 12; $i++) {
+            HomePageProduct::create([
+                "product_id" => "$i",
+                "product_type" => "product-popular",
+            ]);
+        }
+        for ($i = 13; $i <= 18; $i++) {
+            HomePageProduct::create([
+                "product_id" => "$i",
+                "product_type" => "product-best-rating",
+            ]);
+        }
 
         foreach ($datas as $data) {
             $data->update(["gallery" => json_encode([

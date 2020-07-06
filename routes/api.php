@@ -137,6 +137,10 @@ Route::group(["prefix" => "/v1"], function () {
         Route::get('/product/byCategory/{id}', 'ProductController@productByCategory');
         Route::get("/product/page/{page}", 'ProductController@index');
         Route::get('/product/byBrand/{id}', 'ProductController@productByBrand');
+
+        Route::get('/home-page-product/productHotDeal', 'HomePageProductController@productHotDeal');
+        Route::get('/home-page-product/productPopular', 'HomePageProductController@productPopular');
+        Route::get('/home-page-product/productBestRating', 'HomePageProductController@productBestRating');
     });
 
 
