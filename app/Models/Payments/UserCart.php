@@ -20,8 +20,8 @@ class UserCart extends Model
     // {
     //     return $this->belongsTo("App\Models\Users\User", "user_id", "id");
     // }
-    // public function productOption()
-    // {
-    //     return $this->belongsTo("App\Models\Products\ProductOption", "product_option_id", "id");
-    // }
+    public function productOption()
+    {
+        return $this->belongsTo("App\Models\Products\ProductOption", "product_option_id", "id");
+    }
 }

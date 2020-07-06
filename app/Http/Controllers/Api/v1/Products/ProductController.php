@@ -25,17 +25,21 @@ class ProductController extends Controller
     {
     }
 
-    public function index()
+    public function index($page)
     {
 
         // $this->authorize("viewAny", Product::class);
 
-        $datas = Product::get();
+        $datas = Product::paginate($page);
 
         if (count($datas) == 0)
             throw new ModelNotFoundException;
 
-        return dataResponse(EachProductResource::collection($datas));
+        $paginate = EachProductResource::collection($datas);
+
+        // dd($datas);
+
+        return dataResponse($datas);
     }
 
     public function indexOnlyTrashed()

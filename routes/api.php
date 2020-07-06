@@ -133,8 +133,9 @@ Route::group(["prefix" => "/v1"], function () {
     });
     Route::apiResource('/product-category', 'Api\\v1\\Products\\ProductCategoryController', ["only", "index"]);
     Route::group(["namespace" => "Api\\v1\\Products"], function () {
-        Route::apiResource('/product', 'ProductController', ["only", ["index", "show"]]);
+        Route::apiResource('/product', 'ProductController', ["only", ["show"]]);
         Route::get('/product/byCategory/{id}', 'ProductController@productByCategory');
+        Route::get("/product/page/{page}", 'ProductController@index');
         Route::get('/product/byBrand/{id}', 'ProductController@productByBrand');
     });
 
