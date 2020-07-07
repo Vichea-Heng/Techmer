@@ -65,7 +65,7 @@ class UserController extends Controller
         }
 
         if (Auth::attempt($cred)) {
-            if (!Auth::user()->hasRole("Super Admin") || !Auth::user()->hasRole("Admin"))
+            if (!Auth::user()->hasRole("Super Admin") && !Auth::user()->hasRole("Admin"))
                 throw new UnauthorizedException;
 
             $user = Auth::user()->createToken("asd");
