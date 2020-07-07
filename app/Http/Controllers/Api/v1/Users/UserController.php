@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Validation\UnauthorizedException;
 
 class UserController extends Controller
 {
@@ -39,6 +40,34 @@ class UserController extends Controller
         }
 
         if (Auth::attempt($cred)) {
+            $user = Auth::user()->createToken("asd");
+            // $user = Auth::user()->createSetupIntent();
+
+            return dataResponse($user);
+        } else {
+            throw new MessageException("Your Username and Password are incorrect");
+        }
+    }
+
+    public function loginAdmin(Request $request)
+    {
+        $data = $request->validate([
+            'username' => "required",
+            'password' => "required",
+        ]);
+
+        if (is_numeric($data["username"])) {
+            $cred = ['phone_number' => $data["username"], 'password' => $data["password"]];
+        } elseif (filter_var($data["username"], FILTER_VALIDATE_EMAIL)) {
+            $cred = ['email' => $data["username"], 'password' => $data["password"]];
+        } else {
+            $cred = ['username' => $data["username"], 'password' => $data["password"]];
+        }
+
+        if (Auth::attempt($cred)) {
+            if (!Auth::user()->hasRole("Super Admin") || !Auth::user()->hasRole("Admin"))
+                throw new UnauthorizedException;
+
             $user = Auth::user()->createToken("asd");
             // $user = Auth::user()->createSetupIntent();
 
@@ -79,6 +108,10 @@ class UserController extends Controller
 
         return dataResponse($user);
     }
+
+    // public function assignAdmin(Request $request)
+    // {
+    // }
 
     public function logout(User $user)
     {

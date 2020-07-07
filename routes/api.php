@@ -38,6 +38,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(["prefix" => "/v1"], function () {
     Route::group(["namespace" => "Api\\v1\\Users\\"], function () {
         Route::post("/login", "UserController@login");
+        Route::post("/login-admin", "UserController@loginAdmin");
         Route::post("/register", "UserController@register");
         Route::post("/logout/{user}", "UserController@logout");
         Route::post("/send-reset-email", "UserController@sendResetEmail");

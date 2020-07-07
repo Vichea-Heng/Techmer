@@ -32,8 +32,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Passport::personalAccessTokensExpireIn(now()->addDays(1));
 
-        Gate::before(function ($user, $ability) {
-            dd(1);
+        Gate::before(function ($user) {
             if ($user->hasRole('Super Admin')) return true;
         });
     }

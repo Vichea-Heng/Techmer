@@ -8,15 +8,15 @@ class RoleSeeder extends Seeder
 {
     public function run()
     {
-        Role::create([
-            "name" => "Super Admin",
-            "guard_name" => "api",
-        ]);
+        $datas = [
+            ["name" => "Super Admin", "guard_name" => "api"],
+            ["name" => "Admin", "guard_name" => "api"],
+            ["name" => "User", "guard_name" => "api"],
+        ];
 
-        Role::create([
-            "name" => "User",
-            "guard_name" => "api",
-        ]);
+        foreach ($datas as $data) {
+            Role::create($data);
+        }
 
         // factory(Role::class, 10)->create());
     }
