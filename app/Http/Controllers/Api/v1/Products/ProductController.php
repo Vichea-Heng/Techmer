@@ -299,4 +299,33 @@ class ProductController extends Controller
 
         return dataResponse($array);
     }
+
+    public function pickForYou(Product $product)
+    {
+        $array = [];
+        $datas = ProductBrand::findOrfail($product->id)->limit(3)->get();
+        $datas->each(
+            function ($each) use (&$array) {
+                $each->products->each(function ($each1)  use (&$array) {
+                    array_push($array, new EachProductResource($each1));
+                });
+            }
+        );
+        if (count($datas) < 3) {
+            $datas = ProductCategory::findOrFail($product->category_id)->limit(3)->get();
+            $datas->each(
+                function ($each) use (&$array) {
+                    $each->products->each(function ($each1)  use (&$array) {
+                        array_push($array, new EachProductResource($each1));
+                    });
+                }
+            );
+        }
+        if (count($datas) != 0) {
+            $tempArr = array_unique(array_column($array, 'id'));
+            $array = array_values(array_intersect_key($array, $tempArr));
+        }
+
+        return dataResponse(array_slice($array, 0, 3));
+    }
 }
