@@ -294,7 +294,8 @@ class ProductController extends Controller
             throw new ModelNotFoundException;
 
         $tempArr = array_unique(array_column($array, 'id'));
-        $array = array_intersect_key($array, $tempArr);
+        $array = array_values(array_intersect_key($array, $tempArr));
+
 
         return dataResponse($array);
     }
