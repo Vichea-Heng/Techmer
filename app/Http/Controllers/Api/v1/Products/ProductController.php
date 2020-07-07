@@ -290,6 +290,9 @@ class ProductController extends Controller
             $this->searchAlgorithm($word, $array);
         }
 
+        $tempArr = array_unique(array_column($array, 'id'));
+        $array = array_intersect_key($array, $tempArr);
+
         return dataResponse($array);
     }
 }
