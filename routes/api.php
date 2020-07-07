@@ -70,12 +70,12 @@ Route::group(["prefix" => "/v1"], function () {
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 apiSoftDelete("product-brand", "ProductBrandController");
                 // });
-                Route::apiResource('/product-brand', 'ProductBrandController');
+                Route::apiResource('/product-brand', 'ProductBrandController', ["except", ["show"]]);
 
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 apiSoftDelete("product-category", "ProductCategoryController");
                 // });
-                Route::apiResource('/product-category', 'ProductCategoryController', ["except", "index"]);
+                Route::apiResource('/product-category', 'ProductCategoryController', ["except", ["show"]]);
 
                 Route::delete('/product/{product}/deleteFile', 'ProductController@deleteFile');
                 Route::post('/product/{product}/addFile', 'ProductController@addFile');
@@ -140,6 +140,7 @@ Route::group(["prefix" => "/v1"], function () {
         });
     });
     Route::apiResource('/product-category', 'Api\\v1\\Products\\ProductCategoryController', ["only", "index"]);
+    Route::apiResource('/product-brand', 'Api\\v1\\Products\\ProductBrandController', ["only", "index"]);
     Route::group(["namespace" => "Api\\v1\\Products"], function () {
         Route::apiResource('/product', 'ProductController', ["only", ["show"]]);
         Route::get('/product/byCategory/{id}', 'ProductController@productByCategory');
