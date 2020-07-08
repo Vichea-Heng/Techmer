@@ -28,7 +28,7 @@ class ProductOptionRequest extends FormRequest
             $qty_rule = ["bail", "filled", "numeric", "gte:0"];
             $discount_rule = ["bail", "filled", "numeric", "gte:0"];
             $warrenty_rule = ["bail", "filled", "alpha_num"];
-            $photo_rule = ["bail", "filled", "image", "max:15000"];
+            // $photo_rule = ["bail", "filled", "image", "max:15000"];
 
             return [
                 // "product_id" => $product_id_rule,
@@ -38,7 +38,7 @@ class ProductOptionRequest extends FormRequest
                 "qty" => $qty_rule,
                 "discount" => $discount_rule,
                 "warrenty" => $warrenty_rule,
-                "photo" => $photo_rule,
+                // "photo" => $photo_rule,
             ];
         } else {
             $request = $this->all();
@@ -51,7 +51,7 @@ class ProductOptionRequest extends FormRequest
             $qty_rule = "bail|required|numeric|gte:0";
             $discount_rule = "bail|required|numeric|gte:0";
             $warrenty_rule = "bail|required|alpha_num";
-            $photo_rule = "bail|required|image|max:15000";
+            // $photo_rule = "bail|required|image|max:15000";
         }
         return [
             "product_id" => $product_id_rule,
@@ -61,7 +61,7 @@ class ProductOptionRequest extends FormRequest
             "qty" => $qty_rule,
             "discount" => $discount_rule,
             "warrenty" => $warrenty_rule,
-            "photo" => $photo_rule,
+            // "photo" => $photo_rule,
         ];
     }
 }

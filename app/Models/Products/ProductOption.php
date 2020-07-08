@@ -19,7 +19,7 @@ class ProductOption extends Model
         "qty",
         "discount",
         "warrenty",
-        "photo",
+        // "photo",
     ];
 
     protected $authIdFields = ["posted_by"];

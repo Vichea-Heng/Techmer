@@ -12,6 +12,7 @@ use App\Http\Resources\Products\ProductResource;
 use App\Http\Resources\Products\SearchProductResource;
 use App\Models\Products\ProductBrand;
 use App\Models\Products\ProductCategory;
+use App\Models\Products\ProductOption;
 use App\Models\Products\ProductRated;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -80,9 +81,14 @@ class ProductController extends Controller
         }
         $data->update(["gallery" => json_encode($gallery_name)]);
 
+        foreach ($request->get("product_options") as $each) {
+            $each["product_id"] = $data->id;
+            ProductOption::create($each);
+        }
+
         DB::commit();
 
-        return dataResponse(new ProductResource($data));
+        return dataResponse(new EachProductResource($data));
     }
 
     public function getFile(Product $product, $file_name)

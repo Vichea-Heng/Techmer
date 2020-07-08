@@ -24,7 +24,7 @@ class CreateProductOptionsTable extends Migration
             $table->unsignedInteger("qty");
             $table->double("discount");
             $table->string("warrenty");
-            $table->string("photo");
+            // $table->string("photo");
 
             $table->unsignedInteger("posted_by");
             $table->foreign("posted_by")->references("id")->on("users")->onDelete("restrict");

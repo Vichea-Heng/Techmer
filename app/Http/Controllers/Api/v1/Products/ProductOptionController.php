@@ -62,28 +62,28 @@ class ProductOptionController extends Controller
 
         DB::beginTransaction();
 
-        $path = "/Techmer/Products/" . $data["product_id"] . "/ProductOptions";
+        // $path = "/Techmer/Products/" . $data["product_id"] . "/ProductOptions";
 
-        $data = new ProductOption();
+        // $data = new ProductOption();
         // $data->save();
-        dd($data->id);
+        // dd($data->id);
 
         $data = ProductOption::create($data);
 
-        $data["photo"] = checkFileExist($path, $data["id"], $data["photo"]->getClientOriginalExtension());
-        Storage::putFileAs($path, $request->file("photo"), $data["photo"]);
+        // $data["photo"] = checkFileExist($path, $data["id"], $data["photo"]->getClientOriginalExtension());
+        // Storage::putFileAs($path, $request->file("photo"), $data["photo"]);
 
         DB::commit();
 
         return dataResponse(new ProductOptionResource($data));
     }
 
-    public function getFile(ProductOption $product_option)
-    {
-        // dd(storage_path("/app/Techmer/Products/" . $product_option->product_id . "/ProductOptions/" . $product_option->photo));
-        // return Storage::download("/Techmer/Products/" . $product_option->product_id . "/ProductOptions/" . $product_option->photo);
-        return response()->file(storage_path("/app/Techmer/Products/" . $product_option->product_id . "/ProductOptions/" . $product_option->photo));
-    }
+    // public function getFile(ProductOption $product_option)
+    // {
+    //     // dd(storage_path("/app/Techmer/Products/" . $product_option->product_id . "/ProductOptions/" . $product_option->photo));
+    //     // return Storage::download("/Techmer/Products/" . $product_option->product_id . "/ProductOptions/" . $product_option->photo);
+    //     return response()->file(storage_path("/app/Techmer/Products/" . $product_option->product_id . "/ProductOptions/" . $product_option->photo));
+    // }
 
     public function show(ProductOption $product_option)
     {
@@ -100,13 +100,13 @@ class ProductOptionController extends Controller
 
         $data = $request->validated();
 
-        if (isset($data["photo"])) {
+        // if (isset($data["photo"])) {
 
-            $path = "/Techmer/Products/" . $product_option->product_id . "/ProductOptions";
-            Storage::delete($path . "/" . $product_option->photo);
-            Storage::putFileAs($path, $request->file("photo"), $product_option->photo);
-            $data["photo"] = $product_option->photo;
-        }
+        //     $path = "/Techmer/Products/" . $product_option->product_id . "/ProductOptions";
+        //     Storage::delete($path . "/" . $product_option->photo);
+        //     Storage::putFileAs($path, $request->file("photo"), $product_option->photo);
+        //     $data["photo"] = $product_option->photo;
+        // }
 
         $product_option->update($data);
 
@@ -118,8 +118,8 @@ class ProductOptionController extends Controller
 
         // $this->authorize("delete", ProductOption::class);
 
-        $product_option->userCarts->each(fn ($item) => $item->delete());
-        $product_option->transactions->each(fn ($item) => $item->delete());
+        // $product_option->userCarts->each(fn ($item) => $item->delete());
+        // $product_option->transactions->each(fn ($item) => $item->delete());
 
         $product_option->delete();
 
@@ -147,7 +147,7 @@ class ProductOptionController extends Controller
 
         $data->forceDelete();
 
-        Storage::delete("/Techmer/Products/" . $data->product_id . "/ProductOptions/" . $data->photo);
+        // Storage::delete("/Techmer/Products/" . $data->product_id . "/ProductOptions/" . $data->photo);
 
         return forceDestoryResponse();
     }

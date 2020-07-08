@@ -32,14 +32,14 @@ class ProductSeeder extends Seeder
         }
 
         $datas = [
-            ["product_id" => 1, "option" => "64Gb", "price" => "12", "qty" => 10, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity", "photo" => "1001.jpg"],
-            ["product_id" => 1, "option" => "32Gb", "price" => "12", "qty" => 2, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity", "photo" => "1002.jpg"],
-            ["product_id" => 1, "option" => "16Gb", "price" => "12", "qty" => 3, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity", "photo" => "1003.jpg"],
-            ["product_id" => 1, "option" => "8Gb", "price" => "12", "qty" => 4, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity", "photo" => "1004.jpg"],
-            ["product_id" => 2, "option" => "64Gb", "price" => "12", "qty" => 10, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity", "photo" => "2001.jpg"],
-            ["product_id" => 2, "option" => "32Gb", "price" => "12", "qty" => 2, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity", "photo" => "2002.jpg"],
-            ["product_id" => 2, "option" => "16Gb", "price" => "12", "qty" => 3, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity", "photo" => "2003.jpg"],
-            ["product_id" => 2, "option" => "8Gb", "price" => "12", "qty" => 4, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity", "photo" => "2004.jpg"],
+            ["product_id" => 1, "option" => "64Gb", "price" => "12", "qty" => 10, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["product_id" => 1, "option" => "32Gb", "price" => "12", "qty" => 2, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["product_id" => 1, "option" => "16Gb", "price" => "12", "qty" => 3, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["product_id" => 1, "option" => "8Gb", "price" => "12", "qty" => 4, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["product_id" => 2, "option" => "64Gb", "price" => "12", "qty" => 10, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["product_id" => 2, "option" => "32Gb", "price" => "12", "qty" => 2, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["product_id" => 2, "option" => "16Gb", "price" => "12", "qty" => 3, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
+            ["product_id" => 2, "option" => "8Gb", "price" => "12", "qty" => 4, "discount" => 0, "warrenty" => "24 Months", "category" => "Capacity"],
         ];
 
         foreach ($datas as $data) {
@@ -93,7 +93,7 @@ class ProductSeeder extends Seeder
             $data->productRated->update(["rated" => $avg / 3]);
 
             for ($ii = 1; $ii <= rand(3, 6); $ii++) {
-                $id = factory(ProductOption::class, 1)->create(["product_id" => $data->id, "photo" => ($data->id * 1000 + $ii) . ".jpg"]);
+                $id = factory(ProductOption::class, 1)->create(["product_id" => $data->id]);
                 factory(Transaction::class, 1)->create(["product_option_id" => $id[0]->id]);
             }
         }

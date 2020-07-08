@@ -39,6 +39,15 @@ class ProductRequest extends FormRequest
             $published_rule = "bail|required|boolean";
             $photo_rule = "bail|required|array|max:10";
             $each_photo_rule = "bail|required|image|max:15000";
+
+            $product_options_rule = "required|array";
+
+            $each_product_options_category_rule = "required";
+            $each_product_options_option_rule = "required_with:product_options.*.category|distinct";
+            $each_product_options_qty_rule = "required_with:product_options.*.category|numeric|gte:0";
+            $each_product_options_price_rule = "required_with:product_options.*.category|numeric|gte:0";
+            $each_product_options_discount_rule = "required_with:product_options.*.category|numeric|gte:0|lte:100";
+            $each_product_options_warrenty_rule = "required_with:product_options.*.category";
         }
         return [
             "title" => $title_rule,
@@ -49,6 +58,14 @@ class ProductRequest extends FormRequest
             "published" => $published_rule,
             "photo" => $photo_rule,
             "photo.*" => $each_photo_rule,
+
+            "product_options" => $product_options_rule,
+            "product_options.*.category" => $each_product_options_category_rule,
+            "product_options.*.option" => $each_product_options_option_rule,
+            "product_options.*.qty" => $each_product_options_qty_rule,
+            "product_options.*.price" => $each_product_options_price_rule,
+            "product_options.*.discount" => $each_product_options_discount_rule,
+            "product_options.*.warrenty" => $each_product_options_warrenty_rule,
         ];
     }
 }
