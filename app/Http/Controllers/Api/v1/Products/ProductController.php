@@ -30,7 +30,7 @@ class ProductController extends Controller
     {
     }
 
-    public function index($page)
+    public function index()
     {
 
         // $this->authorize("viewAny", Product::class);
@@ -282,7 +282,9 @@ class ProductController extends Controller
             "toSearch" => "required",
             "page" => "",
         ]);
-        $data["page"] = $data["page"] ? $data["page"] : 1;
+        if (!isset($data["page"])) {
+            $data["page"] = 1;
+        }
 
         $array = [];
         $this->searchAlgorithm($data["toSearch"], $array);
