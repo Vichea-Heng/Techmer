@@ -17,6 +17,6 @@ class Identity extends Model
 
     public function getFullNameAttribute()
     {
-        return $this->first_name . " " . $this->last_name;
+        return $this->first_name . " " . $this->last_name . " ($this->id)";
     }
 }
