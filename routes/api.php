@@ -101,7 +101,7 @@ Route::group(["prefix" => "/v1"], function () {
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 // apiSoftDelete("product-feedback", "ProductFeedbackController");
                 // });
-                Route::apiResource('/product-feedback', 'ProductFeedbackController');
+                // Route::apiResource('/product-feedback', 'ProductFeedbackController');
 
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 // apiSoftDelete("favorite-product", "FavoriteProductController");
@@ -154,6 +154,9 @@ Route::group(["prefix" => "/v1"], function () {
         Route::get('/home-page-product/productHotDeal', 'HomePageProductController@productHotDeal');
         Route::get('/home-page-product/productPopular', 'HomePageProductController@productPopular');
         Route::get('/home-page-product/productBestRating', 'HomePageProductController@productBestRating');
+
+        Route::get("/product-feedback/each/{id}", "ProductFeedbackController@eachProduct");
+        Route::apiResource('/product-feedback', 'ProductFeedbackController');
     });
 
 

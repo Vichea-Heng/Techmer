@@ -115,6 +115,16 @@ class ProductFeedbackController extends Controller
         return destoryResponse();
     }
 
+    public function eachProduct($id)
+    {
+        $datas = ProductFeedback::where("product_id", $id)->get();
+
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
+
+        return dataResponse(ProductFeedbackResource::collection($datas));
+    }
+
     // public function restore($id)
     // {
 
