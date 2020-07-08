@@ -12,8 +12,8 @@ class CouponResource extends JsonResource
             "id" => $this->id,
             "coupon" => $this->coupon,
             "discount" => $this->discount,
-            "expired_date" => $this->expired_date,
-            "posted_by" => $this->posted_by,
+            "expired_date" => date("Y-m-d", $this->expired_date),
+            "posted_by" => $this->user->identity->full_name,
             'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }
