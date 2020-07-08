@@ -144,10 +144,11 @@ Route::group(["prefix" => "/v1"], function () {
     Route::apiResource('/product-brand', 'Api\\v1\\Products\\ProductBrandController', ["only" => ["index"]]);
     Route::group(["namespace" => "Api\\v1\\Products"], function () {
         Route::apiResource('/product', 'ProductController', ["only", ["show"]]);
+        Route::post('/product/search', 'ProductController@searchProduct');
         Route::get('/product/byCategory/{id}', 'ProductController@productByCategory');
         Route::get("/product/page/{page}", 'ProductController@index');
         Route::get('/product/byBrand/{id}', 'ProductController@productByBrand');
-        Route::post('/product/search', 'ProductController@searchProduct');
+
         Route::get('/product/pickForYou/{product}', 'ProductController@pickForYou');
 
         Route::get('/home-page-product/productHotDeal', 'HomePageProductController@productHotDeal');

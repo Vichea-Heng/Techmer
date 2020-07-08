@@ -13,8 +13,10 @@ use App\Http\Resources\Products\SearchProductResource;
 use App\Models\Products\ProductBrand;
 use App\Models\Products\ProductCategory;
 use App\Models\Products\ProductRated;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
@@ -281,8 +283,10 @@ class ProductController extends Controller
     public function searchProduct(Request $request)
     {
         $data = $request->validate([
-            "toSearch" => "required"
+            "toSearch" => "required",
+            "page" => "",
         ]);
+        $data["page"] = $data["page"] ? $data["page"] : 1;
 
         $array = [];
         $this->searchAlgorithm($data["toSearch"], $array);
@@ -296,8 +300,9 @@ class ProductController extends Controller
         $tempArr = array_unique(array_column($array, 'id'));
         $array = array_values(array_intersect_key($array, $tempArr));
 
+        $result = new LengthAwarePaginator($array, count($array), 10, $data["page"], ['path' => url(env("APP_URL") . "product/search?toSearch=" . $data["toSearch"])]);
 
-        return dataResponse($array);
+        return dataResponse($result);
     }
 
     public function pickForYou(Product $product)
