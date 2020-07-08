@@ -24,7 +24,9 @@ class ProductRequest extends FormRequest
             return [
                 "title" => $title_rule,
                 "brand_id" => $brand_id_rule,
-                "content" => $content_rule,
+                "short_description" => $short_description_rule,
+                "full_description" => $full_description_rule,
+                // "content" => $content_rule,
                 "category_id" => $category_id_rule,
                 // "published" => $published_rule,
             ];

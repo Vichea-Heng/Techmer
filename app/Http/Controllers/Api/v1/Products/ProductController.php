@@ -40,7 +40,7 @@ class ProductController extends Controller
         if (count($datas) == 0)
             throw new ModelNotFoundException;
 
-        return dataResponse($datas);
+        return dataResponse(EachProductResource::collection($datas));
     }
 
     public function indexOnlyTrashed()
