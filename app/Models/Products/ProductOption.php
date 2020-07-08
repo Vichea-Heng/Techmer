@@ -30,7 +30,8 @@ class ProductOption extends Model
     ];
 
     protected $checkBeforeRestore = [
-        "product"
+        "product",
+        "user"
     ];
 
     public function userCarts()
@@ -45,5 +46,9 @@ class ProductOption extends Model
     public function product()
     {
         return $this->belongsTo("App\Models\Products\Product", "product_id", "id");
+    }
+    public function user()
+    {
+        return $this->belongsTo("App\Models\Users\User", "posted_by", "id");
     }
 }
