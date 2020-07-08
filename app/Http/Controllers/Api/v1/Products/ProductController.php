@@ -35,14 +35,10 @@ class ProductController extends Controller
 
         // $this->authorize("viewAny", Product::class);
 
-        $datas = Product::paginate($page);
+        $datas = Product::get();
 
         if (count($datas) == 0)
             throw new ModelNotFoundException;
-
-        $paginate = EachProductResource::collection($datas);
-
-        // dd($datas);
 
         return dataResponse($datas);
     }
