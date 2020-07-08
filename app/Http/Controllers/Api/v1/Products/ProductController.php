@@ -298,9 +298,10 @@ class ProductController extends Controller
         $tempArr = array_unique(array_column($array, 'id'));
         $array = array_values(array_intersect_key($array, $tempArr));
 
-        $currentItems = array_slice($array, 10 * ($data["page"] - 1), 10);
+        $perpage = 12;
+        $currentItems = array_slice($array, $perpage * ($data["page"] - 1), $perpage);
 
-        $result = new LengthAwarePaginator($currentItems, count($array), 10, $data["page"], ['path' => url(env("APP_URL") . "product/search?toSearch=" . $data["toSearch"])]);
+        $result = new LengthAwarePaginator($currentItems, count($array), $perpage, $data["page"], ['path' => url(env("APP_URL") . "product/search?toSearch=" . $data["toSearch"])]);
 
         return dataResponse($result);
     }
