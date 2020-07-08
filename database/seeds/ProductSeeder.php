@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Addresses\Address;
 use App\Models\Payments\Transaction;
 use App\Models\Payments\UserCart;
 use App\Models\Products\HomePageProduct;

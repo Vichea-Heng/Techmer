@@ -126,4 +126,14 @@ class ShippingAddressController extends Controller
 
     //     return response()->json($data, Response::HTTP_OK);
     // }
+
+    public function eachUser($id)
+    {
+        $datas = ShippingAddress::where("user_id", $id)->get();
+
+        if (count($datas) == 0)
+            throw new ModelNotFoundException;
+
+        return dataResponse(ShippingAddressResource::collection($datas));
+    }
 }

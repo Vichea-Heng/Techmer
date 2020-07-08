@@ -13,6 +13,7 @@ class Transaction extends Model
         "product_option_id",
         "qty",
         "purchase_price",
+        "shipping_address_id",
         "discount",
     ];
 

@@ -14,6 +14,7 @@ class TransactionResource extends JsonResource
             "product_option_id" => $this->product_option_id,
             "qty" => $this->qty,
             "purchase_price" => $this->purchase_price,
+            "shipping_address_id" => $this->shipping_address_id,
             "discount" => $this->discount,
             'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];

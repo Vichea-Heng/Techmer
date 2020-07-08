@@ -21,6 +21,9 @@ class CreateTransactionsTable extends Migration
             $table->unsignedInteger("product_option_id");
             $table->foreign("product_option_id")->references("id")->on("product_options")->onDelete("cascade");
 
+            $table->unsignedInteger("shipping_address_id");
+            $table->foreign("shipping_address_id")->references("id")->on("shipping_addresses")->onDelete("cascade");
+
             $table->unsignedInteger("qty");
             $table->double("discount");
             $table->double("purchase_price");

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Products;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\Payments\ShippingAddressRequest;
 use App\Models\Products\ProductBrand;
 use App\Http\Requests\Products\ProductBrandRequest;
 use App\Http\Resources\Products\ProductBrandResource;

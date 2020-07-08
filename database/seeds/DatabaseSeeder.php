@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ProductBrandSeeder::class);
         $this->call(ProductCategorySeeder::class);
+        $this->call(ShippingAddressSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(ProductOptionSeeder::class);
         $this->call(ProductRatedSeeder::class);
@@ -31,7 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserCartSeeder::class);
         $this->call(CouponSeeder::class);
         $this->call(TransactionSeeder::class);
-        $this->call(ShippingAddressSeeder::class);
         $this->call(FavoriteProductSeeder::class);
     }
 }

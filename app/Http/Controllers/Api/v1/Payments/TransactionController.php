@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Api\v1\Payments;
 
 use App\Exceptions\MessageException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Payments\ShippingAddressRequest;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 use App\Models\Payments\Transaction;
 use App\Http\Requests\Payments\TransactionRequest;
 use App\Http\Resources\Payments\TransactionResource;
+use App\Models\Addresses\Address;
+use App\Models\Payments\ShippingAddress;
 use App\Models\Payments\UserCart;
 use App\Models\Products\ProductOption;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -16,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class TransactionController extends Controller
@@ -56,6 +60,23 @@ class TransactionController extends Controller
 
         $data = $request->validated();
 
+        if (!array_key_exists("shipping_address_id", $data) || empty($data["shipping_address_id"])) {
+            $data1 = $request->validate([
+                "phone_number" => "bail|required|numeric|min:6|max:7",
+                "address_line1" => "required",
+                "address_line2" => "required",
+                "country_id" => "bail|required|integer|exists:countries,id"
+            ]);
+            $address = Address::create($data1);
+
+            $data1["address_id"] = $address->id;
+
+            $data1 = ShippingAddress::create($data);
+
+            $data["shipping_address"] = $data1->id;
+        }
+        dd(1);
+
         $total = 0;
         DB::beginTransaction();
         foreach ($data["cart_id"] as $cart) {
@@ -63,11 +84,12 @@ class TransactionController extends Controller
             $product = ProductOption::findOrFail($cart->product_option_id);
 
             if ($product->qty < $cart->qty) {
-                throw new MessageException("The qty must be less than or equal " . $product->qty . ".");
+                throw ValidationException::withMessages(["qty" => ["The qty must be less than or equal " . $product->qty . "."]]);
             }
 
             $data = Transaction::create([
                 "user_id" => $data["user_id"],
+                "shipping_address_id" => $data["shipping_address_id"],
                 "product_option_id" => $cart->product_option_id,
                 "discount" => $data["discount"],
                 "purchase_price" => ($total += $product->price * $cart->qty * (100 - $data["discount"]) / 100),

@@ -131,6 +131,7 @@ Route::group(["prefix" => "/v1"], function () {
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 // apiSoftDelete("shipping-address", "ShippingAddressController");
                 // });
+                Route::get("/shipping-address/user/{id}", "ShippingAddressController@eachUser");
                 Route::apiResource('/shipping-address', 'ShippingAddressController');
             });
 
