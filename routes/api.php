@@ -107,6 +107,8 @@ Route::group(["prefix" => "/v1"], function () {
                 // apiSoftDelete("favorite-product", "FavoriteProductController");
                 // });
                 Route::apiResource('/favorite-product', 'FavoriteProductController', ["except" => ["update"]]);
+
+                Route::apiResource('/product-feedback', 'ProductFeedbackController');
             });
 
             Route::group(["namespace" => "Payments\\"], function () {
@@ -156,7 +158,6 @@ Route::group(["prefix" => "/v1"], function () {
         Route::get('/home-page-product/productBestRating', 'HomePageProductController@productBestRating');
 
         Route::get("/product-feedback/each/{id}", "ProductFeedbackController@eachProduct");
-        Route::apiResource('/product-feedback', 'ProductFeedbackController');
     });
 
 
