@@ -11,8 +11,8 @@ class ProductBrandResource extends JsonResource
         return [
             "id" => $this->id,
             "brand" => $this->brand,
-            "from_country" => $this->from_country,
-            "posted_by" => $this->posted_by,
+            "from_country" => $this->country->country,
+            "posted_by" => $this->user->identity->full_name,
             'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }
