@@ -60,23 +60,6 @@ class TransactionController extends Controller
 
         $data = $request->validated();
 
-        if (!array_key_exists("shipping_address_id", $data) || empty($data["shipping_address_id"])) {
-            $data1 = $request->validate([
-                "phone_number" => "bail|required|numeric|min:6|max:7",
-                "address_line1" => "required",
-                "address_line2" => "required",
-                "country_id" => "bail|required|integer|exists:countries,id"
-            ]);
-            $address = Address::create($data1);
-
-            $data1["address_id"] = $address->id;
-
-            $data1 = ShippingAddress::create($data);
-
-            $data["shipping_address"] = $data1->id;
-        }
-        dd(1);
-
         $total = 0;
         DB::beginTransaction();
         foreach ($data["cart_id"] as $cart) {
