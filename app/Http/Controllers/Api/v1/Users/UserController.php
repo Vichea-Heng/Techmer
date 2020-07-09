@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\UnauthorizedException;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -58,13 +59,17 @@ class UserController extends Controller
             "first_name" => "required|max:255|alpha",
             "last_name" => "required|max:255|alpha",
             "date_of_birth" => "required|date|before:" . date("Y-m-d"),
-            "phone_number" => "required|string|min:6|max:14|unique:users",
+            "phone_number" => "required|string|min:6|max:14",
             "phone_code" => "required|exists:countries,id",
             "email" => "required|max:255|email|unique:users",
             "password" => "required|min:3|max:255|confirmed",
         ]);
 
-        $data["phone_number"] = Country::findOrFail($data["phone_code"])->dial_code + $data["phone_number"];
+        $data["phone_number"] = Country::findOrFail($data["phone_code"])->phone_code . $data["phone_number"];
+
+        if (!empty(User::where("phone_number", $data["phone_number"]))) {
+            throw ValidationException::withMessages(["phone_number" => "The phone number has already taken."]);
+        }
         // $data["username"] = $this->generate_username($data);
 
         $data["password"] = Hash::make($data["password"]);
