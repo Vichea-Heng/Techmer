@@ -129,4 +129,6 @@ class UserCartController extends Controller
 
         return dataResponse(UserCartResource::collection($datas));
     }
+
+    // public function clearCart
 }
