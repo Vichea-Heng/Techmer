@@ -38,7 +38,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(["prefix" => "/v1"], function () {
     Route::group(["namespace" => "Api\\v1\\Users\\"], function () {
         Route::post("/login", "UserController@login");
-        Route::post("/login-admin", "UserController@loginAdmin");
+        Route::post("/login-admin", "UserAdminController@loginAdmin");
         Route::post("/register", "UserController@register");
         Route::post("/logout/{user}", "UserController@logout");
         Route::post("/send-reset-email", "UserController@sendResetEmail");
@@ -50,9 +50,8 @@ Route::group(["prefix" => "/v1"], function () {
             Route::group(["namespace" => "Users\\"], function () {
                 Route::post("/addIdentity", "UserController@addIdentity");
                 Route::post("/block-user/{id}", "UserController@addIdentity");
-                Route::get("/user-admin", "UserController@userAdmin");
-                Route::post("/user-admin", "UserController@registerAdmin");
                 Route::get("/eachUser", "UserController@eachUser");
+                Route::apiResource("/user-admin", "UserAdminController");
 
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 // apiSoftDelete("role", "RoleController");
