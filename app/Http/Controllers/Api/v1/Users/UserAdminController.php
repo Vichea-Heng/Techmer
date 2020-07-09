@@ -64,7 +64,7 @@ class UserAdminController extends Controller
 
         $data["phone_number"] = Country::findOrFail($data["phone_code"])->phone_code . $data["phone_number"];
 
-        if (!empty(User::where("phone_number", $data["phone_number"]))) {
+        if (!empty(User::where("phone_number", $data["phone_number"])->first())) {
             throw ValidationException::withMessages(["phone_number" => "The phone number has already taken."]);
         }
 
@@ -88,23 +88,23 @@ class UserAdminController extends Controller
         return dataResponse($user);
     }
 
-    public function show(User $user)
+    public function show(User $user_admin)
     {
-        if (!$user->hasRole(["Super Admin", "Admin"])) {
+        if (!$user_admin->hasRole(["Super Admin", "Admin"])) {
             throw new MessageException("User not admin");
         }
         // $this->authorize("view", User::class);
 
-        return dataResponse(new UserResource($user));
+        return dataResponse(new UserResource($user_admin));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user_admin)
     {
 
         // $this->authorize("update", User::class);
 
         $data = $request->validate([
-            "username" => "filled|max:255|alpha_num|unique:users,username," . $user->id,
+            "username" => "filled|max:255|alpha_num|unique:users,username," . $user_admin->id,
             "first_name" => "filled|max:255|alpha",
             "last_name" => "filled|max:255|alpha",
             "date_of_birth" => "filled|date|before:" . date("Y-m-d"),
@@ -116,7 +116,7 @@ class UserAdminController extends Controller
 
         $data["phone_number"] = Country::findOrFail($data["phone_code"])->phone_code . $data["phone_number"];
 
-        if (!empty(User::where("phone_number", $data["phone_number"])->where("id", "!=", $user->id))) {
+        if (!empty(User::where("phone_number", $data["phone_number"])->where("id", "!=", $user_admin->id)->first())) {
             throw ValidationException::withMessages(["phone_number" => "The phone number has already taken."]);
         }
 
@@ -124,19 +124,19 @@ class UserAdminController extends Controller
             $data["phone_number"] = Country::findOrFail($data["phone_code"])->dial_code + $data["phone_number"];
         }
 
-        $user->update($data);
+        $user_admin->update($data);
 
-        return dataResponse(new UserResource($user));
+        return dataResponse(new UserResource($user_admin));
     }
 
-    public function destroy(User $user)
+    public function destroy(User $user_admin)
     {
         // $this->authorize("delete", User::class);
-        if (!$user->hasRole(["Super Admin", "Admin"])) {
+        if (!$user_admin->hasRole(["Super Admin", "Admin"])) {
             throw new MessageException("User not admin");
         }
 
-        $user->delete();
+        $user_admin->delete();
 
         return destoryResponse();
     }
