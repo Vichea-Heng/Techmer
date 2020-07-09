@@ -52,6 +52,7 @@ Route::group(["prefix" => "/v1"], function () {
                 Route::post("/block-user/{id}", "UserController@addIdentity");
                 Route::get("/user-admin", "UserController@userAdmin");
                 Route::post("/user-admin", "UserController@registerAdmin");
+                Route::get("/eachUser", "UserController@eachUser");
 
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 // apiSoftDelete("role", "RoleController");

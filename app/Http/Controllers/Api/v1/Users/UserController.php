@@ -249,4 +249,11 @@ class UserController extends Controller
 
         return dataResponse(UserResource::collection($datas));
     }
+
+    public function eachUser()
+    {
+        $user = User::where("id", auth()->id())->with("identity")->first();
+
+        return dataResponse(new UserResource($user));
+    }
 }
