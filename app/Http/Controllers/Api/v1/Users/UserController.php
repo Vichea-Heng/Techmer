@@ -242,7 +242,7 @@ class UserController extends Controller
 
     public function userAdmin()
     {
-        $datas = User::role(["Super Admin", "Admin"])->get();
+        $datas = User::role(["Super Admin", "Admin"])->with(["identity"])->get();
 
         if (count($datas) == 0)
             throw new ModelNotFoundException();
