@@ -18,7 +18,7 @@ class CreateShippingAddressesTable extends Migration
             $table->unsignedInteger("user_id");
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
 
-            $table->string("full_name");
+            $table->string("first_name");
             $table->string("last_name");
 
             $table->unsignedInteger("address_id");
