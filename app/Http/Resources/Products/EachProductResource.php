@@ -20,6 +20,7 @@ class EachProductResource extends JsonResource
             "posted_by" => $this->user->identity->full_name,
             "published" => $this->published,
             "gallery" => $this->url_gallery,
+            "file_name" => json_decode($this->gallery),
             "rated" => $this->productRated->rated,
             "product_option" => ProductOptionResource::collection($this->productOptions()->get()),
             'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
