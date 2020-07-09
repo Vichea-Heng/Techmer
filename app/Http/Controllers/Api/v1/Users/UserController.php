@@ -109,6 +109,40 @@ class UserController extends Controller
         return dataResponse($user);
     }
 
+    public function registerAdmin(Request $request)
+    {
+        $data = $request->validate([
+            "username" => "required|max:255|alpha_num|unique:users",
+            "first_name" => "required|max:255|alpha",
+            "last_name" => "required|max:255|alpha",
+            "date_of_birth" => "required|date|before:" . Carbon::now(),
+            "phone_number" => "required|string|min:6|max:14|unique:users",
+            "phone_code" => "required|exists:countries,id",
+            "email" => "required|max:255|email|unique:users",
+            "password" => "required|min:3|max:255|confirmed",
+        ]);
+
+        $data["phone_number"] = Country::findOrFail($data["phone_code"])->dial_code + $data["phone_number"];
+        // $data["username"] = $this->generate_username($data);
+
+        $data["password"] = Hash::make($data["password"]);
+
+        DB::beginTransaction();
+
+        $user = User::create($data);
+        $data["user_id"] = $user->id;
+        Identity::create($data);
+
+        $user->assignRole("Super Admin"); //should be admin 
+
+        $user->success = $user->createToken("blah");
+        DB::commit();
+
+        // $user->createAsStripeCustomer();
+
+        return dataResponse($user);
+    }
+
     // public function assignAdmin(Request $request)
     // {
     // }
@@ -202,5 +236,12 @@ class UserController extends Controller
         $password_reset->delete();
 
         return successResponse("Reset Successfully");
+    }
+
+    public function userAdmin()
+    {
+        $datas = User::role(["Super Admin", "Admin"])->get();
+
+        dd($datas);
     }
 }
