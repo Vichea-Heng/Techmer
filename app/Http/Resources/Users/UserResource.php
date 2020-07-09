@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             "full_name" => $identity->full_name,
             "first_name" => $identity->first_name,
             "last_name" => $identity->last_name,
-            "date_of_birth" => $identity->date_of_birth,
+            "date_of_birth" => date("Y-m-d", strtotime($identity->date_of_birth)),
             "email" => $this->email,
             "email_verified" => $this->email_verified,
             "phone_number" => $this->phone_number,
