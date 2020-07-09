@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             "email_verified" => $this->email_verified,
             "phone_number" => $this->phone_number,
             "phone_verified" => $this->phone_verified,
-            "status" => $this->status,
+            "status" => $this->status ? "Active" : "In-Active",
             'deleted_at' => $this->when(!empty($this->deleted_at), $this->deleted_at),
         ];
     }
