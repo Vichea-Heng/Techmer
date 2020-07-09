@@ -16,4 +16,9 @@ class ProductFeedback extends Model
     ];
 
     protected $authIdFields = ["user_id"];
+
+    public function user()
+    {
+        return $this->belongsTo("\App\Models\Users\User", "user_id", "id");
+    }
 }

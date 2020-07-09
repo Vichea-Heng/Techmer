@@ -10,7 +10,7 @@ class ProductFeedbackResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "user_id" => $this->user_id,
+            "user_id" => $this->user->identity->full_name,
             "product_id" => $this->product_id,
             "feedback" => $this->feedback,
             "rated" => $this->rated,

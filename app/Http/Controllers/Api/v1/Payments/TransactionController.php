@@ -71,7 +71,7 @@ class TransactionController extends Controller
             }
 
             $data = Transaction::create([
-                "user_id" => $data["user_id"],
+                // "user_id" => $data["user_id"],
                 "shipping_address_id" => $data["shipping_address_id"],
                 "product_option_id" => $cart->product_option_id,
                 "discount" => $data["discount"],
