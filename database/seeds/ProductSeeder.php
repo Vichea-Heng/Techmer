@@ -10,6 +10,7 @@ use App\Models\Products\Product;
 use App\Models\Products\ProductFeedback;
 use App\Models\Products\ProductOption;
 use App\Models\Products\ProductRated;
+use Illuminate\Support\Facades\Auth;
 
 class ProductSeeder extends Seeder
 {
@@ -101,6 +102,7 @@ class ProductSeeder extends Seeder
 
         for ($i = 1; $i <= 11; $i++) {
             for ($l = 1; $l <= 3; $l++) {
+                Auth::loginUsingId(1);
                 factory(UserCart::class, 1)->create([
                     "product_option_id" => (rand(1, 22)),
                 ]);

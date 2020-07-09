@@ -115,7 +115,8 @@ Route::group(["prefix" => "/v1"], function () {
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 // apiSoftDelete("user-cart", "UserCartController");
                 // });
-                eachUser("/user-cart", "UserCartController");
+                // eachUser("/user-cart", "UserCartController");
+                Route::get("/user-cart/user", "UserCartController@eachUser");
                 Route::apiResource('/user-cart', 'UserCartController');
 
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
