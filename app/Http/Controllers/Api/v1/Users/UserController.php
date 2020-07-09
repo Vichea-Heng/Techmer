@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\Users;
 use App\Exceptions\MessageException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\AddressRequest;
+use App\Http\Resources\Users\UserResource;
 use App\Mail\ResetPasswordMail;
 use App\Models\Addresses\Address;
 use App\Models\Addresses\Country;
@@ -12,6 +13,7 @@ use App\Models\Auth\PasswordReset;
 use App\Models\Users\Identity;
 use App\Models\Users\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -242,6 +244,9 @@ class UserController extends Controller
     {
         $datas = User::role(["Super Admin", "Admin"])->get();
 
-        dd($datas);
+        if (count($datas) == 0)
+            throw new ModelNotFoundException();
+
+        return dataResponse(UserResource::collection($datas));
     }
 }
