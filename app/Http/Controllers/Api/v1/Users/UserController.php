@@ -57,7 +57,7 @@ class UserController extends Controller
             "username" => "required|max:255|alpha_num|unique:users",
             "first_name" => "required|max:255|alpha",
             "last_name" => "required|max:255|alpha",
-            "date_of_birth" => "required|date|before:" . date("Y-m-d", Carbon::now()),
+            "date_of_birth" => "required|date|before:" . date("Y-m-d"),
             "phone_number" => "required|string|min:6|max:14|unique:users",
             "phone_code" => "required|exists:countries,id",
             "email" => "required|max:255|email|unique:users",
