@@ -13,6 +13,8 @@ class ShippingAddress extends Model
     protected $fillable = [
         "address_id",
         "phone_number",
+        "first_name",
+        "last_name",
     ];
 
     protected $authIdFields = ["user_id"];
@@ -25,4 +27,9 @@ class ShippingAddress extends Model
     // {
     //     return $this->belongsTo("App\Models\Users\User", "user_id", "id");
     // }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . " " . $this->last_name;
+    }
 }

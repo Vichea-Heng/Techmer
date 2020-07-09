@@ -18,7 +18,7 @@ class ShippingAddressSeeder extends Seeder
 
         foreach ($datas as $data) {
             Auth::loginUsingId(rand(1, 11));
-            ShippingAddress::create(["address_id" => $data->id, "phone_number" => "85577774587"]);
+            ShippingAddress::create(["address_id" => $data->id, "phone_number" => "85577774587", "last_name" => "Heng", "first_name" => "Vichea"]);
         }
 
         // factory(ShippingAddress::class, 10)->create());
