@@ -119,6 +119,7 @@ Route::group(["prefix" => "/v1"], function () {
                 // });
                 // eachUser("/user-cart", "UserCartController");
                 Route::get("/user-cart/user", "UserCartController@eachUser");
+                Route::get("/user-cart/clearCart", "UserCartController@clearCart");
                 Route::apiResource('/user-cart', 'UserCartController');
 
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {

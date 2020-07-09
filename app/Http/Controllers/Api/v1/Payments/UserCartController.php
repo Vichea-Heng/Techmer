@@ -130,5 +130,10 @@ class UserCartController extends Controller
         return dataResponse(UserCartResource::collection($datas));
     }
 
-    // public function clearCart
+    public function clearCart()
+    {
+        UserCart::where("user_id", auth()->id())->get()->each(fn ($each) => $each->delete());
+
+        return successResponse("Delete Successfully");
+    }
 }
