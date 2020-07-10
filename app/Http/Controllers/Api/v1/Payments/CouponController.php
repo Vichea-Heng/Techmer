@@ -117,10 +117,11 @@ class CouponController extends Controller
 
     public function checkCoupon($coupon)
     {
-        if (empty(Coupon::where("coupon", $coupon)->where("expired_date", ">=", date("Y-m-d"))->first())) {
+        $coupon = Coupon::where("coupon", $coupon)->where("expired_date", ">=", date("Y-m-d"))->first();
+        if (empty($coupon)) {
             throw ValidationException::withMessages(["coupon" => ["The coupon is invalid."]]);
         }
 
-        return successResponse("Successful");
+        return dataResponse(new CouponResource($coupon));
     }
 }
