@@ -11,6 +11,7 @@ use App\Models\Payments\Transaction;
 use App\Http\Requests\Payments\TransactionRequest;
 use App\Http\Resources\Payments\TransactionResource;
 use App\Models\Addresses\Address;
+use App\Models\Payments\Coupon;
 use App\Models\Payments\ShippingAddress;
 use App\Models\Payments\UserCart;
 use App\Models\Products\ProductOption;
@@ -60,22 +61,34 @@ class TransactionController extends Controller
 
         $data = $request->validated();
 
+        $coupon_discount = 0;
+
+        $coupon = Coupon::where("coupon", $data["coupon"])->where("expired_date", ">=", date("Y-m-d"))->first();
+
+        if (empty($coupon)) {
+            throw ValidationException::withMessages(["coupon" => ["The coupon is invalid."]]);
+        } else {
+            $coupon_discount = $coupon->discount;
+        }
+
         $total = 0;
         DB::beginTransaction();
         foreach ($data["cart_id"] as $cart) {
-            $cart = UserCart::findOrFail($cart);
-            $product = ProductOption::findOrFail($cart->product_option_id);
+            $cart = UserCart::findOrFail($cart)->with("productOption")->first();
+            $product = $cart->productOption;
 
             if ($product->qty < $cart->qty) {
                 throw ValidationException::withMessages(["qty" => ["The qty must be less than or equal " . $product->qty . "."]]);
             }
 
+            $charge = $product->price * $cart->qty * (100 - $product->discount + $coupon_discount) / 100;
+            $total += $charge;
             $data = Transaction::create([
                 // "user_id" => $data["user_id"],
                 "shipping_address_id" => $data["shipping_address_id"],
                 "product_option_id" => $cart->product_option_id,
-                "discount" => $data["discount"],
-                "purchase_price" => ($total += $product->price * $cart->qty * (100 - $data["discount"]) / 100),
+                "discount" => $product->discount,
+                "purchase_price" => ($charge),
                 "qty" => $cart->qty,
             ]);
             $cart->delete();
