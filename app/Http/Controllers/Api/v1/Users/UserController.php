@@ -159,15 +159,19 @@ class UserController extends Controller
     public function resetPassword(Request $request)
     {
         $data = $request->validate([
-            "token" => "required",
+            "token" => "required|exists:password_resets,token",
             "password" => "required|min:8|confirmed",
         ]);
 
         $password_reset = PasswordReset::where("token", $data["token"])->first();
 
+        if (empty($password_reset)) {
+            throw new MessageException("The link is already expired.");
+        }
+
         if (Carbon::parse($password_reset->updated_at)->addMinutes(20)->isPast()) {
             $password_reset->delete();
-            throw new MessageException("This password reset token is invalid.");
+            throw new MessageException("The link is already expired.");
         }
 
         $user = User::where("email", $password_reset["email"])->first();
