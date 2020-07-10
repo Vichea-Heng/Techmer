@@ -42,12 +42,12 @@ class ProductRequest extends FormRequest
 
             $product_options_rule = "required|array";
 
-            $each_product_options_category_rule = "required";
-            $each_product_options_option_rule = "required_with:product_options.*.category|distinct";
-            $each_product_options_qty_rule = "required_with:product_options.*.category|numeric|gte:0";
-            $each_product_options_price_rule = "required_with:product_options.*.category|numeric|gte:0";
-            $each_product_options_discount_rule = "required_with:product_options.*.category|numeric|gte:0|lte:100";
-            $each_product_options_warrenty_rule = "required_with:product_options.*.category";
+            $each_product_options_option_rule = "required";
+            $each_product_options_category_rule = "required_with:product_options.*.option|distinct";
+            $each_product_options_qty_rule = "required_with:product_options.*.option|numeric|gte:0";
+            $each_product_options_price_rule = "required_with:product_options.*.option|numeric|gte:0";
+            $each_product_options_discount_rule = "required_with:product_options.*.option|numeric|gte:0|lte:100";
+            $each_product_options_warrenty_rule = "required_with:product_options.*.option";
         }
         return [
             "title" => $title_rule,
