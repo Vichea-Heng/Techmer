@@ -122,6 +122,7 @@ Route::group(["prefix" => "/v1"], function () {
                 Route::get("/user-cart/clearCart", "UserCartController@clearCart");
                 Route::apiResource('/user-cart', 'UserCartController');
 
+                Route::get("/coupon/check/{coupon}", "CouponController@checkCoupon");
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
                 apiSoftDelete("coupon", "CouponController");
                 // });

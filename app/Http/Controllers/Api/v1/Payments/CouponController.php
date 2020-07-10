@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
 
 class CouponController extends Controller
 {
@@ -112,5 +113,14 @@ class CouponController extends Controller
         $data->forceDelete();
 
         return forceDestoryResponse();
+    }
+
+    public function checkCoupon($coupon)
+    {
+        if (empty(Coupon::where("coupon", $coupon)->where("expired_date", ">=", date("Y-m-d"))->first())) {
+            throw ValidationException::withMessages(["coupon" => ["The coupon is invalid."]]);
+        }
+
+        return successResponse("Successful");
     }
 }

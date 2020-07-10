@@ -179,20 +179,14 @@ class UserController extends Controller
         return successResponse("Reset Successfully");
     }
 
-    public function userAdmin()
-    {
-        $datas = User::role(["Super Admin", "Admin"])->with(["identity"])->get();
-
-        if (count($datas) == 0)
-            throw new ModelNotFoundException();
-
-        return dataResponse(UserResource::collection($datas));
-    }
-
     public function eachUser()
     {
         $user = User::where("id", auth()->id())->with("identity")->first();
 
         return dataResponse(new UserResource($user));
+    }
+
+    public function editProfile(Request $request)
+    {
     }
 }
