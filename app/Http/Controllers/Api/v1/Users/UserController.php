@@ -220,5 +220,18 @@ class UserController extends Controller
 
     public function editProfile(Request $request)
     {
+        $user = User::find(auth()->id());
+        $data = $request->validate([
+            "first_name" => "filled|max:255|alpha",
+            "last_name" => "filled|max:255|alpha",
+            "date_of_birth" => "filled|date|before:" . date("Y-m-d"),
+            "phone_number" => "filled|string|min:6|max:14",
+            "email" => "filled|max:255|email|unique:users,email," . $user->id,
+        ]);
+
+        $user->update([$data]);
+        $user->identity->update([$data]);
+
+        return dataResponse(new UserResource($user));
     }
 }

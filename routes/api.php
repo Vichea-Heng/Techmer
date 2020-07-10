@@ -52,6 +52,7 @@ Route::group(["prefix" => "/v1"], function () {
                 Route::post("/addIdentity", "UserController@addIdentity");
                 Route::post("/block-user/{id}", "UserController@addIdentity");
                 Route::get("/eachUser", "UserController@eachUser");
+                Route::put("/eachUser", "UserController@editProfile");
                 Route::apiResource("/user-admin", "UserAdminController");
 
                 // Route::group(["middleware" => CheckSuperAdmin::class], function () {
