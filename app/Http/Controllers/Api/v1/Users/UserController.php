@@ -172,11 +172,26 @@ class UserController extends Controller
 
         $user = User::where("email", $password_reset["email"])->first();
 
+        DB::beginTransaction();
+
         $user->update(["password" => bcrypt($data["password"])]);
 
         $password_reset->delete();
 
-        return successResponse("Reset Successfully");
+        DB::commit();
+
+        $user->createToken("asd");
+
+        return dataResponse($user);
+    }
+
+    public function checkResetToken($token)
+    {
+        if (empty(PasswordReset::where("token", $token)->first())) {
+            throw new MessageException("Token is invalid");
+        }
+
+        return successResponse("Token is valid");
     }
 
     public function eachUser()

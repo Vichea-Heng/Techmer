@@ -43,6 +43,7 @@ Route::group(["prefix" => "/v1"], function () {
         Route::post("/logout/{user}", "UserController@logout");
         Route::post("/send-reset-email", "UserController@sendResetEmail");
         Route::post("/reset-password", "UserController@resetPassword");
+        Route::get("/check-reset-token/{token}", "UserController@checkResetToken");
     });
 
     Route::group(["middleware" => "auth:api"], function () {

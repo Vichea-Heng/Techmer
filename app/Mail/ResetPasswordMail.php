@@ -18,7 +18,7 @@ class ResetPasswordMail extends Mailable
      */
     public function __construct($token)
     {
-        $this->url = url(env("APP_URL") . "v1/reset-password?token=" . $token);
+        $this->url = url("https://techfinding.vichea.xyz/reset-password/" . $token);
     }
 
     /**
@@ -28,7 +28,7 @@ class ResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->from("noreply@gmail.com", "Asd")
+        return $this->from("noreply@gmail.com", "Tech Finding")
             ->markdown('emails.reset_password_email')->with(["url" => $this->url]);
     }
 }
