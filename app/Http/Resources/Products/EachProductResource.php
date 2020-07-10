@@ -19,6 +19,7 @@ class EachProductResource extends JsonResource
             "category_id" => $this->category_id,
             "posted_by" => $this->user->identity->full_name,
             "published" => $this->published,
+            "published_word" => $this->published ? "Published" : "Un-Published",
             "gallery" => $this->url_gallery,
             "file_name" => json_decode($this->gallery),
             "rated" => $this->productRated->rated,
