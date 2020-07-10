@@ -63,13 +63,15 @@ class TransactionController extends Controller
 
         $coupon_discount = 0;
 
-        $coupon = Coupon::where("coupon", $data["coupon"])->where("expired_date", ">=", date("Y-m-d"))->first();
-
-        if (empty($coupon)) {
-            throw ValidationException::withMessages(["coupon" => ["The coupon is invalid."]]);
-        } else {
-            $coupon_discount = $coupon->discount;
+        if (array_key_exists("coupon", $data)) {
+            $coupon = Coupon::where("coupon", $data["coupon"])->where("expired_date", ">=", date("Y-m-d"))->first();
+            if (empty($coupon)) {
+                throw ValidationException::withMessages(["coupon" => ["The coupon is invalid."]]);
+            } else {
+                $coupon_discount = $coupon->discount;
+            }
         }
+
 
         $total = 0;
         DB::beginTransaction();
