@@ -1,12 +1,19 @@
 @component('mail::message')
-# Introduction
+# Reset Password
 
-The body of your message.
+<p>Dear {{ $data["name"] }},</p>
 
-@component('mail::button', ['url' => $url])
-Button Text
+<p>We received a request to reset your Facebook password.</p>
+
+<p>You can directly change your password.</p>
+
+@component('mail::button', ['url' => $data["url"]])
+Click Here To Reset
 @endcomponent
 
+<p>Didn't request this change?</p>
+<p>If you didn't request a new password, let us know.</p>
+
 Thanks,<br>
-{{ config('app.name') }}
+Techfinder
 @endcomponent

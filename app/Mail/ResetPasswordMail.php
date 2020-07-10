@@ -16,9 +16,14 @@ class ResetPasswordMail extends Mailable
      *
      * @return void
      */
-    public function __construct($token)
+    protected $data;
+
+    public function __construct($data)
     {
-        $this->url = url("https://techfinding.vichea.xyz/reset-password/" . $token);
+        $this->data = [
+            "url" => url("https://techfinder.vichea.xyz/reset-password/" . $data["token"]),
+            "name" => $data["full_name"],
+        ];
     }
 
     /**
@@ -29,6 +34,6 @@ class ResetPasswordMail extends Mailable
     public function build()
     {
         return $this->from("noreply@gmail.com", "Tech Finding")
-            ->markdown('emails.reset_password_email')->with(["url" => $this->url]);
+            ->markdown('emails.reset_password_email')->with(["data" => $this->data]);
     }
 }

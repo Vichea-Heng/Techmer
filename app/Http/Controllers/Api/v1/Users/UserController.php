@@ -151,7 +151,14 @@ class UserController extends Controller
             ]
         );
 
-        Mail::to($data["email"])->sendNow(new ResetPasswordMail($token));
+        $user = User::where('email', $data["email"])->with("identity")->first();
+
+        $toShow = [
+            "full_name" => $user->identity->first_name . " " . $user->identity->last_name,
+            "token" => $token,
+        ];
+
+        Mail::to($data["email"])->sendNow(new ResetPasswordMail($toShow));
 
         return successResponse("Please Check your Email with your reset password link");
     }
