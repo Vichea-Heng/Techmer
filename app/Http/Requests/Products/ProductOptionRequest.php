@@ -20,8 +20,8 @@ class ProductOptionRequest extends FormRequest
             $request = $this->all();
             $data = $this->route("product_option");
             // $product_id_rule = [Rule::requiredIf(check_empty_array($request, "product_id")), "numeric", "exists:products,id"];
-            $option_rule = ["bail", "filled", Rule::unique("product_options")->where(function ($query) use ($request) {
-                return $query->where(["product_id" => $request["product_id"], "option" => $request["option"], "category" => $request["category"]]);
+            $option_rule = ["bail", "filled", Rule::unique("product_options")->where(function ($query) use ($request, $data) {
+                return $query->where(["product_id" => $data["product_id"], "option" => $data["option"], "category" => $data["category"]]);
             })->ignore($data->id)];
             $category_rule = ["filled"];
             $price_rule = ["bail", "filled", "numeric", "gte:0"];
