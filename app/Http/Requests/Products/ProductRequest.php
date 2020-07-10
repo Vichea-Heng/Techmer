@@ -66,7 +66,6 @@ class ProductRequest extends FormRequest
             "product_options.*.price" => $each_product_options_price_rule,
             "product_options.*.discount" => $each_product_options_discount_rule,
             "product_options.*.warrenty" => $each_product_options_warrenty_rule,
-            "blah" => "required|file|max:1000",
         ];
     }
 }
