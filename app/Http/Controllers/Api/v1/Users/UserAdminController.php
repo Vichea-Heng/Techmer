@@ -64,6 +64,8 @@ class UserAdminController extends Controller
 
         $data["phone_number"] = Country::findOrFail($data["phone_code"])->phone_code . $data["phone_number"];
 
+        $data["username"] = strtolower($data["username"]);
+
         if (!empty(User::where("phone_number", $data["phone_number"])->first())) {
             throw ValidationException::withMessages(["phone_number" => "The phone number has already taken."]);
         }
@@ -147,6 +149,8 @@ class UserAdminController extends Controller
             'username' => "required",
             'password' => "required",
         ]);
+
+        $data["username"] = strtolower($data["username"]);
 
         if (is_numeric($data["username"])) {
             $cred = ['phone_number' => $data["username"], 'password' => $data["password"]];
