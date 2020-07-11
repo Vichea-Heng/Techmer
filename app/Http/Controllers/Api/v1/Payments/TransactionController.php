@@ -76,7 +76,7 @@ class TransactionController extends Controller
         $total = 0;
         DB::beginTransaction();
         foreach ($data["cart_id"] as $cart) {
-            $cart = UserCart::findOrFail($cart)->with("productOption")->first();
+            $cart = UserCart::where("id", $cart)->with("productOption")->first();
             $product = $cart->productOption;
             $qty = $cart->qty;
             if ($product->qty < $cart->qty) {
