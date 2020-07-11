@@ -224,7 +224,8 @@ class UserController extends Controller
 
     public function editProfile(Request $request)
     {
-        $user = User::find(auth()->id())->with("identity")->first();
+        $user = User::where("id", auth()->id())->with("identity")->first();
+
         $data = $request->validate([
             "first_name" => "filled|max:255|alpha",
             "last_name" => "filled|max:255|alpha",
