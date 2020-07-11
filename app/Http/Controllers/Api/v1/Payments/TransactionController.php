@@ -78,12 +78,13 @@ class TransactionController extends Controller
         foreach ($data["cart_id"] as $cart) {
             $cart = UserCart::findOrFail($cart)->with("productOption")->first();
             $product = $cart->productOption;
-
+            $qty = $cart->qty;
             if ($product->qty < $cart->qty) {
-                throw ValidationException::withMessages(["qty" => ["The qty must be less than or equal " . $product->qty . "."]]);
+                $qty = $product->qty;
+                // throw ValidationException::withMessages(["qty" => ["The qty must be less than or equal " . $product->qty . "."]]);
             }
 
-            $charge = $product->price * $cart->qty * (100 - $product->discount + $coupon_discount) / 100;
+            $charge = $product->price * $qty * (100 - $product->discount + $coupon_discount) / 100;
             $total += $charge;
             $data = Transaction::create([
                 // "user_id" => $data["user_id"],
@@ -91,10 +92,10 @@ class TransactionController extends Controller
                 "product_option_id" => $cart->product_option_id,
                 "discount" => $product->discount,
                 "purchase_price" => ($charge),
-                "qty" => $cart->qty,
+                "qty" => $qty,
             ]);
             $cart->delete();
-            $product->update(["qty" => ($product->qty - $cart->qty)]);
+            $product->update(["qty" => ($product->qty - $qty)]);
         }
         try {
             Stripe::charges()->create([
